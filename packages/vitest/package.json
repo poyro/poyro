@@ -1,0 +1,38 @@
+{
+  "name": "@poyro/vitest",
+  "version": "0.0.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "constants/**",
+    "dist/**",
+    "constants.json"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "test": "vitest",
+    "postinstall": "node ./scripts/downloadModel.mjs"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20.14.2",
+    "@vitest/expect": "^1.6.0",
+    "node-fetch": "^3.3.2",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "handlebars": ">= 4.7.8",
+    "vitest": ">= 1.6.0"
+  },
+  "dependencies": {
+    "node-llama-cpp": "^2.8.11"
+  }
+}
