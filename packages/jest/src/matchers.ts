@@ -1,0 +1,1 @@
+export { toFulfillCriterion } from "./toFulfillCriterion";

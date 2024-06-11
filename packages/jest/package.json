@@ -1,14 +1,14 @@
 {
-  "name": "@repo/ui",
+  "name": "@poyro/jest",
   "version": "0.0.0",
-  "private": true,
   "license": "MIT",
   "sideEffects": false,
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "files": [
-    "dist/**"
+    "constants/**",
+    "dist/**",
+    "constants.json"
   ],
   "scripts": {
     "build": "tsup",
@@ -16,23 +16,25 @@
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
-    "test": "jest"
-  },
-  "jest": {
-    "preset": "@repo/jest-presets/browser"
+    "test": "jest",
+    "postinstall": "node ./scripts/downloadModel.mjs"
   },
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
     "@repo/eslint-config": "workspace:*",
-    "@repo/jest-presets": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.2",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "jest": "^29.7.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "node-fetch": "^3.3.2",
     "tsup": "^8.1.0",
     "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "@jest/globals": ">= 29.7.0",
+    "@types/jest": ">= 29.5.12",
+    "jest": ">= 29.7.0"
+  },
+  "dependencies": {
+    "node-llama-cpp": "^2.8.11"
   }
 }
