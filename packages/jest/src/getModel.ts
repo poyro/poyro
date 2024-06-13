@@ -1,6 +1,7 @@
 import path from "path";
 
 // import { LlamaModel, LlamaContext, LlamaChatSession } from "node-llama-cpp";
+import { prompt } from "@poyro/runner";
 
 import constants from "../constants.json";
 
@@ -15,6 +16,10 @@ export const getModel = () => {
   const modelPath = path.join(binDir, constants.model.filename);
 
   // // Create a new model
+  const res = prompt();
+
+  console.log(res);
+
   // const model = new LlamaModel({ modelPath });
 
   // // Create a new context

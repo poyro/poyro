@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "sideEffects": false,
-  "main": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "constants/**",
     "dist/**",
@@ -20,6 +21,10 @@
     "postinstall": "node ./scripts/downloadModel.mjs"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.7",
+    "@babel/core": "^7.24.7",
+    "@babel/plugin-transform-modules-commonjs": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
     "@jest/globals": "^29.7.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
@@ -32,6 +37,7 @@
   "peerDependencies": {
     "@jest/globals": ">= 29.7.0",
     "@types/jest": ">= 29.5.12",
+    "@poyro/runner": "workspace:*",
     "jest": ">= 29.7.0"
   },
   "dependencies": {

@@ -14,10 +14,9 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "prettier": "^3.3.1",
-    "turbo": "latest",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "turbo": "latest"
   },
-  "packageManager": "pnpm@8.15.6",
   "engines": {
     "node": ">=18"
   }

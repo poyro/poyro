@@ -8,7 +8,7 @@ const destreamify = (str: string) => {
 };
 
 describe("POST /api/chat", () => {
-  it("should work", async () => {
+  it("should work", () => {
     // const content = "Tomatoes, box of pasta, olive oil, and some spices";
 
     // const res = await request(baseUrl)
