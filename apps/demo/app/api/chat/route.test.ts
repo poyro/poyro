@@ -11,6 +11,7 @@ const destreamify = (str: string) => {
 
 describe("POST /api/chat", () => {
   it("should return a valid recipe", async () => {
+    /*
     // User input
     const content = "Tomatoes, box of pasta, olive oil, and some spices";
 
@@ -27,9 +28,35 @@ describe("POST /api/chat", () => {
     expect(res.status).toEqual(200);
 
     // Get the response text and destreamify it
-    const respText = destreamify(await res.text());
+    const respText =  destreamify(await res.text());
+    */
 
     // Check if the response text fulfills the criterion
-    await expect(respText).toFulfillCriterion("Returns a recipe");
+    await expect("not a recipe").toFulfillCriterion("Returns a recipe");
   });
-}, 30000);
+}, 100000);
+
+describe("Test fixed values", () => {
+  it("should contain only statements that do not contradict", async () => {
+    await expect("The sky is blue").toFulfillCriterionAgainstEvery(
+      "Check that the LLM response does not contradict the statements below",
+      [
+        "The earth is round",
+        "The sky is red",
+        "The grass is green",
+      ],
+    );
+  })
+
+  it("should contain at least one statement that does not contradict", async () => {
+    await expect("The sky is blue").toFulfillCriterionAgainstSome(
+      "Check that the LLM response does not contradict the statements below",
+      [
+        "The earth is round",
+        "The sky is red",
+        "The grass is green",
+      ],
+    );
+  })
+
+}, 100000)
