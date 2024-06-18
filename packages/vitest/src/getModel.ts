@@ -1,8 +1,6 @@
-import { fileURLToPath } from "url";
-import path from "path";
-
+import { fileURLToPath } from "node:url";
+import path from "node:path";
 import { LlamaContext, LlamaChatSession, LlamaModel } from "node-llama-cpp";
-
 import constants from "../constants.json";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

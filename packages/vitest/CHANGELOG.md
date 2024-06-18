@@ -1,5 +1,13 @@
 # @poyro/vitest
 
+## 0.1.1
+
+### Patch Changes
+
+- This change ensures that the scripts directory is bundled with the package. This is necessary for the package to work correctly.
+
+  It also makes minor linting changes.
+
 ## 0.1.0
 
 ### Minor Changes
