@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.1.2
+
+### Patch Changes
+
+- Ensure that `node-fetch` is correctly marked as a dependency, not a devDependency.
+
 ## 0.1.1
 
 ### Patch Changes
