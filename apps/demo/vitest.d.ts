@@ -1,5 +1,5 @@
-import type { Assertion, AsymmetricMatchersContaining } from "vitest";
-import { VitestPoyroMatchers } from "@poyro/vitest";
+/* eslint-disable @typescript-eslint/no-empty-interface */
+import type { VitestPoyroMatchers } from "@poyro/vitest";
 
 declare module "vitest" {
   interface Assertion<T = any> extends VitestPoyroMatchers<T> {}

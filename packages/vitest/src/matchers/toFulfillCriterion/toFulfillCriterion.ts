@@ -14,10 +14,10 @@ export const toFulfillCriterion = async (
   additionalContext?: string
 ): Promise<SyncExpectationResult> => {
   // get the model
-  const model = getModel();
+  const [llama, model] = await getModel();
 
   // create a new grammar
-  const grammar = new LlamaJsonSchemaGrammar({
+  const grammar = new LlamaJsonSchemaGrammar(llama, {
     type: "object",
     properties: {
       feedback: {
@@ -32,7 +32,7 @@ export const toFulfillCriterion = async (
   // generate the prompt
   const prompt = compiledTemplate({ llmOutput, criterion, additionalContext });
 
-  // prompt the model
+  // prompt the session
   const a1 = await model.prompt(prompt, { grammar });
 
   // parse the response
