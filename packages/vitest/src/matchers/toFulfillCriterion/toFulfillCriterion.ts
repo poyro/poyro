@@ -1,10 +1,12 @@
 import type { SyncExpectationResult } from "@vitest/expect";
-import { compile } from "handlebars";
+import handlebars from "handlebars";
 import { LlamaJsonSchemaGrammar } from "node-llama-cpp";
+
 import { getModel } from "../../getModel";
+
 import template from "./template.md";
 
-const compiledTemplate = compile(template);
+const compiledTemplate = handlebars.compile(template);
 
 export const toFulfillCriterion = async (
   llmOutput: string,

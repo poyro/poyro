@@ -5,4 +5,20 @@ module.exports = {
   parserOptions: {
     project: true,
   },
+  rules: {
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+        ],
+      },
+    ],
+  },
 };

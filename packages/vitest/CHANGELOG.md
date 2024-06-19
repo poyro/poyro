@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.1.3
+
+### Patch Changes
+
+- Moved `handlebars` to be a dependency for easier installation. Fixed some linting issues. Import handlebars as a singleton to avoid CJS/ESM compatibility issues.
+
 ## 0.1.2
 
 ### Patch Changes
