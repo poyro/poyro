@@ -1,9 +1,7 @@
-import { SyncExpectationResult } from "@vitest/expect";
+import type { SyncExpectationResult } from "@vitest/expect";
 import { compile } from "handlebars";
-import { getLlama, LlamaJsonSchemaGrammar } from "node-llama-cpp";
-
+import { LlamaJsonSchemaGrammar } from "node-llama-cpp";
 import { getModel } from "../../getModel";
-
 import template from "./template.md";
 
 const compiledTemplate = compile(template);

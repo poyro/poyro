@@ -1,6 +1,6 @@
 {
   "name": "@poyro/vitest",
-  "version": "0.0.0",
+  "version": "0.1.2",
   "license": "MIT",
   "sideEffects": false,
   "main": "./dist/index.mjs",
@@ -8,6 +8,7 @@
   "files": [
     "constants/**",
     "dist/**",
+    "scripts/**",
     "constants.json"
   ],
   "scripts": {
@@ -24,7 +25,6 @@
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^20.14.5",
     "@vitest/expect": "^1.6.0",
-    "node-fetch": "^3.3.2",
     "tsup": "^8.1.0",
     "typescript": "^5.4.5"
   },
@@ -33,6 +33,7 @@
     "vitest": ">= 1.6.0"
   },
   "dependencies": {
-    "node-llama-cpp": "3.0.0-beta.32"
+    "node-llama-cpp": "3.0.0-beta.32",
+    "node-fetch": "^3.3.2"
   }
 }

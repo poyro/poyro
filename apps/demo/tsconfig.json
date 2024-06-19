@@ -12,7 +12,9 @@
     "next.config.cjs",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".eslintrc.cjs",
+    "vitest.config.js"
   ],
   "exclude": ["node_modules"]
 }

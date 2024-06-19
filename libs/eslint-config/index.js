@@ -13,6 +13,22 @@ module.exports = {
   env: {
     node: true,
   },
+  rules: {
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+        ],
+      },
+    ],
+  },
   settings: {
     "import/resolver": {
       typescript: {

@@ -24,6 +24,22 @@ module.exports = {
     es6: true,
   },
   plugins: ["only-warn"],
+  rules: {
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+        ],
+      },
+    ],
+  },
   settings: {
     "import/resolver": {
       typescript: {
