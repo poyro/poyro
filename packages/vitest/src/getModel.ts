@@ -1,11 +1,11 @@
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import {getLlama, LlamaChatSession} from "node-llama-cpp";
+import {getLlama, LlamaChatSession, Llama} from "node-llama-cpp";
 import constants from "../constants.json";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export const getModel = async (systemPrompt?: string) => {
+export const getModel = async (systemPrompt?: string): Promise<[Llama, LlamaChatSession]> => {
   // Get to the root directory of package
   const rootDir = path.join(__dirname, "..");
 
