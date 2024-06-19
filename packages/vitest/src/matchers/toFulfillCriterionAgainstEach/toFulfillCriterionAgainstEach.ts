@@ -1,9 +1,7 @@
-import { SyncExpectationResult } from "@vitest/expect";
+import type { SyncExpectationResult } from "@vitest/expect";
 import { compile } from "handlebars";
 import { getLlama, LlamaJsonSchemaGrammar } from "node-llama-cpp";
-
 import { getModel } from "../../getModel";
-
 import template from "./template.md";
 
 export type AggregationMode = 'some' | 'every'
@@ -44,7 +42,7 @@ export const toFulfillCriterionAgainstEach = async (
   const prompt = compiledTemplate({ statementList, llmOutput, criterion });
 
   // prompt the model
-  const a1 = await model.prompt(prompt, { grammar: grammar });
+  const a1 = await model.prompt(prompt, { grammar });
 
   // parse the response
   const output = grammar.parse(a1);

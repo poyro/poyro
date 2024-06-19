@@ -1,7 +1,7 @@
 import type { Assertion, AsymmetricMatchersContaining } from "vitest";
-import { VitestPoyroMatchers } from "@poyro/vitest";
+import type { VitestPoyroMatchers } from "@poyro/vitest";
 
 declare module "vitest" {
-  interface Assertion<T = any> extends VitestPoyroMatchers<T> {}
+  type Assertion<T = any> = VitestPoyroMatchers<T>
   interface AsymmetricMatchersContaining extends VitestPoyroMatchers {}
 }

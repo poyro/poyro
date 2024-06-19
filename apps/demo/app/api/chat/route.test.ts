@@ -11,7 +11,6 @@ const destreamify = (str: string) => {
 
 describe("POST /api/chat", () => {
   it("should return a valid recipe", async () => {
-    /*
     // User input
     const content = "Tomatoes, box of pasta, olive oil, and some spices";
 
@@ -29,12 +28,11 @@ describe("POST /api/chat", () => {
 
     // Get the response text and destreamify it
     const respText =  destreamify(await res.text());
-    */
 
     // Check if the response text fulfills the criterion
     await expect("not a recipe").toFulfillCriterion("Returns a recipe");
   });
-}, 100000);
+}, 30000);
 
 describe("Test fixed values", () => {
   it("should contain only statements that do not contradict", async () => {
@@ -59,4 +57,4 @@ describe("Test fixed values", () => {
     );
   })
 
-}, 100000)
+}, 30000)

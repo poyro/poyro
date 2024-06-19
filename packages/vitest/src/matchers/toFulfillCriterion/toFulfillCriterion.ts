@@ -31,7 +31,7 @@ export const toFulfillCriterion = async (
   const prompt = compiledTemplate({ llmOutput, criterion, additionalContext });
 
   // prompt the session
-  const a1 = await model.prompt(prompt, { grammar: grammar });
+  const a1 = await model.prompt(prompt, { grammar });
 
   // parse the response
   const { result, feedback } = grammar.parse(a1);

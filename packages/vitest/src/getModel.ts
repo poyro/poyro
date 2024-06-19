@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import {getLlama, LlamaChatSession, Llama} from "node-llama-cpp";
+import type { Llama} from "node-llama-cpp";
+import {getLlama, LlamaChatSession} from "node-llama-cpp";
 import constants from "../constants.json";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -17,7 +18,7 @@ export const getModel = async (systemPrompt?: string): Promise<[Llama, LlamaChat
 
   // Create a new model
   const llama = await getLlama();
-  const model = await llama.loadModel({ modelPath: modelPath });
+  const model = await llama.loadModel({ modelPath });
 
   // Create a new context
   const context = await model.createContext({
@@ -28,7 +29,7 @@ export const getModel = async (systemPrompt?: string): Promise<[Llama, LlamaChat
   // Create a new chat session and return it
   const session = new LlamaChatSession({
     contextSequence,
-    systemPrompt: systemPrompt
+    systemPrompt
   });
 
   return [llama, session];
