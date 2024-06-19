@@ -55,7 +55,7 @@ export default defineConfig({
 });
 ```
 
-Finally, create a `vitest.d.ts` file in the root of your project and add the following code:
+Next, create a `vitest.d.ts` file in the root of your project and add the following code:
 
 ```typescript
 import type { Assertion, AsymmetricMatchersContaining } from "vitest";
@@ -64,6 +64,16 @@ import { VitestPoyroMatchers } from "@poyro/vitest";
 declare module "vitest" {
   interface Assertion<T = any> extends VitestPoyroMatchers<T> {}
   interface AsymmetricMatchersContaining extends VitestPoyroMatchers {}
+}
+```
+
+Finally, update your `tsconfig.json` to include the following:
+
+```json
+{
+  "compilerOptions": {
+    "types": ["vitest.d.ts"]
+  }
 }
 ```
 

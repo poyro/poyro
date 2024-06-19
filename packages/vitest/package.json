@@ -1,6 +1,6 @@
 {
   "name": "@poyro/vitest",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
   "sideEffects": false,
   "main": "./dist/index.mjs",

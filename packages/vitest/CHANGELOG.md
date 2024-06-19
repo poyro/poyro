@@ -1,5 +1,13 @@
 # @poyro/vitest
 
+## 0.1.4
+
+### Patch Changes
+
+- Update README.md for `@poyro/vitest` to mention that `tsconfig.json` should be updated to reference `vitest.d.ts`.
+
+  Also fix some minor linting issues.
+
 ## 0.1.3
 
 ### Patch Changes
