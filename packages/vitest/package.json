@@ -22,7 +22,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^20.14.2",
+    "@types/node": "^20.14.5",
     "@vitest/expect": "^1.6.0",
     "node-fetch": "^3.3.2",
     "tsup": "^8.1.0",
@@ -33,6 +33,6 @@
     "vitest": ">= 1.6.0"
   },
   "dependencies": {
-    "node-llama-cpp": "^2.8.11"
+    "node-llama-cpp": "3.0.0-beta.32"
   }
 }
