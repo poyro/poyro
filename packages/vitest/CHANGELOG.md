@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.2.0
+
+### Minor Changes
+
+- f67bbec: Upgrade to node llama 3 beta
+
 ## 0.1.4
 
 ### Patch Changes
