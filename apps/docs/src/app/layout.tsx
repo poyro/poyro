@@ -24,10 +24,10 @@ const lexend = localFont({
 export const metadata: Metadata = {
   title: {
     template: "%s - Docs",
-    default: "CacheAdvance - Never miss the cache again.",
+    default: "Poyro",
   },
   description:
-    "Cache every single thing your app could ever do ahead of time, so your code never even has to run at all.",
+    "Rapidly write powerful and intuitive tests for your AI integrations, spend more time shipping amazing user experiences.",
 };
 
 export default function RootLayout({

@@ -40,7 +40,7 @@ function Header() {
         "sticky top-0 z-50 flex flex-none flex-wrap items-center justify-between bg-white px-4 py-5 shadow-md shadow-slate-900/5 transition duration-500 sm:px-6 lg:px-8 dark:shadow-none",
         isScrolled
           ? "dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75"
-          : "dark:bg-transparent",
+          : "dark:bg-transparent"
       )}
     >
       <div className="mr-6 flex lg:hidden">
@@ -57,7 +57,11 @@ function Header() {
       </div>
       <div className="relative flex basis-0 justify-end gap-6 sm:gap-8 md:flex-grow">
         <ThemeSelector className="relative z-10" />
-        <Link aria-label="GitHub" className="group" href="https://github.com">
+        <Link
+          aria-label="GitHub"
+          className="group"
+          href="https://github.com/poyro/poyro"
+        >
           <GitHubIcon className="h-6 w-6 fill-slate-400 group-hover:fill-slate-500 dark:group-hover:fill-slate-300" />
         </Link>
       </div>

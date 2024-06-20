@@ -2,29 +2,31 @@
 title: Getting started
 ---
 
-Learn how to get CacheAdvance set up in your project in under thirty minutes or it's free. {% .lead %}
+Learn how to get Poyro set up in your project in under 5 minutes. {% .lead %}
 
 {% quick-links %}
 
-{% quick-link title="Installation" icon="installation" href="/" description="Step-by-step guides to setting up your system and installing the library." /%}
+{% quick-link title="Quick start" icon="installation" href="#quick-start" description="Get started quickly with Poyro and begin testing your LLM integration ASAP." /%}
+
+{% quick-link title="Manual installation" icon="theming" href="/docs/manual-installation" description="Step-by-step guides to setting up your system and installing the library." /%}
 
 {% quick-link title="Architecture guide" icon="presets" href="/" description="Learn how the internals work and contribute." /%}
 
-{% quick-link title="Plugins" icon="plugins" href="/" description="Extend the library with third-party plugins or write your own." /%}
-
-{% quick-link title="API reference" icon="theming" href="/" description="Learn to easily customize and modify your app's visual design to fit your brand." /%}
+{% quick-link title="API reference" icon="plugins" href="/" description="Use advanced utilities to test your app the right way." /%}
 
 {% /quick-links %}
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste.
+{% callout type="note" title="Beta disclaimer" %}
+Currently, the library is in beta and only supports integration with Vitest. We are working on adding support for other testing frameworks.
+{% /callout %}
 
 ---
 
 ## Quick start
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+The fastest way to get started is to use the Poyro CLI to install the library and configure it for your project.
 
-### Installing dependencies
+### Installing the Poyro CLI
 
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
 

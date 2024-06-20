@@ -1,8 +1,8 @@
 ---
-title: Installation
+title: Manual installation
 nextjs:
   metadata:
-    title: Installation
+    title: Manual installation
     description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 

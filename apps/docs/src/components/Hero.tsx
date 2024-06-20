@@ -9,16 +9,13 @@ import blurCyanImage from "@/images/blur-cyan.png";
 import blurIndigoImage from "@/images/blur-indigo.png";
 
 const codeLanguage = "javascript";
-const code = `export default {
-  strategy: 'predictive',
-  engine: {
-    cpus: 12,
-    backups: ['./storage/cache.wtf'],
-  },
-}`;
+const code = `const chatGptOutput = "Dinner is served at 7pm.";
+const criterion = "tells user the dinner time";
+
+expect(chatGptOutput).toFulfillCriterion(criterion);`;
 
 const tabs = [
-  { name: "cache-advance.config.js", isActive: true },
+  { name: "ai-integration.test.ts", isActive: true },
   { name: "package.json", isActive: false },
 ];
 
@@ -49,15 +46,18 @@ export function Hero() {
             />
             <div className="relative">
               <p className="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-                Never miss the cache again.
+                Ship AI-driven apps confidently
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Cache every single thing your app could ever do ahead of time,
-                so your code never even has to run at all.
+                Use your favorite unit testing framework to easily write tests
+                for your web applications that integrate LLMs.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="/">Get started</Button>
-                <Button href="/" variant="secondary">
+                <Button href="#quick-start">Get started</Button>
+                <Button
+                  href="https://github.com/poyro/poyro"
+                  variant="secondary"
+                >
                   View on GitHub
                 </Button>
               </div>
@@ -100,14 +100,14 @@ export function Hero() {
                           "flex h-6 rounded-full",
                           tab.isActive
                             ? "bg-gradient-to-r from-sky-400/30 via-sky-400 to-sky-400/30 p-px font-medium text-sky-300"
-                            : "text-slate-500",
+                            : "text-slate-500"
                         )}
                         key={tab.name}
                       >
                         <div
                           className={clsx(
                             "flex items-center rounded-full px-2.5",
-                            tab.isActive && "bg-slate-800",
+                            tab.isActive && "bg-slate-800"
                           )}
                         >
                           {tab.name}
@@ -144,7 +144,7 @@ export function Hero() {
                         <pre
                           className={clsx(
                             className,
-                            "flex overflow-x-auto pb-6",
+                            "flex overflow-x-auto pb-6"
                           )}
                           style={style}
                         >
