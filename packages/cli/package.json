@@ -1,0 +1,29 @@
+{
+  "name": "poyro",
+  "version": "0.2.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "constants/**",
+    "dist/**"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20.14.5",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5"
+  }
+}

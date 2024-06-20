@@ -139,6 +139,24 @@ importers:
 
   libs/typescript-config: {}
 
+  packages/cli:
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../libs/eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../libs/typescript-config
+      '@types/node':
+        specifier: ^20.14.5
+        version: 20.14.6
+      tsup:
+        specifier: ^8.1.0
+        version: 8.1.0(ts-node@10.9.2)(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
   packages/logger:
     devDependencies:
       '@poyro/vitest':
