@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.2.3
+
+### Patch Changes
+
+- We should probably build the package before publishing it. 🤦‍♂️ This will ensure that the packages are actually built prior to being released to NPM.
+
 ## 0.2.2
 
 ### Patch Changes
