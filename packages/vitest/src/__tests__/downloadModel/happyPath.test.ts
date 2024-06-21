@@ -12,7 +12,9 @@ vi.mock("node-fetch", () => {
     return {
       ok: true,
       headers: {
-        get: () => "1000",
+        // set this equal to the size of the real model
+        // to avoid accidentally downloading the real model
+        get: () => "2719242496",
       },
       body: fs.createReadStream(path.join(__dirname, "../__mocks__/test.txt"), {
         encoding: "utf-8",
