@@ -1,24 +1,18 @@
-import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 import type { Llama } from "node-llama-cpp";
 import { getLlama, LlamaChatSession } from "node-llama-cpp";
 
-import constants from "../constants.json";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import { getModelPath } from "./utils/getModelPath";
 
 export const getModel = async (
   systemPrompt?: string
 ): Promise<[Llama, LlamaChatSession]> => {
-  // Get to the root directory of package
-  const rootDir = path.join(__dirname, "..");
+  // Get the directory path and filename for the model
+  const { dirPath, filename } = getModelPath();
 
-  // Get to the bin directory of package
-  const binDir = path.join(rootDir, "bin");
-
-  // Get to the model file
-  const modelPath = path.join(binDir, constants.model.filename);
+  // Put together the file path
+  const modelPath = path.join(dirPath, filename);
 
   // Create a new model
   const llama = await getLlama();
