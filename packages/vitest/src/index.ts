@@ -1,6 +1,7 @@
 import { expect } from "vitest";
 
 import * as extensions from "./matchers";
+import { downloadModel } from "./downloadModel";
 
 export interface VitestPoyroMatchers<R = unknown> {
   toFulfillCriterion: (
@@ -10,3 +11,6 @@ export interface VitestPoyroMatchers<R = unknown> {
 }
 
 expect.extend(extensions);
+
+// Download the model
+await downloadModel();
