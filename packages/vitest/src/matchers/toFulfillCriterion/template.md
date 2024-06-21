@@ -13,16 +13,16 @@ An instruction (might include an Input inside it), a response to evaluate, and a
 
 ### The instruction to evaluate:
 
-{{additionalContext}}
+{{{additionalContext}}}
 {{/if}}
 
 ### Response to evaluate:
 
-{{llmOutput}}
+{{{llmOutput}}}
 
 ### Score Rubrics:
 
-[{{criterion}}]:
+[{{{criterion}}}]:
 
 - False: The response being evaluated do not meet the criterion described in the square brackets.
 - True: The response being evaluated does meet the criterion described in the square brackets.
