@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.2.2
+
+### Patch Changes
+
+- c7ce42a: Fix exports in package.json. Given the change of `tsconfig.json` to target `ES2022`, pointing `main` to `dist/index.mjs` is incorrect. Instead, point `main` to `dist/index.js` and `types` to `dist/index.d.ts`.
+
 ## 0.2.1
 
 ### Patch Changes
