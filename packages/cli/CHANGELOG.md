@@ -1,5 +1,14 @@
 # @poyro/vitest
 
+## 0.2.1
+
+### Patch Changes
+
+- 2f00bc3: Remove installing the evaluation model as part of the `postinstall` script to improve performance and DX. Now, the evaluation model is installed on the first run of `vitest` following the configuration of the package.
+- edfc90e: Improve testing by co-locating tests within the `@poyro/vitest` package rather than relying on a demo app. This will allow us to test the package in isolation and ensure that it works as expected.
+
+  To continue to test a "real-world" example, we will dogfood using our `nextjs-vitest-poyro-demo` repo. This will allow us to ensure that the package also works as expected in a real-world scenario.
+
 ## 0.2.0
 
 ### Minor Changes
