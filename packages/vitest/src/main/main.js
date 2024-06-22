@@ -1,13 +1,15 @@
+import path from "node:path";
+
 import findCacheDirectory from "find-cache-dir";
-import constants from "../../constants.json" with {type: "json"};
-import path from "path";
-import {getLlama, LlamaChatSession} from "node-llama-cpp";
+import { getLlama, LlamaChatSession } from "node-llama-cpp";
+
+import constants from "../../constants.json" with { type: "json" };
 
 const cacheDir = findCacheDirectory({ name: "@poyro/vitest" });
 
 // Throw an error if the cache directory could not be identified
 if (!cacheDir) {
-throw new Error(makeLogMessage(`Could not identify cache directory`));
+  throw new Error(makeLogMessage(`Could not identify cache directory`));
 }
 
 // Put together the directory path for the models
@@ -18,19 +20,14 @@ const modelPath = path.join(dirPath, constants.model.filename);
 
 const llama = await getLlama();
 const model = await llama.loadModel({
-    modelPath: modelPath
+  modelPath,
 });
 const context = await model.createContext({
-    contextSize: Math.min(4096, model.trainContextSize)
-});
-const contextSequence = context.getSequence();
-const session = new LlamaChatSession({
-    contextSequence,
-    autoDisposeSequence: false
+  contextSize: Math.min(4096, model.trainContextSize),
+  sequences: 2,
 });
 
-
-const q1 = `You are a fair judge assistant tasked with providing clear, objective feedback based on a specific criterion, ensuring each assessment reflects the absolute standards set for performance.
+const systemPrompt = `You are a fair judge assistant tasked with providing clear, objective feedback based on a specific criterion, ensuring each assessment reflects the absolute standards set for performance.
 
 You will be given a response to evaluate, a binary criterion to evaluate against, and an optional instruction (might include an Input inside it). You must provide feedback based on the given criterion and the response.
 
@@ -44,35 +41,39 @@ Please follow these guidelines:
 
 ### Response to evaluate:
 
-I am not a recipe.
+I am not a recipe.`;
 
-### Score Rubrics:
+const session = new LlamaChatSession({
+  contextSequence: context.getSequence(),
+  autoDisposeSequence: false,
+  systemPrompt,
+});
+
+const q1 = `### Score Rubrics:
 
 [Is this a recipe?]:
 
 - False: The response being evaluated does not meet the criterion described in the square brackets.
 - True: The response being evaluated does meet the criterion described in the square brackets.
 
-### Feedback:
-`;
-console.log("User: " + q1);
+### Feedback:`;
+// console.log(`User: ${q1}`);
 
 console.time();
 const a1 = await session.prompt(q1);
 console.timeEnd();
-console.log("AI: " + a1);
+// console.log(`AI: ${a1}`);
 
-session.dispose();
-
+// session.dispose();
 
 const session2 = new LlamaChatSession({
-    contextSequence
+  contextSequence: context.getSequence(),
 });
 
-const q1a = q1 + "\n(Return feedback as JSON)";
-console.log("User: " + q1a);
+const q1a = `${q1}\n(Return feedback as JSON)`;
+// console.log(`User: ${q1a}`);
 
 console.time();
-const a1a = await session2.prompt(q1a);
+const a1a = await session2.prompt(q1);
 console.timeEnd();
-console.log("AI: " + a1a);
+// console.log(`AI: ${a1a}`);
