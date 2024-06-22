@@ -6,7 +6,11 @@ import constants from "../../constants.json";
 
 import { makeLogMessage } from "./makeLogMessage";
 
-export const getModelPath = (): { dirPath: string; filename: string } => {
+export const getModelPath = (): {
+  cacheDir: string;
+  dirPath: string;
+  filename: string;
+} => {
   // get the cache directory
   const cacheDir = findCacheDirectory({ name: "@poyro/vitest" });
 
@@ -19,5 +23,5 @@ export const getModelPath = (): { dirPath: string; filename: string } => {
   const dirPath = path.join(cacheDir, "models");
 
   // Put together the file path
-  return { dirPath, filename: constants.model.filename };
+  return { cacheDir, dirPath, filename: constants.model.filename };
 };

@@ -14,9 +14,14 @@ export const getModel = async (
   // Put together the file path
   const modelPath = path.join(dirPath, filename);
 
+  const start = performance.now();
+
   // Create a new model
   const llama = await getLlama();
   const model = await llama.loadModel({ modelPath });
+
+  const modelLoadTime = performance.now();
+  console.log(`Model loaded in ${modelLoadTime - start}ms`);
 
   // Create a new context
   const context = await model.createContext({
@@ -24,11 +29,19 @@ export const getModel = async (
   });
   const contextSequence = context.getSequence();
 
+  const contextCreationTime = performance.now();
+  console.log(`Context created in ${contextCreationTime - modelLoadTime}ms`);
+
   // Create a new chat session and return it
   const session = new LlamaChatSession({
     contextSequence,
     systemPrompt,
   });
+
+  const sessionCreationTime = performance.now();
+  console.log(
+    `Session created in ${sessionCreationTime - contextCreationTime}ms`
+  );
 
   return [llama, session];
 };
