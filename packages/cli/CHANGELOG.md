@@ -1,5 +1,13 @@
 # @poyro/vitest
 
+## 0.2.4
+
+### Patch Changes
+
+- Fix README for `@poyro/vitest` to reflect a more accurate example usage. This change is necessary to ensure that users can easily understand how to use the matchers in their tests.
+
+  Also clean up the `toFullfillCriterion` matcher template to ensure that the feedback is concise and clear.
+
 ## 0.2.3
 
 ### Patch Changes
