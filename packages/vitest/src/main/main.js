@@ -37,11 +37,7 @@ Please follow these guidelines:
 2. After writing feedback, write a determination True or False about whether the response meets the binary criteria specified.
 3. Do not generate any other opening, closing, and explanations.
 4. Keep your feedback concise and clear, do not repeat yourself and do not exceed 280 characters for the feedback.
-5. Only describe the boolean result as True/False, do not use any other words to describe the result.
-
-### Response to evaluate:
-
-I am not a recipe.`;
+5. Only describe the boolean result as True/False, do not use any other words to describe the result.`;
 
 const session = new LlamaChatSession({
   contextSequence: context.getSequence(),
@@ -49,7 +45,11 @@ const session = new LlamaChatSession({
   systemPrompt,
 });
 
-const q1 = `### Score Rubrics:
+const q1 = `### Response to evaluate:
+
+I am not a recipe.
+
+### Score Rubrics:
 
 [Is this a recipe?]:
 
@@ -59,21 +59,23 @@ const q1 = `### Score Rubrics:
 ### Feedback:`;
 // console.log(`User: ${q1}`);
 
-console.time();
+console.time("a1");
 const a1 = await session.prompt(q1);
-console.timeEnd();
+console.timeEnd("a1");
 // console.log(`AI: ${a1}`);
 
 // session.dispose();
 
 const session2 = new LlamaChatSession({
   contextSequence: context.getSequence(),
+  autoDisposeSequence: false,
+  systemPrompt,
 });
 
 const q1a = `${q1}\n(Return feedback as JSON)`;
 // console.log(`User: ${q1a}`);
 
-console.time();
-const a1a = await session2.prompt(q1);
-console.timeEnd();
+console.time("a1a");
+const a1a = await session2.prompt(q1a);
+console.timeEnd("a1a");
 // console.log(`AI: ${a1a}`);
