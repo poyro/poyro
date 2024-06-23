@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.3.0-beta.1
+
+### Patch Changes
+
+- Previous publish didn't actually build. This one should.
+
 ## 0.3.0-beta.0
 
 ### Minor Changes

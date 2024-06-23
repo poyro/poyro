@@ -10,6 +10,7 @@
     "@poyro/vitest": "0.2.4"
   },
   "changesets": [
-    "eleven-zoos-applaud"
+    "eleven-zoos-applaud",
+    "plenty-zoos-do"
   ]
 }
