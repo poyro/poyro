@@ -1,7 +1,7 @@
 {
   "model": {
-    "org": "vsevolodl",
-    "repo": "prometheus-7b-v2.0-GGUF",
-    "filename": "prometheus-7b-v2.0.Q2_K.gguf"
+    "org": "mradermacher",
+    "repo": "Meta-Llama-3-8B-Instruct-GGUF",
+    "filename": "Meta-Llama-3-8B-Instruct.Q4_K_S.gguf"
   }
 }
