@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.3.0-beta.4
+
+### Patch Changes
+
+- Update README.md for `@vitest/poyro` to include an up-to-date example call to `toFulfillCriterion` as well as additional troubleshooting for napi errors.
+
 ## 0.3.0-beta.2
 
 ### Patch Changes

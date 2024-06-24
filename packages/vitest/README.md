@@ -91,7 +91,7 @@ it("should be true", async () => {
   // is totally up to you
   const llmOutput = "Hello, world!";
 
-  await expect(llmOutput).toFulfillCriterion("Is a simple greeting");
+  await expect(llmOutput).toFulfillCriterion("Says hello");
 }, 15000);
 ```
 
@@ -103,6 +103,18 @@ Behind the scenes, the `toFulfillCriterion` matcher will evaluate the output aga
 
 ### `libc++abi: terminating due to uncaught exception of type Napi::Error:`
 
-There can be many reasons for this error, but one common cause is that your timeout is too low. Try increasing the timeout in the third argument of the `it`/`test` function or inside `vitest.config.js`. Additionally, ensure that you `await` the matcher call, as it is asynchronous.
+There can be many reasons for this error, below are a few common reasons why it may happen.
 
-If this doesn't solve your issue, please get in touch with us on the [Poyro Discord](https://discord.gg/xcQWXeyk) for further assistance.
+#### Test timeout exceeded
+
+One common cause is that your timeout is too low. Try increasing the timeout in the third argument of the `it`/`test` function or inside `vitest.config.js`. Additionally, ensure that you `await` the matcher call, as it is asynchronous.
+
+#### Out of memory
+
+If you're running on a machine with limited memory, you may run out of memory during the test. Try closing other memory-intensive processes or running the test on a machine with more memory.
+
+Additionally, you may also receive this error if you attempt to parallelize test with a `Promise.all` or similar construct. Each of these tests will spawn a new instance of the LLM, which can quickly consume memory. In such instances, it is recommended to run the tests serially.
+
+#### Other issues
+
+If none of these solves your issue, please get in touch with us on the [Poyro Discord](https://discord.gg/xcQWXeyk) for further assistance.
