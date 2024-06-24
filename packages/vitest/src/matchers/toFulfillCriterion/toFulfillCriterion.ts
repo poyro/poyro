@@ -44,8 +44,8 @@ export const toFulfillCriterion = async (
     pass: result,
     message: () => feedback,
     ...(!result && {
-      actual: llmOutput,
-      expected: `A valid response given the criterion: '${criterion}'`,
+      actual: `Received: ${llmOutput}`,
+      expected: `Expected: A valid response given the criterion: '${criterion}'`,
     }),
   };
 };
