@@ -3,9 +3,34 @@ import path from "node:path";
 
 import fetch from "node-fetch";
 
+import { version } from "../package.json";
+
 import { makeLogMessage, log } from "./utils";
 import { getModelUrl } from "./utils/getModelUrl";
 import { getModelPath } from "./utils/getModelPath";
+
+const calculateEta = (
+  start: number,
+  downloaded: number,
+  total: number
+): string => {
+  const elapsed = performance.now() - start;
+  const remaining = total - downloaded;
+  const eta = (elapsed / downloaded) * remaining;
+
+  // format the time in hours, minutes, and seconds
+  const hours = Math.floor(eta / 3600000)
+    .toString()
+    .padStart(2, "0");
+  const minutes = Math.floor((eta % 3600000) / 60000)
+    .toString()
+    .padStart(2, "0");
+  const seconds = Math.floor((eta % 60000) / 1000)
+    .toString()
+    .padStart(2, "0");
+
+  return `${hours}h ${minutes}m ${seconds}s left`;
+};
 
 /**
  * This function downloads the local evaluation model from the Hugging Face model hub.
@@ -66,9 +91,11 @@ export const downloadModel = async (): Promise<string> => {
 
   log(
     makeLogMessage(
-      "Looks like it's the first time you're using @poyro/vitest. Welcome! Before we can begin testing, we need to download our evaluation model. This will only take a moment...\n"
+      `Looks like it's the first time you're using @poyro/vitest@${version}. Welcome! Before we can begin testing, we need to download our evaluation model. This will only take a moment...\n`
     )
   );
+
+  const startTime = performance.now();
 
   // Write the file to disk
   const fileStream = fs.createWriteStream(filePath);
@@ -76,9 +103,12 @@ export const downloadModel = async (): Promise<string> => {
   // Log the download progress
   res.body.on("data", (chunk: Buffer) => {
     downloadedLength += chunk.length;
+    const downloadedMb = Math.floor(downloadedLength / 10e5).toLocaleString();
+    const totalMb = Math.floor(totalBytes / 10e5).toLocaleString();
     const percentage = ((downloadedLength / totalBytes) * 100).toFixed(2);
+    const eta = calculateEta(startTime, downloadedLength, totalBytes);
     const message = makeLogMessage(
-      `Downloading evaluation model: ${percentage}% complete`
+      `Downloading evaluation model: ${downloadedMb}MB/${totalMb}MB | ${percentage}% complete | ${eta}`
     );
     log(`\r${message}`);
   });

@@ -20,10 +20,22 @@ vi.mock("node-fetch", () => {
   return { default: mocks.fetchMock };
 });
 
+// mock the unlinkSync function to avoid deleting the
+// actual model file
+vi.mock("node:fs", async (importOriginal) => {
+  const mod = await importOriginal();
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- We need to return the module
+  return {
+    ...(mod as any),
+    unlinkSync: vi.fn(),
+  };
+});
+
 // mock the logger to prevent unnecessary logs
 vi.mock("../../utils/log");
 
-//
+// mock the getModelUrl function to avoid unnecessary
 vi.mock("../../utils/getModelUrl", () => {
   return { getModelUrl: mocks.getModelUrlMock };
 });

@@ -1,10 +1,10 @@
 import type { SyncExpectationResult } from "@vitest/expect";
 import handlebars from "handlebars";
-import { LlamaJsonSchemaGrammar } from "node-llama-cpp";
 
-import { getModel } from "../../getModel";
+import { makeModel } from "../../makeModel";
 
 import template from "./template.md";
+import systemPrompt from "./system.md";
 
 const compiledTemplate = handlebars.compile(template);
 
@@ -13,11 +13,10 @@ export const toFulfillCriterion = async (
   criterion: string,
   additionalContext?: string
 ): Promise<SyncExpectationResult> => {
-  // get the model
-  const [llama, model] = await getModel();
+  const poyro = global.poyro || (await makeModel());
 
   // create a new grammar
-  const grammar = new LlamaJsonSchemaGrammar(llama, {
+  const grammar = poyro.createGrammar({
     type: "object",
     properties: {
       feedback: {
@@ -30,10 +29,13 @@ export const toFulfillCriterion = async (
   } as const);
 
   // generate the prompt
-  const prompt = compiledTemplate({ llmOutput, criterion, additionalContext });
+  const prompt = compiledTemplate({ criterion, llmOutput, additionalContext });
 
   // prompt the session
-  const answer = await model.prompt(prompt, { grammar });
+  const answer = await poyro.prompt(prompt, {
+    grammar,
+    systemPrompt: systemPrompt as string,
+  });
 
   // parse the response
   const { result, feedback } = grammar.parse(answer);
@@ -42,8 +44,8 @@ export const toFulfillCriterion = async (
     pass: result,
     message: () => feedback,
     ...(!result && {
-      actual: llmOutput,
-      expected: `A valid response given the criterion: '${criterion}'`,
+      actual: `Received: ${llmOutput}`,
+      expected: `Expected: A valid response given the criterion: '${criterion}'`,
     }),
   };
 };
