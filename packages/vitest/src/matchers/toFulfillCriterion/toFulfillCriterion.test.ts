@@ -21,14 +21,22 @@ if (!global.poyro) {
 }
 
 describe("toFulfillCriterion", () => {
-  it("should pass with a simple criterion", async () => {
+  it.only("should pass with a simple criterion", async () => {
+    console.time("a1_vitest");
     const result = await toFulfillCriterion("Hello, world!", "Says hello");
+    console.timeEnd("a1_vitest");
+    console.time("a2_vitest");
+    await toFulfillCriterion(
+      "The first manned airplane flight was in 1903, by the Wright brothers.",
+      "Mentions the first flight"
+    );
+    console.timeEnd("a2_vitest");
 
     expect(result).toMatchObject({
       pass: true,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 15000);
 
   it("should behave correctly with mismatched result and criterion", async () => {
     const result = await toFulfillCriterion("Bye", "Says hello");

@@ -1,7 +1,7 @@
-import { expect } from "vitest";
+// import { expect } from "vitest";
 
 import * as extensions from "./matchers";
-import { downloadModel } from "./downloadModel";
+// import { downloadModel } from "./downloadModel";
 import { makeModel } from "./makeModel";
 
 declare global {
@@ -16,13 +16,17 @@ export interface VitestPoyroMatchers<R = unknown> {
   ) => Promise<R>;
 }
 
-expect.extend(extensions);
+// // expect.extend(extensions);
 
-// Download the model
-await downloadModel();
+// // Download the model
+// await downloadModel();
 
-const poyro = await makeModel();
+// const poyro = await makeModel();
 
-if (!global.poyro) {
-  global.poyro = poyro;
-}
+// if (!global.poyro) {
+//   global.poyro = poyro;
+// }
+
+const toFulfillCriterion = extensions.toFulfillCriterion;
+
+export { makeModel, toFulfillCriterion };
