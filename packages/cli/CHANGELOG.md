@@ -1,30 +1,6 @@
 # @poyro/vitest
 
-## 0.3.0-beta.5
-
-### Patch Changes
-
-- When there's an error in the `toFulfillCriterion` call, it may not be immediately clear which message is the actual one vs a description of the expected one. This change makes that distinction clearer.
-
-## 0.3.0-beta.4
-
-### Patch Changes
-
-- Update README.md for `@vitest/poyro` to include an up-to-date example call to `toFulfillCriterion` as well as additional troubleshooting for napi errors.
-
-## 0.3.0-beta.2
-
-### Patch Changes
-
-- Use the Llama-3 Q4_K_M model instead of the Q4_K_S for better speed/quality tradeoff. This will allow the testing suite to run fast while still maintaining a high level of quality.
-
-## 0.3.0-beta.1
-
-### Patch Changes
-
-- Previous publish didn't actually build. This one should.
-
-## 0.3.0-beta.0
+## 0.3.0
 
 ### Minor Changes
 
