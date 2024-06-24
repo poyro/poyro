@@ -51,14 +51,26 @@ describe("toFulfillCriterion", () => {
     });
   }, 10000);
 
-  it("should pass with quotes", async () => {
+  it("should pass on exact matches with quotes", async () => {
+    const result = await toFulfillCriterion(
+      "The first manned airplane flight was in 1903, by the Wright brothers.",
+      "Mentions 'the first manned airplane flight'"
+    );
+
+    expect(result).toMatchObject({
+      pass: true,
+      message: expect.any(Function) as MessageFn,
+    });
+  }, 10000);
+
+  it("should fail on inexact matches with quotes", async () => {
     const result = await toFulfillCriterion(
       "The first manned airplane flight was in 1903, by the Wright brothers.",
       "Mentions 'the first flight'"
     );
 
     expect(result).toMatchObject({
-      pass: true,
+      pass: false,
       message: expect.any(Function) as MessageFn,
     });
   }, 10000);
