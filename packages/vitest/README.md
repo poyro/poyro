@@ -92,7 +92,7 @@ it("should be true", async () => {
   const llmOutput = "Hello, world!";
 
   await expect(llmOutput).toFulfillCriterion("Says hello");
-}, 15000);
+}, 10000);
 ```
 
 Behind the scenes, the `toFulfillCriterion` matcher will evaluate the output against the criterion and provide feedback based on the result using a local LLM supplied by `@poyro/vitest`.

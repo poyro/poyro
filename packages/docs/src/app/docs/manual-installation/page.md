@@ -3,72 +3,79 @@ title: Manual installation
 nextjs:
   metadata:
     title: Manual installation
-    description: Quidem magni aut exercitationem maxime rerum eos.
+    description: Step-by-step guide to installing the Poyro library.
 ---
 
-Quasi sapiente voluptates aut minima non doloribus similique quisquam. In quo expedita ipsum nostrum corrupti incidunt. Et aut eligendi ea perferendis.
+Welcome to the manual installation guide for Poyro! This guide will walk you through the process of setting up your project to use the Poyro library.
 
 ---
 
-## Quis vel iste dicta
+## @poyro/vitest
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+`@poyro/vitest` is a package that contains Poyro bindings for the [Vitest](https://vitest.dev/) test framework. Make sure that you've already installed Vitest and verified that it's working before proceeding.
 
-### Et pariatur ab quas
+### Installation
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+To install the package, run the following command:
 
-```js
-/** @type {import('@tailwindlabs/lorem').ipsum} */
-export default {
-  lorem: "ipsum",
-  dolor: ["sit", "amet", "consectetur"],
-  adipiscing: {
-    elit: true,
-  },
-};
+If you're using npm:
+
+```bash
+npm install --save-dev @poyro/vitest
 ```
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+If you're using yarn:
 
-### Natus aspernatur iste
+```bash
+yarn add --dev @poyro/vitest
+```
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+If you're using pnpm:
 
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+```bash
+pnpm install --save-dev @poyro/vitest
+```
 
----
+### Configuration
 
-## Quos porro ut molestiae
+Once installed, you will need to configure Vitest to use the Poyro bindings. To do this, create a `vitest.setup.js` file in the root of your project and add the following code:
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+```javascript
+import "@poyro/vitest";
+```
 
-### Voluptatem quas possimus
+Once you have done this, update create or update `vitest.config.js` to include the following (if you didn't previously have a setup file):
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+```javascript
+import { defineConfig } from "vitest/config";
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+export default defineConfig({
+  test: {
+    setupFiles: ["vitest.setup.js"],
+  },
+});
+```
 
-### Id vitae minima
+Next, create a `vitest.d.ts` file in the root of your project and add the following code:
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+```typescript
+import type { Assertion, AsymmetricMatchersContaining } from "vitest";
+import { VitestPoyroMatchers } from "@poyro/vitest";
 
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+declare module "vitest" {
+  interface Assertion<T = any> extends VitestPoyroMatchers<T> {}
+  interface AsymmetricMatchersContaining extends VitestPoyroMatchers {}
+}
+```
 
----
+Finally, update your `tsconfig.json` to include the following:
 
-## Vitae laborum maiores
+```json
+{
+  "compilerOptions": {
+    "types": ["vitest.d.ts"]
+  }
+}
+```
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
-
-### Corporis exercitationem
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
-
-### Reprehenderit magni
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+You're now all set to include Poyro matchers in your tests!
