@@ -49,8 +49,8 @@ export function Hero() {
                 Ship AI-driven apps confidently
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Use your favorite unit testing framework to easily write tests
-                for your web applications that integrate LLMs.
+                Use a familiar framework to write tests for your web app with an
+                LLM integration &mdash; at no cost.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
                 <Button href="#quick-start">Get started</Button>

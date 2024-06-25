@@ -8,11 +8,11 @@ Learn how to get Poyro set up in your project in under 5 minutes. {% .lead %}
 
 {% quick-link title="Quick start" icon="installation" href="#quick-start" description="Get started quickly with Poyro and begin testing your LLM integration ASAP." /%}
 
-{% quick-link title="Manual installation" icon="theming" href="/docs/manual-installation" description="Step-by-step guides to setting up your system and installing the library." /%}
+{% quick-link title="Manual installation" icon="theming" href="/manual-installation" description="Step-by-step guides to setting up your system and installing the library." /%}
 
-<!-- {% quick-link title="Architecture guide" icon="presets" href="/" description="Learn how the internals work and contribute." /%}
+{% quick-link title="How does it work?" icon="presets" href="/how-does-it-work" description="Learn how the internals work." /%}
 
-{% quick-link title="API reference" icon="plugins" href="/" description="Use advanced utilities to test your app the right way." /%} -->
+<!-- {% quick-link title="API reference" icon="plugins" href="/" description="Use advanced utilities to test your app the right way." /%} -->
 
 {% /quick-links %}
 
@@ -35,7 +35,7 @@ The fastest way to get started is to use the Poyro CLI to install the library an
 
 ### Installing the Poyro CLI
 
-WIP - please use the [manual installation guide](/docs/manual-installation) for now.
+WIP - please use the [manual installation guide](/manual-installation) for now.
 
 ---
 

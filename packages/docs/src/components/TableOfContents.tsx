@@ -1,16 +1,20 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 
 import { type Section, type Subsection } from "@/lib/sections";
+import { GitHubIcon } from "@/components/icons/GithubIcon";
 
 export function TableOfContents({
   tableOfContents,
 }: {
   tableOfContents: Section[];
 }) {
+  const pathname = usePathname();
+
   const [currentSection, setCurrentSection] = useState(tableOfContents[0]?.id);
 
   const getHeadings = useCallback((tableOfContents: Section[]) => {
@@ -61,6 +65,8 @@ export function TableOfContents({
     return section.children.findIndex(isActive) > -1;
   }
 
+  console.log(pathname);
+
   return (
     <div className="hidden xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-6">
       <nav aria-labelledby="on-this-page-title" className="w-56">
@@ -80,7 +86,7 @@ export function TableOfContents({
                       className={clsx(
                         isActive(section)
                           ? "text-sky-500"
-                          : "font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300",
+                          : "font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300"
                       )}
                       href={`#${section.id}`}
                     >
@@ -113,6 +119,17 @@ export function TableOfContents({
             </ol>
           </>
         )}
+
+        <Link
+          aria-label="Edit this page on GitHub"
+          className="group inline-flex mt-8 items-center gap-2"
+          href={`https://github.com/poyro/poyro/edit/main/packages/docs/src/app${pathname}/page.md`}
+        >
+          <GitHubIcon className="h-3 w-3 fill-slate-500 group-hover:fill-slate-700 dark:fill-slate-400 dark:hover:fill-slate-300" />
+          <span className="text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">
+            Edit this page on GitHub
+          </span>
+        </Link>
       </nav>
     </div>
   );
