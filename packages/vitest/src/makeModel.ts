@@ -20,7 +20,7 @@ export interface SessionOptions {
   systemPrompt?: string;
 }
 
-class PoyroModelCore {
+export class PoyroModelCore {
   private llama: Llama;
   private model: LlamaModel;
   private contextSequence: LlamaContextSequence | undefined;
