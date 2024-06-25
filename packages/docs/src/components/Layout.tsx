@@ -48,8 +48,11 @@ function Header() {
       </div>
       <div className="relative flex flex-grow basis-0 items-center">
         <Link aria-label="Home page" href="/">
-          <Logomark className="h-9 w-9 lg:hidden" />
-          <Logo className="hidden h-9 w-auto fill-slate-700 lg:block dark:fill-sky-100" />
+          <h1 className="font-display text-2xl font-semibold text-slate-900">
+            Poyro
+          </h1>
+          {/* <Logomark className="h-9 w-9 lg:hidden" />
+          <Logo className="hidden h-9 w-auto fill-slate-700 lg:block dark:fill-sky-100" /> */}
         </Link>
       </div>
       <div className="-my-5 mr-6 sm:mr-8 md:mr-0">

@@ -100,7 +100,10 @@ export function MobileNavigation() {
               <CloseIcon className="h-6 w-6 stroke-slate-500" />
             </button>
             <Link aria-label="Home page" className="ml-6" href="/">
-              <Logomark className="h-9 w-9" />
+              {/* <Logomark className="h-9 w-9" /> */}
+              <h1 className="font-display text-2xl font-semibold text-slate-900">
+                Poyro
+              </h1>
             </Link>
           </div>
           <Navigation className="mt-5 px-1" onLinkClick={onLinkClick} />
