@@ -2,7 +2,7 @@
 title: Getting started
 ---
 
-Learn how to get Poyro set up in your project in under 5 minutes. {% .lead %}
+Start testing your LLM integration with Poyro in under 15 minutes. {% .lead %}
 
 {% quick-links %}
 
@@ -29,13 +29,13 @@ The fastest way to get started is to use the Poyro CLI to install the library an
 ## Prerequisites
 
 - Node.js 20 or later
-- Vitest 1.6.0 or later
+- Vitest 1.6.0 or later ([Vitest](https://vitest.dev/) is a modern testing framework with Jest-like syntax)
 - Your project must have "type": "module" in its package.json (this library is ESM only)
 - Recommended: CUDA-compatible GPU (Nvidia) or Metal-compatible GPU (Apple Silicon) for best performance, but not required
 
-### Installing the Poyro CLI
+### Installation
 
-WIP - please use the [manual installation guide](/manual-installation) for now.
+Please use the [installation guide](/manual-installation) for details on how to get started.
 
 ---
 
@@ -50,7 +50,7 @@ it("should be true", async () => {
   const llmOutput = "Hello, world!";
 
   await expect(llmOutput).toFulfillCriterion("Says hello");
-}, 10000);
+}, 10000); // Increase the timeout as needed with the third argument
 ```
 
 Behind the scenes, the `toFulfillCriterion` matcher will evaluate the output against the criterion and provide feedback based on the result using a local LLM supplied by `@poyro/vitest`.
@@ -81,7 +81,7 @@ Additionally, you may also receive this error if you attempt to parallelize test
 
 ## Getting help
 
-If you spot a bug, have a feature request, or need help, don't hesitate to reach out to us!
+If you spot a bug, have a feature request, or need help, don't hesitate to reach out to us via GitHub or Discord!
 
 ### Submit an issue
 
