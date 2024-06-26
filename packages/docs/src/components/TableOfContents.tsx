@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
@@ -12,7 +12,7 @@ export function TableOfContents({
   tableOfContents,
 }: {
   tableOfContents: Section[];
-}) {
+}): React.ReactElement {
   const pathname = usePathname();
 
   const [currentSection, setCurrentSection] = useState(tableOfContents[0]?.id);
@@ -55,7 +55,7 @@ export function TableOfContents({
     };
   }, [getHeadings, tableOfContents]);
 
-  function isActive(section: Section | Subsection) {
+  const isActive = (section: Section | Subsection): boolean => {
     if (section.id === currentSection) {
       return true;
     }
@@ -63,9 +63,18 @@ export function TableOfContents({
       return false;
     }
     return section.children.findIndex(isActive) > -1;
-  }
+  };
 
-  console.log(pathname);
+  const githubEditUrl = useMemo(() => {
+    const root =
+      "https://github.com/poyro/poyro/edit/main/packages/docs/src/app";
+
+    if (pathname === "/") {
+      return `${root}/page.md`;
+    }
+
+    return `root${pathname}/page.md`;
+  }, [pathname]);
 
   return (
     <div className="hidden xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-6">
@@ -78,7 +87,7 @@ export function TableOfContents({
             >
               On this page
             </h2>
-            <ol className="mt-4 space-y-3 text-sm" role="list">
+            <ol className="mt-4 space-y-3 text-sm">
               {tableOfContents.map((section) => (
                 <li key={section.id}>
                   <h3>
@@ -94,10 +103,7 @@ export function TableOfContents({
                     </Link>
                   </h3>
                   {section.children.length > 0 && (
-                    <ol
-                      className="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400"
-                      role="list"
-                    >
+                    <ol className="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
                       {section.children.map((subSection) => (
                         <li key={subSection.id}>
                           <Link
@@ -123,7 +129,7 @@ export function TableOfContents({
         <Link
           aria-label="Edit this page on GitHub"
           className="group inline-flex mt-8 items-center gap-2"
-          href={`https://github.com/poyro/poyro/edit/main/packages/docs/src/app${pathname}/page.md`}
+          href={githubEditUrl}
         >
           <GitHubIcon className="h-3 w-3 fill-slate-500 group-hover:fill-slate-700 dark:fill-slate-400 dark:hover:fill-slate-300" />
           <span className="text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">
