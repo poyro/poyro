@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.3.1
+
+### Patch Changes
+
+- 66d61e4: Separate out grammar from `toFulfillCriterion` into its own file within the same object. This will allow for easier maintenance and better separation of concerns.
+
 ## 0.3.0
 
 ### Minor Changes
