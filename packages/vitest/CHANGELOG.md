@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.3.2-beta.0
+
+### Patch Changes
+
+- 0ecc53b: Fix the prompt used for evaluation with current matcher
+
 ## 0.3.1
 
 ### Patch Changes
