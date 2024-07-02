@@ -26,7 +26,7 @@ Currently, the library is in beta and only supports integration with Vitest. We 
 
 The fastest way to get started is to use the Poyro CLI to install the library and configure it for your project.
 
-## Prerequisites
+### Prerequisites
 
 - Node.js 20 or later
 - Vitest 1.6.0 or later ([Vitest](https://vitest.dev/) is a modern testing framework with Jest-like syntax)
@@ -35,7 +35,38 @@ The fastest way to get started is to use the Poyro CLI to install the library an
 
 ### Installation
 
-Please use the [installation guide](/manual-installation) for details on how to get started.
+To get started quickly, simply run:
+
+```bash
+npx poyro init
+```
+
+If everything goes well, you should see a message that roughly looks like this:
+
+```bash
+poyro | Welcome to Poyro! 🕵️
+? vitest is not installed. Would you like to also install it? yes
+poyro | Installing vitest and @poyro/vitest...
+
+added 2 packages, removed 2 packages, changed 2 packages, and audited 611 packages in 9s
+
+203 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+poyro | No 'vitest.setup.js/ts' file found. Creating vitest.setup.js...
+poyro | vitest.setup.js created successfully.
+poyro | No 'vitest.config.js/ts' file found. Creating vitest.config.js...
+poyro | vitest.config.js created successfully.
+poyro | vitest.d.ts created successfully.
+poyro | tsconfig.json updated successfully to reference vitest.d.ts types.
+```
+
+That's it! You're now ready to start testing your LLM integration with Poyro.
+
+{% callout type="note" title="Manual installation" %}
+You also have the choice to install and configure Poyro manually- to do so, please use the [manual installation guide](/manual-installation) for details on how to get started.
+{% /callout %}
 
 ---
 
