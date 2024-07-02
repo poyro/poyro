@@ -13,11 +13,11 @@ import { Search } from "@/components/Search";
 import { ThemeSelector } from "@/components/ThemeSelector";
 import { GitHubIcon } from "@/components/icons/GithubIcon";
 
-function Header() {
+function Header(): React.ReactElement {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    function onScroll() {
+    function onScroll(): void {
       setIsScrolled(window.scrollY > 0);
     }
     onScroll();
@@ -40,7 +40,7 @@ function Header() {
         <MobileNavigation />
       </div>
       <div className="relative flex flex-grow basis-0 items-center">
-        <Link aria-label="Home page" href="/">
+        <Link aria-label="Poyro docs home page" href="/">
           <h1 className="font-display text-2xl font-semibold text-slate-900">
             Poyro
           </h1>
@@ -65,7 +65,11 @@ function Header() {
   );
 }
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}): React.ReactElement {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
