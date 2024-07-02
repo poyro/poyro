@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.0
+
+### Minor Changes
+
+- 9c53e4a: Create 'init' command for the CLI. This allows new users to run `npx poyro init` to set up Poyro for a project.
+
 ## 0.3.1
 
 ### Patch Changes
