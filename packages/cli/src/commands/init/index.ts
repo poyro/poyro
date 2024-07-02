@@ -11,6 +11,7 @@ import {
   makeVitestSetup,
   updateVitestTypes,
   updateTsconfig,
+  updatePackage,
 } from "../../helpers";
 
 export const command = "init";
@@ -50,10 +51,11 @@ export const handler = async (): Promise<void> => {
       )
     );
 
-    // Get the package runner
+    // Install vitest
     installWithRunner(["vitest", "@poyro/vitest"], { dev: true });
 
-    // Install vitest
+    // Update the package.json to include the test script
+    await updatePackage();
   } else {
     console.log(
       makeLogMessage(
@@ -70,10 +72,8 @@ export const handler = async (): Promise<void> => {
         makeLogMessage(`Installing ${chalk.blueBright("@poyro/vitest")}...`)
       );
 
-      // Get the package runner
-      installWithRunner(["@poyro/vitest"], { dev: true });
-
       // Install @poyro/vitest
+      installWithRunner(["@poyro/vitest"], { dev: true });
     } else {
       console.log(
         makeLogMessage(

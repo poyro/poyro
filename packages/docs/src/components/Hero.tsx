@@ -14,10 +14,7 @@ const criterion = "tells user the dinner time";
 
 expect(chatGptOutput).toFulfillCriterion(criterion);`;
 
-const tabs = [
-  { name: "ai-integration.test.ts", isActive: true },
-  { name: "package.json", isActive: false },
-];
+const tabs = [{ name: "ai-integration.test.ts", isActive: true }];
 
 function TrafficLightsIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
@@ -50,10 +47,10 @@ export function Hero() {
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
                 Use a familiar framework to write tests for your web app with an
-                LLM integration &mdash; at no cost.
+                LLM integration &mdash; at no cost
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="#quick-start">Get started</Button>
+                <Button href="#installation">Get started</Button>
                 <Button
                   href="https://github.com/poyro/poyro"
                   variant="secondary"

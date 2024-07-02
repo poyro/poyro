@@ -6,7 +6,7 @@ Start testing your LLM integration with Poyro in under 5 minutes. {% .lead %}
 
 {% quick-links %}
 
-{% quick-link title="Quick start" icon="installation" href="#usage" description="Get started quickly with Poyro and begin testing your LLM integration ASAP." /%}
+{% quick-link title="Quick start" icon="installation" href="#installation" description="Get started quickly with Poyro and begin testing your LLM integration ASAP." /%}
 
 {% quick-link title="How does it work?" icon="presets" href="/how-does-it-work" description="Learn how the internals work." /%}
 
@@ -16,48 +16,16 @@ Start testing your LLM integration with Poyro in under 5 minutes. {% .lead %}
 
 ## Quick start
 
-The fastest way to get started is to use the Poyro CLI to install the library and configure it for your project.
-
-### Prerequisites
-
-- Node.js 20 or later
-- Vitest 1.6.0 or later ([Vitest](https://vitest.dev/) is a modern testing framework with Jest-like syntax)
-- Your project must have "type": "module" in its package.json (this library is ESM only)
-- Recommended: CUDA-compatible GPU (Nvidia) or Metal-compatible GPU (Apple Silicon) for best performance, but not required
-
-### Installation
-
 To get started quickly, simply run:
 
 ```bash
 npx poyro init
 ```
 
-If everything goes well, you should see a message that roughly looks like this:
-
-```bash
-poyro | Welcome to Poyro! 🕵️
-? vitest is not installed. Would you like to also install it? yes
-poyro | Installing vitest and @poyro/vitest...
-
-added 2 packages, removed 2 packages, changed 2 packages, and audited 611 packages in 9s
-
-203 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-poyro | No 'vitest.setup.js/ts' file found. Creating vitest.setup.js...
-poyro | vitest.setup.js created successfully.
-poyro | No 'vitest.config.js/ts' file found. Creating vitest.config.js...
-poyro | vitest.config.js created successfully.
-poyro | vitest.d.ts created successfully.
-poyro | tsconfig.json updated successfully to reference vitest.d.ts types.
-```
-
 That's it! You're now ready to start testing your LLM integration with Poyro.
 
 {% callout type="note" title="Manual installation" %}
-You also have the choice to install and configure Poyro manually- to do so, please use the [manual installation guide](/manual-installation) for details on how to get started.
+You also have the choice to install and configure Poyro manually in case you want more fine-tuned control over your configuration or encounter issues during automated setup. To do so, please use the [manual installation guide](/manual-installation) for details on how to get started.
 {% /callout %}
 
 ---
@@ -113,7 +81,30 @@ pnpm test
 
 ## Troubleshooting
 
-Any modifications below to `npm test` can also be similarly applied in `package.json`.
+### Automatic installation failed
+
+When setting up using the Poyro CLI via `npx poyro init`, you should see a message that roughly looks like this:
+
+```bash
+poyro | Welcome to Poyro! 🕵️
+? vitest is not installed. Would you like to also install it? yes
+poyro | Installing vitest and @poyro/vitest...
+
+added 2 packages, removed 2 packages, changed 2 packages, and audited 611 packages in 9s
+
+203 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+poyro | No 'vitest.setup.js/ts' file found. Creating vitest.setup.js...
+poyro | vitest.setup.js created successfully.
+poyro | No 'vitest.config.js/ts' file found. Creating vitest.config.js...
+poyro | vitest.config.js created successfully.
+poyro | vitest.d.ts created successfully.
+poyro | tsconfig.json updated successfully to reference vitest.d.ts types.
+```
+
+If you do not, please open an issue on our [GitHub repository](https://github.com/poyro/poyro/issues/new) or head over to our [Discord](https://discord.gg/gmCjjJ5jSf) for help.
 
 ### Napi::Error
 
@@ -142,7 +133,7 @@ If you're running on a machine with limited memory, you may run out of memory du
 Additionally, you may also receive this error if you attempt to parallelize test with a `Promise.all` or similar construct. Each of these tests will spawn a new instance of the LLM, which can quickly consume memory. In such instances, it is recommended to run the tests serially.
 
 {% callout type="note" title="Pro tip" %}
-As seen above, Vitest provides many ways to configure how tests are run which are useful for getting the most out of Poyro. We recommend looking at the [Vitest docs](https://vitest.dev/guide/), in particular the [Vitest CLI docs](https://vitest.dev/guide/cli.html).
+As seen above, Vitest via `npm test`/`yarn test`/`pnpm test` provides many ways to configure how tests are run which are useful for getting the most out of Poyro. We recommend looking at the [Vitest docs](https://vitest.dev/guide/), in particular the [Vitest CLI docs](https://vitest.dev/guide/cli.html).
 {% /callout %}
 
 ---
@@ -155,4 +146,4 @@ You can submit an issue by going to our GitHub repository and [creating a new is
 
 ### Join the community
 
-If you want to get help, brainstorm on good evals, or if you just want to chat with other Poyro developers, join our community on [Discord](https://discord.gg/xcQWXeyk)!
+If you want to get help, brainstorm on good evals, or if you just want to chat with other Poyro developers, join our community on [Discord](https://discord.gg/gmCjjJ5jSf)!
