@@ -66,7 +66,7 @@ describe("toFulfillCriterion", () => {
   it("should fail on inexact matches with quotes", async () => {
     const result = await toFulfillCriterion(
       "The first manned airplane flight was in 1903, by the Wright brothers.",
-      "Mentions 'the first flight'"
+      "Mentions the exact phrase 'the first flight'"
     );
 
     expect(result).toMatchObject({
