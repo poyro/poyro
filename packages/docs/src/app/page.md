@@ -6,7 +6,7 @@ Start testing your LLM integration with Poyro in under 5 minutes. {% .lead %}
 
 {% quick-links %}
 
-{% quick-link title="Quick start" icon="installation" href="#installation" description="Get started quickly with Poyro and begin testing your LLM integration ASAP." /%}
+{% quick-link title="Quick start" icon="installation" href="#usage" description="Get started quickly with Poyro and begin testing your LLM integration ASAP." /%}
 
 {% quick-link title="How does it work?" icon="presets" href="/how-does-it-work" description="Learn how the internals work." /%}
 
