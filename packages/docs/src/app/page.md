@@ -91,7 +91,7 @@ By default test execution uses threads to run tests, which is more resource effi
 ```bash
 npm test --pool=forks
 ```
-s
+
 ### Test timeout exceeded
 
 Since Poyro runs an LLM locally, depending on your hardware tests make take longer than the default timeout to run.
