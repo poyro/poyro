@@ -1,5 +1,13 @@
 # @poyro/vitest
 
+## 0.4.5
+
+### Patch Changes
+
+- d3a6fcb: Highlighted using red text that changing the package.json "type" to "module" could potentially break the project.
+
+  Updated package-specific READMEs to reference one another to make sure users know where to find the CLI and Vitest plugin.
+
 ## 0.4.4
 
 ### Patch Changes
