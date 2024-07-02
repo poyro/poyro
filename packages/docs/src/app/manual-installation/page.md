@@ -20,7 +20,23 @@ npx poyro init
 
 `@poyro/vitest` is a package that contains Poyro bindings for the [Vitest](https://vitest.dev/) test framework. Make sure that you've already installed Vitest and verified that it's working before proceeding.
 
-## Installation
+## vitest
+
+### Test Command Setup
+
+To have Poyro correctly run when `npm test` (or the test command for your package manager) is run this needs to be configured in `package.json`:
+
+```json
+{
+  "scripts": {
+    "test": "vitest",
+  }
+}
+```
+
+## @poyro/vitest
+
+### Installation
 
 To install the package, run the following command:
 
@@ -42,7 +58,7 @@ If you're using pnpm:
 pnpm install --save-dev @poyro/vitest
 ```
 
-## Basic Configuration
+### Basic Configuration
 
 Once installed, you will need to configure Vitest to use the Poyro bindings. To do this, create a `vitest.setup.js` file in the root of your project and add the following code:
 
@@ -62,21 +78,9 @@ export default defineConfig({
 });
 ```
 
-## Test Command Setup
-
-To have Poyro correctly run when `npm test` (or the test command for your package manager) is run this needs to be configured in `package.json`:
-
-```json
-{
-  "scripts": {
-    "test": "vitest",
-  }
-}
-```
-
 Note that any vitest CLI flags that you want to include by default when running `npm test` can be appended to the `vitest` command. For some useful ones see the [Troubleshooting](/#troubleshooting) section.
 
-## TypeScript Configuration
+### TypeScript Configuration
 
 The following steps are only needed for TypeScript projects.
 
