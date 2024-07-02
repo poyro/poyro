@@ -14,7 +14,6 @@ Start testing your LLM integration with Poyro in under 5 minutes. {% .lead %}
 
 {% /quick-links %}
 
-
 ## Poyro
 
 ### What is it?
@@ -24,14 +23,13 @@ Poyro is a lightweight extension of [Vitest](https://vitest.dev/) (a modern test
 ### Prerequisites
 
 - Node.js 20 or later
-- Vitest 1.6.0 or later 
+- Vitest 1.6.0 or later
 - Your project must have "type": "module" in its package.json (this library is ESM only)
 - Recommended: CUDA-compatible GPU (Nvidia) or Metal-compatible GPU (Apple Silicon) for best performance, but not required
 
 ---
 
 ## Usage
-
 
 ### Install
 
@@ -41,22 +39,23 @@ To get started quickly, simply run:
 npx poyro init
 ```
 
-
-### Create your test
+### Create your first test
 
 To use the matchers, create a file with the extension `.test.ts` anywhere within your project. Here is an example:
 
 ```javascript
 // MyFirstTest.test.ts
-import { expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
-it("should be true", async () => {
-  // Replace this with your LLM app's output
-  const llmOutput = "Hello, world!";
+describe("MyFirstTest", () => {
+  it("should be true", async () => {
+    // Replace this with your LLM app's output
+    const llmOutput = "Hello, world!";
 
-  // Criterion in natural language: True or False
-  await expect(llmOutput).toFulfillCriterion("Says hello");
-}, 10000); // Increase the timeout as needed with the third argument
+    // Criterion in natural language: True or False
+    await expect(llmOutput).toFulfillCriterion("Says hello");
+  }, 10000); // Increase the timeout as needed with the third argument
+});
 ```
 
 `toFulfillCriterion` can determine whether an LLM output meets or does not meet a natural language criterion.
@@ -83,7 +82,6 @@ Similar commands work with `yarn` and `pnpm`.
 `npm test` is an alias for the `vitest` CLI. As seen below, this CLI provides many ways to configure how tests are run which are useful for getting the most out of Poyro. See the [Vitest CLI docs](https://vitest.dev/guide/cli.html) to learn more about them.
 {% /callout %}
 
-
 ### Napi::Error
 
 By default test execution uses threads to run tests, which is more resource efficient but provides more opaque errors. The best way to debug this issue is to use `npm test` with forks instead:
@@ -97,7 +95,6 @@ npm test --pool=forks
 Since Poyro runs an LLM locally, depending on your hardware tests make take longer than the default timeout to run.
 
 Try increasing the timeout in the third argument of the `it`/`test` function. Additionally, ensure that you `await` the matcher call, as it is asynchronous.
-
 
 ### Not seeing errors for all tests
 
@@ -129,7 +126,6 @@ poyro | vitest.config.js created successfully.
 poyro | vitest.d.ts created successfully.
 poyro | tsconfig.json updated successfully to reference vitest.d.ts types.
 ```
-
 
 ### Out of memory
 
