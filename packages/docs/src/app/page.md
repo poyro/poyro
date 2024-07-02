@@ -6,7 +6,7 @@ Start testing your LLM integration with Poyro in under 5 minutes. {% .lead %}
 
 {% quick-links %}
 
-{% quick-link title="Quick start" icon="installation" href="#usage" description="Get started quickly with Poyro and begin testing your LLM integration ASAP." /%}
+{% quick-link title="Quick start" icon="installation" href="#installation" description="Get started quickly with Poyro and begin testing your LLM integration ASAP." /%}
 
 {% quick-link title="How does it work?" icon="presets" href="/how-does-it-work" description="Learn how the internals work." /%}
 
@@ -91,7 +91,7 @@ By default test execution uses threads to run tests, which is more resource effi
 ```bash
 npm test --pool=forks
 ```
-
+s
 ### Test timeout exceeded
 
 Since Poyro runs an LLM locally, depending on your hardware tests make take longer than the default timeout to run.
@@ -147,4 +147,4 @@ You can submit an issue by going to our GitHub repository and [creating a new is
 
 ### Join the community
 
-If you want to get help, brainstorm on good evals, or if you just want to chat with other Poyro developers, join our community on [Discord](https://discord.gg/xcQWXeyk)!
+If you want to get help, brainstorm on good evals, or if you just want to chat with other Poyro developers, join our community on [Discord](https://discord.gg/gmCjjJ5jSf)!

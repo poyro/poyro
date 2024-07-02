@@ -14,9 +14,7 @@ const criterion = "tells user the dinner time";
 
 expect(chatGptOutput).toFulfillCriterion(criterion);`;
 
-const tabs = [
-  { name: "ai-integration.test.ts", isActive: true },
-];
+const tabs = [{ name: "ai-integration.test.ts", isActive: true }];
 
 function TrafficLightsIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
@@ -52,7 +50,11 @@ export function Hero() {
                 LLM integration &mdash; at no cost
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
+<<<<<<< HEAD
                 <Button href="#usage">Get started</Button>
+=======
+                <Button href="#installation">Get started</Button>
+>>>>>>> main
                 <Button
                   href="https://github.com/poyro/poyro"
                   variant="secondary"
