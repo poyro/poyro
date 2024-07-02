@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.1
+
+### Patch Changes
+
+- Update READMEs for both `@poyro/vitest` and `poyro` to include a link to the Poyro documentation and Discord, as well as fix a typo.
+
 ## 0.4.0
 
 ### Minor Changes
