@@ -1,4 +1,4 @@
-name: Release
+name: Pull Request
 
 on:
   pull_request:
@@ -8,8 +8,8 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  pull_request:
-    name: Release
+  pr:
+    name: Pull Request
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
