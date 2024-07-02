@@ -8,8 +8,8 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  pr:
-    name: Pull Request
+  lint:
+    name: Pull Request (Lint)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -31,6 +31,49 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+  test:
+    name: Pull Request (Test)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.4.0
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: "pnpm"
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Test
+        run: pnpm test
+  build:
+    name: Pull Request (Build)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.4.0
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: "pnpm"
+
+      - name: Install Dependencies
+        run: pnpm install
 
       - name: Build
         run: pnpm build
