@@ -6,9 +6,19 @@ nextjs:
     description: Step-by-step guide to installing the Poyro library.
 ---
 
-Welcome to the manual installation guide for Poyro! This guide will walk you through the process of setting up your project to use the Poyro library.
+Welcome to the manual installation guide for Poyro! This guide will walk you through the process of setting up your project manually to use the Poyro library.
+
+{% callout type="note" title="Automatic installation" %}
+The recommended way to install Poyro is to use the automated setup process. If you encounter any issues during the automated setup or want more fine-tuned control over your configuration, you can follow this guide. To use our automated setup, please refer to the [quick start guide](/#quick-start).
+{% /callout %}
 
 ---
+
+## vitest
+
+If you haven't already, make sure to install Vitest and verify that it's working before proceeding. You can find more information about Vitest on the [Vitest website](https://vitest.dev/). Once installed, you can proceed with the manual installation of Poyro.
+
+We recommend setting `"test": "vitest"` in your `package.json` to run your tests with Vitest.
 
 ## @poyro/vitest
 
