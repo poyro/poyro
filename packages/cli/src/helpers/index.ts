@@ -10,4 +10,4 @@ export * from "./makeVitestConfig";
 export * from "./makeVitestSetup";
 export * from "./updateVitestTypes";
 export * from "./updateTsconfig";
-export * from "./updatePackage";
+export * from "./updatePackageScript";

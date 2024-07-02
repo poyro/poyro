@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.4
+
+### Patch Changes
+
+- Allow user to update package.json "type" to "module" when configuring Poyro.
+
 ## 0.4.3
 
 ### Patch Changes

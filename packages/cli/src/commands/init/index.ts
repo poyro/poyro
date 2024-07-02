@@ -11,7 +11,7 @@ import {
   makeVitestSetup,
   updateVitestTypes,
   updateTsconfig,
-  updatePackage,
+  updatePackageScript,
 } from "../../helpers";
 
 export const command = "init";
@@ -27,13 +27,19 @@ export const handler = async (): Promise<void> => {
   console.log(makeLogMessage("Welcome to Poyro! 🕵️"));
 
   if (!isModuleType()) {
-    throw new Error(
-      makeLogMessage(
-        chalk.red(
-          `${chalk.blueBright("@poyro/vitest")} can only be installed in projects that use ESModules. Please add the type field to your package.json, set it to "module", and ensure that your package runs and builds correctly. Once it does, try running this command again. Because this may be breaking for your project, we don't do this for you automatically.\n`
+    const confirmed = await confirm({
+      message: `Your project does not have a type field set to "module" in your package.json. Would you like to set it now? Warning: This may break your project if it is not set up to use ESModules.`,
+    });
+
+    if (!confirmed) {
+      console.log(
+        makeLogMessage(
+          chalk.red(
+            "ESModules are recommended for Poyro. Not setting 'type' to 'module' may cause issues in your project."
+          )
         )
-      )
-    );
+      );
+    }
   }
 
   // Get the installed version of vitest
@@ -55,7 +61,7 @@ export const handler = async (): Promise<void> => {
     installWithRunner(["vitest", "@poyro/vitest"], { dev: true });
 
     // Update the package.json to include the test script
-    await updatePackage();
+    await updatePackageScript();
   } else {
     console.log(
       makeLogMessage(

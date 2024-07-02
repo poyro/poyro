@@ -6,7 +6,7 @@ import { confirm, input } from "@inquirer/prompts";
 import { checkFileExists } from "./checkFileExists";
 import { makeLogMessage } from "./makeLogMessage";
 
-export const updatePackage = async () => {
+export const updatePackageScript = async () => {
   // Check if the package.json file exists
   const [packageJsonExists, filename] = checkFileExists("package.json");
 
@@ -84,7 +84,7 @@ export const updatePackage = async () => {
     makeLogMessage(
       `${chalk.blueBright(
         "package.json"
-      )} updated successfully to reference ${chalk.blueBright("vitest.d.ts")} types.`
+      )} updated successfully to use ${chalk.blueBright("vitest")}.`
     )
   );
 };
