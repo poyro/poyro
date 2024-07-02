@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.2
+
+### Patch Changes
+
+- Ensure that the "test" script is overwritten when requested by user.
+
 ## 0.4.1
 
 ### Patch Changes

@@ -36,16 +36,16 @@ export const updatePackage = async () => {
   // Check if the 'scripts.test' property exists
   if (json.scripts.test) {
     const confirmed = await confirm({
-      message:
-        "The test script already exists in your package.json file. Please remove it and try running this command again.",
+      message: `The test script already exists in your package.json file. Shall we overwrite it to be '"test": "vitest"'?`,
     });
 
     if (!confirmed) {
-      console.log(makeLogMessage(chalk.red("Aborting...")));
+      return console.log(makeLogMessage(chalk.red("Aborting...")));
     }
-  } else {
-    json.scripts.test = "vitest";
   }
+
+  // Update the 'scripts.test' property to reference 'vitest'
+  json.scripts.test = "vitest";
 
   // Write the transformed code to the file
   fs.writeFileSync(filename, JSON.stringify(json, null, 2));
