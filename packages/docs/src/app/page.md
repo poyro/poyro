@@ -14,18 +14,26 @@ Start testing your LLM integration with Poyro in under 5 minutes. {% .lead %}
 
 {% /quick-links %}
 
-## Quick start
 
-The fastest way to get started is to use the Poyro CLI to install the library and configure it for your project.
+## Poyro
+
+### What is it?
+
+Poyro is a lightweight extension of [Vitest](https://vitest.dev/) (a modern testing framework with a Jest-like API) for testing LLM applications. Familiarizing yourself with Vitest can help you get more out of Poyro.
 
 ### Prerequisites
 
 - Node.js 20 or later
-- Vitest 1.6.0 or later ([Vitest](https://vitest.dev/) is a modern testing framework with Jest-like syntax)
+- Vitest 1.6.0 or later 
 - Your project must have "type": "module" in its package.json (this library is ESM only)
 - Recommended: CUDA-compatible GPU (Nvidia) or Metal-compatible GPU (Apple Silicon) for best performance, but not required
 
-### Installation
+---
+
+## Usage
+
+
+### Install
 
 To get started quickly, simply run:
 
@@ -33,38 +41,6 @@ To get started quickly, simply run:
 npx poyro init
 ```
 
-If everything goes well, you should see a message that roughly looks like this:
-
-```bash
-poyro | Welcome to Poyro! 🕵️
-? vitest is not installed. Would you like to also install it? yes
-poyro | Installing vitest and @poyro/vitest...
-
-added 2 packages, removed 2 packages, changed 2 packages, and audited 611 packages in 9s
-
-203 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-poyro | No 'vitest.setup.js/ts' file found. Creating vitest.setup.js...
-poyro | vitest.setup.js created successfully.
-poyro | No 'vitest.config.js/ts' file found. Creating vitest.config.js...
-poyro | vitest.config.js created successfully.
-poyro | vitest.d.ts created successfully.
-poyro | tsconfig.json updated successfully to reference vitest.d.ts types.
-```
-
-That's it! You're now ready to start testing your LLM integration with Poyro.
-
-{% callout type="note" title="Manual installation" %}
-You also have the choice to install and configure Poyro manually- to do so, please use the [manual installation guide](/manual-installation) for details on how to get started.
-{% /callout %}
-
----
-
-## Usage
-
-Poyro is a lightweight extension of [Vitest](https://vitest.dev/) (a modern testing framework with a Jest-like API) for testing LLM applications. Familiarizing yourself with Vitest can help you get more out of Poyro.
 
 ### Create your test
 
@@ -97,37 +73,33 @@ Run vitest with your package manager, for example with `npm`:
 npm test
 ```
 
-Alternatively, you can run the test with `yarn`:
-
-```bash
-yarn test
-```
-
-Or with `pnpm`:
-
-```bash
-pnpm test
-```
+Similar commands work with `yarn` and `pnpm`.
 
 ---
 
 ## Troubleshooting
 
-Any modifications below to `npm test` can also be similarly applied in `package.json`.
+{% callout type="note" title="Pro tip" %}
+`npm test` is an alias for the `vitest` CLI. As seen below, this CLI provides many ways to configure how tests are run which are useful for getting the most out of Poyro. See the [Vitest CLI docs](https://vitest.dev/guide/cli.html) to learn more about them.
+{% /callout %}
+
 
 ### Napi::Error
 
-By default `vitest` uses threads to run tests, which is more resource efficient but provides more opaque errors. The best way to debug this issue is to use `vitest` with forks instead:
+By default test execution uses threads to run tests, which is more resource efficient but provides more opaque errors. The best way to debug this issue is to use `npm test` with forks instead:
 
 ```bash
 npm test --pool=forks
 ```
 
-#### Test timeout exceeded
+### Test timeout exceeded
+
+Since Poyro runs an LLM locally, depending on your hardware tests make take longer than the default timeout to run.
 
 Try increasing the timeout in the third argument of the `it`/`test` function. Additionally, ensure that you `await` the matcher call, as it is asynchronous.
 
-#### Not seeing errors for all tests
+
+### Not seeing errors for all tests
 
 The default logging for vitest can hide all but the last test error. To display all test errors we recommend using:
 
@@ -135,15 +107,35 @@ The default logging for vitest can hide all but the last test error. To display 
 npm test --reporter=verbose
 ```
 
+### Installation error
+
+If you have any issues with the automated installation script `npx poyro init` try [installing manually](/manual-installation) instead. A successful installation should yield a message that roughly looks like:
+
+```bash
+poyro | Welcome to Poyro! 🕵️
+? vitest is not installed. Would you like to also install it? yes
+poyro | Installing vitest and @poyro/vitest...
+
+added 2 packages, removed 2 packages, changed 2 packages, and audited 611 packages in 9s
+
+203 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+poyro | No 'vitest.setup.js/ts' file found. Creating vitest.setup.js...
+poyro | vitest.setup.js created successfully.
+poyro | No 'vitest.config.js/ts' file found. Creating vitest.config.js...
+poyro | vitest.config.js created successfully.
+poyro | vitest.d.ts created successfully.
+poyro | tsconfig.json updated successfully to reference vitest.d.ts types.
+```
+
+
 ### Out of memory
 
 If you're running on a machine with limited memory, you may run out of memory during the test. Try closing other memory-intensive processes or running the test on a machine with more memory.
 
-Additionally, you may also receive this error if you attempt to parallelize test with a `Promise.all` or similar construct. Each of these tests will spawn a new instance of the LLM, which can quickly consume memory. In such instances, it is recommended to run the tests serially.
-
-{% callout type="note" title="Pro tip" %}
-As seen above, Vitest provides many ways to configure how tests are run which are useful for getting the most out of Poyro. We recommend looking at the [Vitest docs](https://vitest.dev/guide/), in particular the [Vitest CLI docs](https://vitest.dev/guide/cli.html).
-{% /callout %}
+Additionally, you may also receive such an error if you attempt to parallelize test with a `Promise.all` or similar construct. Each of these tests will spawn a new instance of the LLM, which can quickly consume memory. In such instances, it is recommended to run the tests serially.
 
 ---
 

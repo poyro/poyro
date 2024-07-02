@@ -6,15 +6,21 @@ nextjs:
     description: Step-by-step guide to installing the Poyro library.
 ---
 
-Welcome to the manual installation guide for Poyro! This guide will walk you through the process of setting up your project to use the Poyro library.
+Welcome to the manual installation guide for Poyro! This guide will walk you through the process of manually setting up your project to use the Poyro library.
+
+Before attempting a manual installation, please try our automated installation command:
+
+```bash
+npx poyro init
+```
 
 ---
 
-## @poyro/vitest
+## Before Starting
 
 `@poyro/vitest` is a package that contains Poyro bindings for the [Vitest](https://vitest.dev/) test framework. Make sure that you've already installed Vitest and verified that it's working before proceeding.
 
-### Installation
+## Installation
 
 To install the package, run the following command:
 
@@ -36,7 +42,7 @@ If you're using pnpm:
 pnpm install --save-dev @poyro/vitest
 ```
 
-### Configuration
+## Basic Configuration
 
 Once installed, you will need to configure Vitest to use the Poyro bindings. To do this, create a `vitest.setup.js` file in the root of your project and add the following code:
 
@@ -56,7 +62,25 @@ export default defineConfig({
 });
 ```
 
-Next, create a `vitest.d.ts` file in the root of your project and add the following code:
+## Test Command Setup
+
+To have Poyro correctly run when `npm test` (or the test command for your package manager) is run this needs to be configured in `package.json`:
+
+```json
+{
+  "scripts": {
+    "test": "vitest",
+  }
+}
+```
+
+Note that any vitest CLI flags that you want to include by default when running `npm test` can be appended to the `vitest` command. For some useful ones see the [Troubleshooting](/#troubleshooting) section.
+
+## TypeScript Configuration
+
+The following steps are only needed for TypeScript projects.
+
+Create a `vitest.d.ts` file in the root of your project and add the following code:
 
 ```typescript
 import type { Assertion, AsymmetricMatchersContaining } from "vitest";
@@ -68,7 +92,7 @@ declare module "vitest" {
 }
 ```
 
-Finally, update your `tsconfig.json` to include the following:
+Update your `tsconfig.json` to include the following:
 
 ```json
 {
