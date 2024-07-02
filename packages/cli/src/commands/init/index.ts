@@ -28,7 +28,7 @@ export const handler = async (): Promise<void> => {
 
   if (!isModuleType()) {
     const confirmed = await confirm({
-      message: `Your project does not have a type field set to "module" in your package.json. Would you like to set it now? Warning: This may break your project if it is not set up to use ESModules.`,
+      message: `Your project does not have a type field set to "module" in your package.json. Would you like to set it now? ${chalk.redBright("Warning: This may break your project if it is not set up to use ESModules.")}`,
     });
 
     if (!confirmed) {
