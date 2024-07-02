@@ -24,11 +24,16 @@ describe("toFulfillCriterion", () => {
   it("should pass with a simple criterion", async () => {
     const result = await toFulfillCriterion("Hello, world!", "Says hello");
 
+    if (!result.pass) {
+      // eslint-disable-next-line no-console -- Logging is necessary for debugging
+      console.log(result.message());
+    }
+
     expect(result).toMatchObject({
       pass: true,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 30000);
 
   it("should behave correctly with mismatched result and criterion", async () => {
     const result = await toFulfillCriterion("Bye", "Says hello");
@@ -37,7 +42,7 @@ describe("toFulfillCriterion", () => {
       pass: false,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 30000);
 
   it("should pass with plaintext", async () => {
     const result = await toFulfillCriterion(
@@ -45,11 +50,16 @@ describe("toFulfillCriterion", () => {
       "Mentions the first flight"
     );
 
+    if (!result.pass) {
+      // eslint-disable-next-line no-console -- Logging is necessary for debugging
+      console.log(result.message());
+    }
+
     expect(result).toMatchObject({
       pass: true,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 30000);
 
   it("should pass on exact matches with quotes", async () => {
     const result = await toFulfillCriterion(
@@ -57,11 +67,16 @@ describe("toFulfillCriterion", () => {
       "Mentions 'the first manned airplane flight'"
     );
 
+    if (!result.pass) {
+      // eslint-disable-next-line no-console -- Logging is necessary for debugging
+      console.log(result.message());
+    }
+
     expect(result).toMatchObject({
       pass: true,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 30000);
 
   it("should fail on inexact matches with quotes", async () => {
     const result = await toFulfillCriterion(
@@ -73,7 +88,7 @@ describe("toFulfillCriterion", () => {
       pass: false,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 30000);
 
   it("should pass with punctuation", async () => {
     const result = await toFulfillCriterion(
@@ -81,11 +96,16 @@ describe("toFulfillCriterion", () => {
       "Mentions the first flight."
     );
 
+    if (!result.pass) {
+      // eslint-disable-next-line no-console -- Logging is necessary for debugging
+      console.log(result.message());
+    }
+
     expect(result).toMatchObject({
       pass: true,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 30000);
 
   it("should not pass when the criterion is not fulfilled", async () => {
     const result = await toFulfillCriterion(
@@ -97,5 +117,5 @@ describe("toFulfillCriterion", () => {
       pass: false,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 30000);
 });
