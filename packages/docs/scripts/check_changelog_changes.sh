@@ -1,10 +1,7 @@
 #!/bin/bash
 
-# Get the current branch name
-current_branch=$(git rev-parse --abbrev-ref HEAD)
-
-# Check if the current branch is 'master'
-if [ "$current_branch" != "master" ]; then
+# Check if the current VERCEL_ENV is 'preview' or 'development'
+if [ "$VERCEL_ENV" == "preview" ] || [ "$VERCEL_ENV" == "development" ]; then
   echo "✅ - Not on 'main' branch. Skipping CHANGELOG check. Deploying the documentation..."
   exit 1;
 fi
