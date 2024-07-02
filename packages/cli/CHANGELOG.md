@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.3
+
+### Patch Changes
+
+- Ensure that if the user says 'no' to the `Shall we create a new script in package.json to run vitest` prompt, we give them the opportunity to create a custom script name and assign vitest to it.
+
 ## 0.4.2
 
 ### Patch Changes

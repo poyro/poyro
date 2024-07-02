@@ -1,7 +1,7 @@
 import fs from "fs";
 
 import chalk from "chalk";
-import { confirm } from "@inquirer/prompts";
+import { confirm, input } from "@inquirer/prompts";
 
 import { checkFileExists } from "./checkFileExists";
 import { makeLogMessage } from "./makeLogMessage";
@@ -39,13 +39,42 @@ export const updatePackage = async () => {
       message: `The test script already exists in your package.json file. Shall we overwrite it to be '"test": "vitest"'?`,
     });
 
-    if (!confirmed) {
-      return console.log(makeLogMessage(chalk.red("Aborting...")));
-    }
-  }
+    if (confirmed) {
+      // Update the 'scripts.test' property to reference 'vitest'
+      json.scripts.test = "vitest";
+    } else {
+      const alternate = await confirm({
+        message: `Shall we create a new script in package.json to run vitest?`,
+      });
 
-  // Update the 'scripts.test' property to reference 'vitest'
-  json.scripts.test = "vitest";
+      if (!alternate) {
+        return console.log(makeLogMessage(chalk.red("Aborting...")));
+      }
+
+      // Prompt the user for the new script name
+      const newScript = await input({
+        message: `What would you like to name the new script?`,
+        default: "test:vitest",
+        validate: (input) => {
+          if (!input) {
+            return "Please enter a valid script name.";
+          }
+
+          if (json.scripts[input]) {
+            return `The script name ${input} already exists. Please enter a different script name.`;
+          }
+
+          return true;
+        },
+      });
+
+      // Update the 'scripts' property to include the new script
+      json.scripts[newScript] = "vitest";
+    }
+  } else {
+    // Update the 'scripts.test' property to reference 'vitest'
+    json.scripts.test = "vitest";
+  }
 
   // Write the transformed code to the file
   fs.writeFileSync(filename, JSON.stringify(json, null, 2));
