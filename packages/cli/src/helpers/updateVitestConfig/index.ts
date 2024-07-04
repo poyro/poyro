@@ -8,6 +8,9 @@ import { insertExportAssignmentFactory } from "./insertExportAssignmentFactory";
 import { insertTestObjectFactory } from "./insertTestObjectFactory";
 import { insertSetupFilesArrayFactory } from "./insertSetupFilesArrayFactory";
 import { insertVitestSetupFactory } from "./insertVitestSetupFactory";
+import { insertFileParallelismKeyFactory } from "./insertFileParallelismKeyFactory";
+import { insertForkKeyFactory } from "./insertForkKeyFactory";
+import { insertReporterVerboseKeyFactory } from "./insertReporterVerboseKeyFactory";
 import { makeLogMessage } from "../makeLogMessage";
 import { transformSourceFile } from "../transformSourceFile";
 
@@ -29,6 +32,12 @@ export const updateVitestConfig = async (filename: string): Promise<void> => {
     insertSetupFilesArrayFactory,
     // 6. Check for 'vitest.setup.js' in 'setupFiles' array and add if missing
     insertVitestSetupFactory,
+    // 7. Insert/update file parallelism setting
+    insertFileParallelismKeyFactory,
+    // 8. Insert/update pool setting
+    insertForkKeyFactory,
+    // 9. Insert/ update reporter setting
+    insertReporterVerboseKeyFactory,
   ]);
 
   // Write the transformed code to the file
