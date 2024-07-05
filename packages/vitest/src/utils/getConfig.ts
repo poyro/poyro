@@ -25,7 +25,9 @@ export const getConfig = async (): Promise<PoyroVitestConfig> => {
   console.log("made it here!");
 
   // Otherwise, require the config file
-  const config = (await import(configPath)) as PoyroVitestConfig;
+  const config = (await import(configPath).then(
+    (m) => m.default
+  )) as PoyroVitestConfig;
 
   console.log({ config });
 

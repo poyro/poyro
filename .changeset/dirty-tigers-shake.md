@@ -1,0 +1,5 @@
+---
+"@poyro/vitest": patch
+---
+
+zsh
