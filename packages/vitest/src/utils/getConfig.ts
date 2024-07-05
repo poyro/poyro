@@ -27,6 +27,8 @@ export const getConfig = async (): Promise<PoyroVitestConfig> => {
   // Otherwise, require the config file
   const config = (await import(configPath)) as PoyroVitestConfig;
 
+  console.log({ config });
+
   // If the config is not an object, throw an error
   if (typeof config !== "object") {
     throw new Error("The config must be an object.");
