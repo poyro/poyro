@@ -95,6 +95,8 @@ export const makeModel = async (): Promise<PoyroModelCore> => {
   const llamaOptions = llamaCpp?.frameworkOptions || {};
   const modelOptions = llamaCpp?.modelOptions || {};
 
+  console.log(llamaCpp);
+
   // Create a new llama model
   const llama = await getLlama(llamaOptions);
   const model = await llama.loadModel({ modelPath, ...modelOptions });

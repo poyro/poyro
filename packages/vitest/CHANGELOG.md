@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.0-beta.7
+
+### Patch Changes
+
+- Fix exports.
+
 ## 0.4.0-beta.6
 
 ### Patch Changes
