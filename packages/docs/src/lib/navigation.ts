@@ -5,6 +5,7 @@ export const navigation = [
       { title: "Getting started", href: "/" },
       { title: "Manual installation", href: "/manual-installation" },
       { title: "How does it work?", href: "/how-does-it-work" },
+      { title: "Configuration", href: "/configuration" },
     ],
   },
   // {
