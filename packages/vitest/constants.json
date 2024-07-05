@@ -1,7 +1,7 @@
 {
   "model": {
-    "org": "mradermacher",
-    "repo": "Meta-Llama-3-8B-Instruct-GGUF",
-    "filename": "Meta-Llama-3-8B-Instruct.Q4_K_M.gguf"
+    "org": "bartowski",
+    "repo": "Phi-3.1-mini-4k-instruct-GGUF",
+    "filename": "Phi-3.1-mini-4k-instruct-Q4_K_M.gguf"
   }
 }
