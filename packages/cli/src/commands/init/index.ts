@@ -99,7 +99,7 @@ export const handler = async (): Promise<void> => {
   var okUpdateConfig;
 
   if (optionalVitestConfigPath !== null){
-    okUpdateConfig = confirm({
+    okUpdateConfig = await confirm({
       message: `Your project has a vitest config file at ${chalk.blue(optionalVitestConfigPath)}. Poyro wants to make changes to it to optimize how its tests run. ${chalk.blue("We recommend making these changes for the best experience.")} Can we make these changes?`,
     })
   } else {
@@ -108,7 +108,7 @@ export const handler = async (): Promise<void> => {
 
   const vitestConfigPath = optionalVitestConfigPath ?? await createVitestConfig();
   if (okUpdateConfig){
-    updateVitestConfig(vitestConfigPath);
+    await updateVitestConfig(vitestConfigPath);
   }
 
   // Update the vitest types
