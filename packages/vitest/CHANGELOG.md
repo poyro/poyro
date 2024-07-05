@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.0-beta.0
+
+### Minor Changes
+
+- Create a way to interpret `poyro.config.js` files to configure library.
+
 ## 0.3.4
 
 ### Patch Changes

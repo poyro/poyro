@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@repo/eslint-config": "0.0.0",
+    "@repo/typescript-config": "0.0.0",
+    "poyro": "0.4.5",
+    "@poyro/docs": "0.3.0",
+    "@poyro/vitest": "0.3.4"
+  },
+  "changesets": [
+    "slimy-bags-eat"
+  ]
+}
