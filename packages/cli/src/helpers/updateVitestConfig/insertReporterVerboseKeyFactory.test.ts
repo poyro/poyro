@@ -5,7 +5,7 @@ import { transformSourceFile } from "../transformSourceFile";
 import { insertReporterVerboseKeyFactory } from "./insertReporterVerboseKeyFactory";
 
 describe("insertReporterVerboseKeyFactory", () => {
-  it("should insert 'reporter' 'verbose' into the test object", () => {
+  it("should insert 'reporters' 'verbose' into the test object", () => {
     const sourceCodeText = `import { defineConfig } from "vitest/config";
 
     export default defineConfig({ test: {} });`;
@@ -17,15 +17,15 @@ describe("insertReporterVerboseKeyFactory", () => {
     expect(source).toMatchInlineSnapshot(`
       "import { defineConfig } from "vitest/config";
 
-      export default defineConfig({ test: { reporter: "verbose" } });
+      export default defineConfig({ test: { reporters: "verbose" } });
       "
     `);
   });
 
-  it("should overwrite 'reporter' 'verbose' into the test object", () => {
+  it("should overwrite 'reporters' 'verbose' into the test object for string", () => {
     const sourceCodeText = `import { defineConfig } from "vitest/config";
 
-    export default defineConfig({ test: { reporter: "basic"} });`;
+    export default defineConfig({ test: { reporters: "basic"} });`;
 
     const source = transformSourceFile("filename.ts", sourceCodeText, [
       insertReporterVerboseKeyFactory,
@@ -34,7 +34,24 @@ describe("insertReporterVerboseKeyFactory", () => {
     expect(source).toMatchInlineSnapshot(`
       "import { defineConfig } from "vitest/config";
 
-      export default defineConfig({ test: { reporter: "verbose" } });
+      export default defineConfig({ test: { reporters: "verbose" } });
+      "
+    `);
+  });
+
+  it("should overwrite 'reporters' 'verbose' into the test object for array", () => {
+    const sourceCodeText = `import { defineConfig } from "vitest/config";
+
+    export default defineConfig({ test: { reporters: ["basic", "html"]} });`;
+
+    const source = transformSourceFile("filename.ts", sourceCodeText, [
+      insertReporterVerboseKeyFactory,
+    ]);
+
+    expect(source).toMatchInlineSnapshot(`
+      "import { defineConfig } from "vitest/config";
+
+      export default defineConfig({ test: { reporters: "verbose" } });
       "
     `);
   });
@@ -51,7 +68,7 @@ describe("insertReporterVerboseKeyFactory", () => {
     expect(source).toMatchInlineSnapshot(`
       "import { defineConfig } from "vitest/config";
 
-      export default defineConfig({ test: { foo: "bar", reporter: "verbose" } });
+      export default defineConfig({ test: { foo: "bar", reporters: "verbose" } });
       "
     `);
   });

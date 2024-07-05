@@ -31,11 +31,11 @@ export const insertReporterVerboseKeyFactory: ts.TransformerFactory<
                 prop => {
                   return ts.isPropertyAssignment(prop) &&
                     ts.isIdentifier(prop.name) &&
-                    prop.name.text !== "reporter"
+                    prop.name.text !== "reporters"
                 }
               ),
               context.factory.createPropertyAssignment(
-                context.factory.createIdentifier("reporter"),
+                context.factory.createIdentifier("reporters"),
                 context.factory.createStringLiteral("verbose")
               ),
             ])
