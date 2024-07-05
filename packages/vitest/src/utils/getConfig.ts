@@ -13,7 +13,7 @@ export const getConfig = async (): Promise<PoyroVitestConfig> => {
   const cwd = process.cwd();
 
   // Get the config file path
-  const configPath = path.join(cwd, "poyro.config.js");
+  const configPath = path.resolve(cwd, "poyro.config.js");
 
   console.log({ configPath });
 
