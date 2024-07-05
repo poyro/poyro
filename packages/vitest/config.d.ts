@@ -1,5 +1,9 @@
-import type { LlamaCppConfig, PoyroVitestConfig } from "./dist/config.d.ts";
-import defineConfig, { defaultConfig } from "./dist/config.d.ts";
+import type {
+  LlamaCppConfig,
+  PoyroVitestConfig,
+  defaultConfig,
+} from "./dist/config.d.ts";
+import type defineConfig from "./dist/config.d.ts";
 
 export { type LlamaCppConfig, type PoyroVitestConfig, defaultConfig };
 

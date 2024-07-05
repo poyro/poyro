@@ -9,6 +9,7 @@
     "@poyro/vitest": "0.3.4"
   },
   "changesets": [
+    "angry-peaches-march",
     "gentle-kangaroos-vanish",
     "rotten-lions-reflect",
     "seven-coats-lick",

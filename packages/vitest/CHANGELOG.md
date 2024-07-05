@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.0-beta.8
+
+### Patch Changes
+
+- Debug custom config.
+
 ## 0.4.0-beta.7
 
 ### Patch Changes

@@ -15,10 +15,14 @@ export const getConfig = (): PoyroVitestConfig => {
   // Get the config file path
   const configPath = path.join(cwd, "poyro.config.js");
 
+  console.log({ configPath });
+
   // If the file does not exist, return the default config
   if (!fs.existsSync(configPath)) {
     return validateConfig(defaultConfig);
   }
+
+  console.log("made it here!");
 
   // Otherwise, require the config file
   const config = require(configPath) as PoyroVitestConfig;
