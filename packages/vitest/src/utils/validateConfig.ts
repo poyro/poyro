@@ -134,7 +134,7 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
         }),
       }),
       createSignal: lazy((value) => {
-        if (typeof value === "function") {
+        if (typeof value === "function" || value === undefined) {
           return value;
         }
 

@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.0-beta.2
+
+### Patch Changes
+
+- Fix validation of `poyro.config.js` files to ensure that they are correctly interpreted and used to configure the library.
+
 ## 0.4.0-beta.1
 
 ### Patch Changes
