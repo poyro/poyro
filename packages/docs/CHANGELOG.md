@@ -1,5 +1,19 @@
 # @poyro/docs
 
+## 0.4.0
+
+### Minor Changes
+
+- Improvements to default configuration and model to improve performance:
+
+  - Update model from llama-3 to phi-3.1, a model that is half the size, runs 3x faster, and has the same performance on eval dataset.
+  - Change default vitest configuration created by npx poyro init to do sequential execution, verbose reporting, and use forks (better for debugging).
+  - Create a way to interpret `poyro.config.js` files to configure library.
+  - Set default llama cpp parameters to more memory efficient configuration that better leverages GPU hardware.
+  - Change documentation to detail how to configure Poyro, specifically Llama cpp.
+
+  Inclusion of evaluation logic for future model changes and default poyro config from CLI to be done in a future release.
+
 ## 0.3.0
 
 ### Minor Changes
