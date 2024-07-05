@@ -37,7 +37,7 @@ export class PoyroModelCore {
       return this.contextSequence;
     }
 
-    const { llamaCpp } = getConfig();
+    const { llamaCpp } = await getConfig();
     const contextOptions = llamaCpp?.contextOptions || {};
 
     // Otherwise, create a new context
@@ -91,7 +91,7 @@ export const makeModel = async (): Promise<PoyroModelCore> => {
   const modelPath = path.join(dirPath, filename);
 
   // Get config
-  const { llamaCpp } = getConfig();
+  const { llamaCpp } = await getConfig();
   const llamaOptions = llamaCpp?.frameworkOptions || {};
   const modelOptions = llamaCpp?.modelOptions || {};
 

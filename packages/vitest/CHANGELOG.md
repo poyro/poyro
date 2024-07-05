@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.0-beta.9
+
+### Patch Changes
+
+- Use import instead of require
+
 ## 0.4.0-beta.8
 
 ### Patch Changes

@@ -8,7 +8,7 @@ import { defaultConfig } from "../config";
 
 import { validateConfig } from "./validateConfig";
 
-export const getConfig = (): PoyroVitestConfig => {
+export const getConfig = async (): Promise<PoyroVitestConfig> => {
   // Get current working dir
   const cwd = process.cwd();
 
@@ -25,7 +25,7 @@ export const getConfig = (): PoyroVitestConfig => {
   console.log("made it here!");
 
   // Otherwise, require the config file
-  const config = require(configPath) as PoyroVitestConfig;
+  const config = (await import(configPath)) as PoyroVitestConfig;
 
   // If the config is not an object, throw an error
   if (typeof config !== "object") {
