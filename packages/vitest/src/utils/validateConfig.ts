@@ -32,7 +32,7 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
           return typeof value === "function"
             ? (mixed().nonNullable() as any)
             : string().defined().nullable();
-        }),
+        }).optional(),
         build: string().oneOf(["auto", "never", "forceRebuild"]).optional(),
         cmakeOptions: object().shape({}).optional(),
         existingPrebuiltBinaryMustMatchBuildOptions: boolean().optional(),
@@ -68,7 +68,7 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
                 })
                 .optional(),
             });
-          }),
+          }).optional(),
           vocabOnly: boolean().optional(),
           useMmap: boolean().optional(),
           useMlock: boolean().optional(),
@@ -95,7 +95,7 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
                     throw new Error("onLoadProgress must be a function");
                   }).optional(),
                 });
-          }),
+          }).optional(),
           ignoreMemorySafetyChecks: boolean().optional(),
         })
         .optional(),
@@ -116,7 +116,7 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
               min: number().defined().optional(),
               max: number().defined().optional(),
             });
-          }),
+          }).optional(),
         })
         .optional(),
       batchSize: number().optional(),
@@ -126,14 +126,14 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
           return typeof value === "function"
             ? (mixed().nonNullable() as any)
             : string().oneOf(["nextTick"]).defined();
-        }),
+        }).optional(),
         itemPrioritizationStrategy: lazy((value) => {
           return typeof value === "function"
             ? (mixed().nonNullable() as any)
             : string()
                 .oneOf(["maximumParallelism", "firstInFirstOut"])
                 .defined();
-        }),
+        }).optional(),
       }),
       createSignal: lazy((value) => {
         if (typeof value === "function" || value === undefined) {
