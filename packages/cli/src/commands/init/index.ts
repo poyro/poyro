@@ -3,15 +3,17 @@ import { confirm } from "@inquirer/prompts";
 import chalk from "chalk";
 
 import {
+  getVitestConfigIfExists,
   getDependencyVersion,
   installWithRunner,
   isModuleType,
-  makeVitestConfig,
+  createVitestConfig,
   makeLogMessage,
   makeVitestSetup,
   updateVitestTypes,
   updateTsconfig,
   updatePackageScript,
+  updateVitestConfig,
 } from "../../helpers";
 
 export const command = "init";
@@ -93,7 +95,21 @@ export const handler = async (): Promise<void> => {
   await makeVitestSetup();
 
   // Set up config to use the new vitest setup file
-  await makeVitestConfig();
+  const optionalVitestConfigPath = await getVitestConfigIfExists();
+  var okUpdateConfig;
+
+  if (optionalVitestConfigPath !== null){
+    okUpdateConfig = await confirm({
+      message: `Your project has a vitest config file at ${chalk.blue(optionalVitestConfigPath)}. Poyro wants to make changes to it to optimize how its tests run. ${chalk.blue("We recommend making these changes for the best experience.")} Can we make these changes?`,
+    })
+  } else {
+    okUpdateConfig = true;
+  }
+
+  const vitestConfigPath = optionalVitestConfigPath ?? await createVitestConfig();
+  if (okUpdateConfig){
+    await updateVitestConfig(vitestConfigPath);
+  }
 
   // Update the vitest types
   await updateVitestTypes();
