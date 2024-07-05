@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.0-beta.1
+
+### Patch Changes
+
+- Make sure that 'config.js' is re-exported at the top level.
+
 ## 0.4.0-beta.0
 
 ### Minor Changes
