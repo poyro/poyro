@@ -1,6 +1,6 @@
 {
   "name": "@poyro/vitest",
-  "version": "0.4.0-beta.5",
+  "version": "0.4.0-beta.6",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
@@ -9,7 +9,8 @@
   "files": [
     "dist/**",
     "constants.json",
-    "config.js"
+    "config.js",
+    "config.d.ts"
   ],
   "engines": {
     "node": ">=20.0.0"

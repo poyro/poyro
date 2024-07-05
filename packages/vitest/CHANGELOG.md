@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.0-beta.6
+
+### Patch Changes
+
+- More optionals
+
 ## 0.4.0-beta.5
 
 ### Patch Changes

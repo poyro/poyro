@@ -30,8 +30,8 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
           .optional(),
         logger: lazy((value) => {
           return typeof value === "function"
-            ? (mixed().nonNullable() as any)
-            : string().defined().nullable();
+            ? (mixed().nonNullable().optional() as any)
+            : string().defined().nullable().optional();
         }).optional(),
         build: string().oneOf(["auto", "never", "forceRebuild"]).optional(),
         cmakeOptions: object().shape({}).optional(),
@@ -41,8 +41,8 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
         skipDownload: boolean().optional(),
         vramPadding: lazy((value) => {
           return typeof value === "function"
-            ? (mixed().nonNullable() as any)
-            : number().defined();
+            ? (mixed().nonNullable().optional() as any)
+            : number().defined().optional();
         }).optional(),
         debug: boolean().optional(),
       }).optional(),
@@ -51,11 +51,14 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
           modelPath: string().defined().optional(),
           gpuLayers: lazy((value) => {
             if (typeof value === "string") {
-              return string<"auto" | "max">().defined().oneOf(["auto", "max"]);
+              return string<"auto" | "max">()
+                .defined()
+                .oneOf(["auto", "max"])
+                .optional();
             }
 
             if (typeof value === "number") {
-              return number().defined();
+              return number().defined().optional();
             }
 
             return object().shape({
@@ -124,20 +127,21 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
       batching: object().shape({
         dispatchSchedule: lazy((value) => {
           return typeof value === "function"
-            ? (mixed().nonNullable() as any)
-            : string().oneOf(["nextTick"]).defined();
+            ? (mixed().nonNullable().optional() as any)
+            : string().oneOf(["nextTick"]).defined().optional();
         }).optional(),
         itemPrioritizationStrategy: lazy((value) => {
           return typeof value === "function"
-            ? (mixed().nonNullable() as any)
+            ? (mixed().nonNullable().optional() as any)
             : string()
                 .oneOf(["maximumParallelism", "firstInFirstOut"])
-                .defined();
+                .defined()
+                .optional();
         }).optional(),
       }),
       createSignal: lazy((value) => {
         if (typeof value === "function" || value === undefined) {
-          return mixed();
+          return mixed().optional();
         }
 
         throw new Error("createSignal must be a function");
