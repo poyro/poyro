@@ -1,6 +1,6 @@
 {
   "name": "@poyro/vitest",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
@@ -10,6 +10,19 @@
     "dist/**",
     "constants.json"
   ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./*": "./*",
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "default": "./dist/config.js"
+    }
+  },
   "engines": {
     "node": ">=20.0.0"
   },
@@ -37,6 +50,8 @@
     "find-cache-dir": "^5.0.0",
     "handlebars": "^4.7.8",
     "node-fetch": "^3.3.2",
-    "node-llama-cpp": "3.0.0-beta.36"
+    "node-llama-cpp": "3.0.0-beta.36",
+    "radash": "^12.1.0",
+    "yup": "^1.4.0"
   }
 }

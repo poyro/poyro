@@ -14,6 +14,7 @@ import {
 } from "node-llama-cpp";
 
 import { getModelPath } from "./utils/getModelPath";
+import { getConfig } from "./utils/getConfig";
 
 export interface SessionOptions {
   /** The system prompt to use */
@@ -36,8 +37,11 @@ export class PoyroModelCore {
       return this.contextSequence;
     }
 
+    const { llamaCpp } = await getConfig();
+    const contextOptions = llamaCpp?.contextOptions || {};
+
     // Otherwise, create a new context
-    const context = await this.model.createContext();
+    const context = await this.model.createContext(contextOptions);
 
     // Then get the sequence
     this.contextSequence = context.getSequence();
@@ -86,9 +90,14 @@ export const makeModel = async (): Promise<PoyroModelCore> => {
   // Put together the file path
   const modelPath = path.join(dirPath, filename);
 
+  // Get config
+  const { llamaCpp } = await getConfig();
+  const llamaOptions = llamaCpp?.frameworkOptions || {};
+  const modelOptions = llamaCpp?.modelOptions || {};
+
   // Create a new llama model
-  const llama = await getLlama();
-  const model = await llama.loadModel({ modelPath });
+  const llama = await getLlama(llamaOptions);
+  const model = await llama.loadModel({ modelPath, ...modelOptions });
 
   return new PoyroModelCore(llama, model);
 };
