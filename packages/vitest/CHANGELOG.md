@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.0-beta.4
+
+### Patch Changes
+
+- Make sure things are correctly optional.
+
 ## 0.4.0-beta.3
 
 ### Patch Changes

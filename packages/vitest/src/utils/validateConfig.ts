@@ -48,7 +48,7 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
       }).optional(),
       modelOptions: object()
         .shape({
-          modelPath: string().defined(),
+          modelPath: string().defined().optional(),
           gpuLayers: lazy((value) => {
             if (typeof value === "string") {
               return string<"auto" | "max">().defined().oneOf(["auto", "max"]);
