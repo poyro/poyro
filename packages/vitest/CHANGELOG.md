@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.4.0-beta.3
+
+### Patch Changes
+
+- Make sure we use correct yup validators throughout.
+
 ## 0.4.0-beta.2
 
 ### Patch Changes

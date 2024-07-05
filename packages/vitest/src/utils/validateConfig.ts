@@ -30,7 +30,7 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
           .optional(),
         logger: lazy((value) => {
           return typeof value === "function"
-            ? value
+            ? (mixed().nonNullable() as any)
             : string().defined().nullable();
         }),
         build: string().oneOf(["auto", "never", "forceRebuild"]).optional(),
@@ -40,7 +40,9 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
         progressLogs: boolean().optional(),
         skipDownload: boolean().optional(),
         vramPadding: lazy((value) => {
-          return typeof value === "function" ? value : number().defined();
+          return typeof value === "function"
+            ? (mixed().nonNullable() as any)
+            : number().defined();
         }).optional(),
         debug: boolean().optional(),
       }).optional(),
@@ -87,7 +89,7 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
                   threads: number().optional(),
                   onLoadProgress: lazy((value) => {
                     if (typeof value === "function") {
-                      return value;
+                      return mixed().nonNullable() as any;
                     }
 
                     throw new Error("onLoadProgress must be a function");
@@ -122,12 +124,12 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
       batching: object().shape({
         dispatchSchedule: lazy((value) => {
           return typeof value === "function"
-            ? value
+            ? (mixed().nonNullable() as any)
             : string().oneOf(["nextTick"]).defined();
         }),
         itemPrioritizationStrategy: lazy((value) => {
           return typeof value === "function"
-            ? value
+            ? (mixed().nonNullable() as any)
             : string()
                 .oneOf(["maximumParallelism", "firstInFirstOut"])
                 .defined();
@@ -135,7 +137,7 @@ const _configSchema = object().shape<Shape<PoyroVitestConfig>>({
       }),
       createSignal: lazy((value) => {
         if (typeof value === "function" || value === undefined) {
-          return value;
+          return mixed();
         }
 
         throw new Error("createSignal must be a function");
