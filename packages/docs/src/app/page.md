@@ -76,66 +76,11 @@ Similar commands work with `yarn` and `pnpm`.
 
 ---
 
-## Troubleshooting
-
-{% callout type="note" title="Pro tip" %}
-`npm test` is an alias for the `vitest` CLI. As seen below, this CLI provides many ways to configure how tests are run which are useful for getting the most out of Poyro. See the [Vitest CLI docs](https://vitest.dev/guide/cli.html) to learn more about them.
-{% /callout %}
-
-### Napi::Error
-
-By default test execution uses threads to run tests, which is more resource efficient but provides more opaque errors. The best way to debug this issue is to use `npm test` with forks instead:
-
-```bash
-npm test --pool=forks
-```
-
-### Test timeout exceeded
-
-Since Poyro runs an LLM locally, depending on your hardware tests make take longer than the default timeout to run.
-
-Try increasing the timeout in the third argument of the `it`/`test` function. Additionally, ensure that you `await` the matcher call, as it is asynchronous.
-
-### Not seeing errors for all tests
-
-The default logging for vitest can hide all but the last test error. To display all test errors we recommend using:
-
-```bash
-npm test --reporter=verbose
-```
-
-### Installation error
-
-If you have any issues with the automated installation script `npx poyro init` try [installing manually](/manual-installation) instead. A successful installation should yield a message that roughly looks like:
-
-```bash
-poyro | Welcome to Poyro! 🕵️
-? vitest is not installed. Would you like to also install it? yes
-poyro | Installing vitest and @poyro/vitest...
-
-added 2 packages, removed 2 packages, changed 2 packages, and audited 611 packages in 9s
-
-203 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-poyro | No 'vitest.setup.js/ts' file found. Creating vitest.setup.js...
-poyro | vitest.setup.js created successfully.
-poyro | No 'vitest.config.js/ts' file found. Creating vitest.config.js...
-poyro | vitest.config.js created successfully.
-poyro | vitest.d.ts created successfully.
-poyro | tsconfig.json updated successfully to reference vitest.d.ts types.
-```
-
-### Out of memory
-
-If you're running on a machine with limited memory, you may run out of memory during the test. Try closing other memory-intensive processes or running the test on a machine with more memory.
-
-Additionally, you may also receive such an error if you attempt to parallelize test with a `Promise.all` or similar construct. Each of these tests will spawn a new instance of the LLM, which can quickly consume memory. In such instances, it is recommended to run the tests serially.
-
----
-
 ## Help
+
+### Troubleshooting
+
+We provide solutions to common issues in our [Troubleshooting](/troubleshooting) page. Take a look at the solutions there, and if you continue to run into problems please don't hesitate to reach out to us.
 
 ### Submit an issue
 

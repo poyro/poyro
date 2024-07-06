@@ -3,9 +3,10 @@ export const navigation = [
     title: "Introduction",
     links: [
       { title: "Getting started", href: "/" },
+      { title: "Troubleshooting", href: "/troubleshooting" },
       { title: "Manual installation", href: "/manual-installation" },
-      { title: "How does it work?", href: "/how-does-it-work" },
       { title: "Configuration", href: "/configuration" },
+      { title: "How does it work?", href: "/how-does-it-work" },
     ],
   },
   // {
