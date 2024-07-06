@@ -33,7 +33,7 @@ Poyro uses `node-llama-cpp` under the hood to run a local LLM. You can configure
 The default config used by Poyro is the following:
 
 ```javascript
-export const defaultConfig = {
+export default defineConfig({
   llamaCpp: {
     frameworkOptions: {
       vramPadding: 0,
@@ -47,7 +47,7 @@ export const defaultConfig = {
       seed: 9,
     },
   },
-};
+});
 ```
 
 ### Framework options

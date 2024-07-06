@@ -1,5 +1,13 @@
 # @poyro/docs
 
+## 0.4.1
+
+### Patch Changes
+
+- Refactor docs
+
+  We refactor the documentation to reflect the updates to the main library that were meant to address a lot of the common issues.
+
 ## 0.4.0
 
 ### Minor Changes

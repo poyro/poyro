@@ -72,8 +72,11 @@ Once you have done this, update create or update `vitest.config.js` to include t
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-  test: {
-    setupFiles: ["vitest.setup.js"],
+  test: { 
+    setupFiles: ["vitest.setup.js"], 
+    fileParallelism: false, 
+    pool: "forks", 
+    reporters: "verbose" 
   },
 });
 ```
