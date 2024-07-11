@@ -2,6 +2,76 @@
 
 [![npm version](https://badge.fury.io/js/%40poyro%2Fvitest.svg)](https://badge.fury.io/js/%40poyro%2Fvitest) | [![docs](https://img.shields.io/badge/poyro-docs-blue)](https://docs.poyro.dev) | [![Discord](https://img.shields.io/discord/1250274948233039883?logo=discord&label=Discord)](https://discord.gg/gmCjjJ5jSf)
 
-This package contains Poyro bindings for the [Vitest](https://github.com/vitest-dev/vitest) test framework. If you're looking for our CLI tool, see the [@poyro/vitest](https://www.npmjs.com/package/poyro) package.
+## What is Poyro?
 
-See the [Poyro documentation](https://docs.poyro.dev/#usage) for more information.
+Poyro is a lightweight extension of [Vitest](https://vitest.dev/) (a modern testing framework with a Jest-like API) for testing LLM applications. Familiarizing yourself with Vitest can help you get more out of Poyro.
+
+Poyro follows the best practice of using LLMs to evaluate the outputs of your application LLM. Poyro converts natural language conditions into binary unit tests. Unit testing should be free and open source by default -- that includes AI apps -- so we use a locally run small LLM to evaluate your application's outputs.
+
+## Prerequisites
+
+- Node.js 20 or later
+- Vitest 1.6.0 or later
+- Your project must have "type": "module" in its package.json (this library is ESM only)
+- Recommended: CUDA-compatible GPU (Nvidia) or Metal-compatible GPU (Apple Silicon) for best performance, but not required
+
+---
+
+## Usage
+
+### Install
+
+To get started quickly, simply run:
+
+```bash
+npx poyro init
+```
+
+### Create your first test
+
+To use the matchers, create a file with the extension `.test.ts` anywhere within your project. Here is an example:
+
+```javascript
+// MyFirstTest.test.ts
+import { describe, expect, it } from "vitest";
+
+describe("MyFirstTest", () => {
+  it("should be true", async () => {
+    // Replace this with your LLM app's output
+    const llmOutput = "Hello, world!";
+
+    // Criterion in natural language: True or False
+    await expect(llmOutput).toFulfillCriterion("Says hello");
+  }, 10000); // Increase the timeout as needed with the third argument
+});
+```
+
+`toFulfillCriterion` can determine whether an LLM output meets or does not meet a natural language criterion.
+
+The first time you run a test like the one above, the model file for our locally run LLM will be downloaded. It should take a couple of minutes.
+
+### Run your test
+
+Run vitest with your package manager, for example with `npm`:
+
+```bash
+npm test
+```
+
+Similar commands work with `yarn` and `pnpm`.
+
+---
+
+## Help
+
+### Troubleshooting
+
+We provide solutions to common issues in our [Troubleshooting](https://docs.poyro.dev/troubleshooting) page. Take a look at the solutions there, and if you continue to run into problems please don't hesitate to reach out to us.
+
+### Submit an issue
+
+You can submit an issue by going to our GitHub repository and [creating a new issue](https://github.com/poyro/poyro/issues/new). Prior to submitting an issue, please check if a similar issue has already been submitted.
+
+### Join the community
+
+If you want to get help, brainstorm on good evals, or if you just want to chat with other Poyro developers, join our community on [Discord](https://discord.gg/gmCjjJ5jSf)!
