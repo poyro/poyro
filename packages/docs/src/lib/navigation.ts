@@ -56,4 +56,13 @@ export const navigation = [
   //     { title: "Design principles", href: "/design-principles" },
   //   ],
   // },
+  {
+    title: "Essays",
+    links: [
+      {
+        title: "AI Testing as part of Full-Stack Engineering",
+        href: "/essays/ai-testing-as-part-of-fullstack-engineering",
+      },
+    ],
+  },
 ];
