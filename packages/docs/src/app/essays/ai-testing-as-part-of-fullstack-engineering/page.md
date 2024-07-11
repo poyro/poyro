@@ -40,7 +40,7 @@ This is exactly the set of problems that [Poyro](/) set out to solve:
 - Poyro does not include any unnecessary UI components. Your tests are written as code.
 - Poyro tests using a small LLM that [runs locally on your computer](/how-does-it-work), so no fees to model providers.
 
-In addition, we kept the [API simple](/sdk-reference), introducing only a single matcher to start rather than creating a bunch of new abstractions you have to learn.
+In addition, we kept the [API simple](/sdk-reference/to-fulfill-criterion), introducing only a single matcher to start rather than creating a bunch of new abstractions you have to learn.
 
 ---
 
