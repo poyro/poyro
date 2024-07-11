@@ -6,7 +6,7 @@
 
 Poyro is a lightweight extension of [Vitest](https://vitest.dev/) (a modern testing framework with a Jest-like API) for testing LLM applications. Familiarizing yourself with Vitest can help you get more out of Poyro.
 
-Poyro follows the best practice of using LLMs to evaluate the outputs of your application LLM. Poyro converts natural language conditions into binary unit tests. Unit testing should be free and open source by default -- that includes AI apps -- so we use a locally run small LLM to evaluate your application's outputs.
+Poyro follows the best practice of using LLMs to evaluate the outputs of your application LLM. Poyro converts natural language conditions into binary unit tests. Unit testing should be free and open source by default -- that includes AI apps -- so we [use a locally run small LLM](https://docs.poyro.dev/how-does-it-work) to evaluate your application's outputs.
 
 ## Prerequisites
 
