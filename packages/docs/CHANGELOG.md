@@ -1,5 +1,11 @@
 # @poyro/docs
 
+## 0.5.0
+
+### Minor Changes
+
+- Add essays section and add first essay
+
 ## 0.4.1
 
 ### Patch Changes
