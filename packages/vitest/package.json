@@ -50,7 +50,7 @@
     "find-cache-dir": "^5.0.0",
     "handlebars": "^4.7.8",
     "node-fetch": "^3.3.2",
-    "node-llama-cpp": "3.0.0-beta.36",
+    "node-llama-cpp": "3.0.0-beta.38",
     "radash": "^12.1.0",
     "yup": "^1.4.0"
   }
