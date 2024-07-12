@@ -3,7 +3,7 @@ title: AI Testing as part of Full-Stack Engineering
 ---
 **By**: [Daniel Bulhosa Solorzano](https://x.com/danielbulhosa)
 
-The advent of ChatGPT and similar Model as a Service solutions has changed the landscape of full-stack engineering. Just as cloud services brought infrastructural knowledge into the realm of full-stack engineering, now Large Language Models (LLMs) have brought AI into the fold. This means that effective full-stack engineers working on AI products need to learn the best practices for building AI systems.
+The advent of ChatGPT and similar Model-as-a-Service solutions has changed the landscape of full-stack engineering. Just as cloud services brought infrastructural knowledge into the realm of full-stack engineering, now Large Language Models (LLMs) have brought AI into the fold. This means that effective full-stack engineers working on AI products need to learn the best practices for building AI systems.
 
 
 ## Evaluation = Unit Testing
@@ -13,9 +13,9 @@ One of the critical tasks of AI development before ChatGPT was "evaluation". In 
 Does this sound familiar? It should, because:
 
 - The evaluation step here is almost exactly the same as unit testing.
-- The improvement step has become prompt engineering, retrieval-augmented generation (RAG), system design (e.g. chaining), and in rare cases fine-tuning.
+- The improvement step has become prompt engineering, retrieval-augmented generation (RAG), system design (e.g. chaining), and in some cases fine-tuning.
 
-Just like always, we need to write tests to make sure our system does what we want. This time however, we need to write tests not just with code but also with prompts.
+Just as before, we need to write tests to make sure our system does what we want. This time however, we need to write tests not just with code but also with prompts.
 
 ## Unit Testing LLMs Using LLMs
 
@@ -29,7 +29,7 @@ These open ended questions and unstructured inputs are exactly what LLMs are goo
 
 ## Bridging Testing for AI and Full-Stack Engineering
 
-There are many great open source tools out there for testing LLM ouputs with other LLMs. However, some of the most popular tools are configuration driven or introduce new APIs, which makes it difficult to write your LLM-based unit tests alongside your regular unit tests. In addition, many of the most popular tools are Python first, despite [JavaScript being ranked as the most popular language by Stack Overflow 11 years in a row](https://survey.stackoverflow.co/2023/#most-popular-technologies-language-prof) and being popular amongst full-stack engineers.
+There are many great open source tools out there for testing LLM outputs with other LLMs. However, some of the most popular tools are configuration driven or introduce new APIs, which makes it difficult to write your LLM-based unit tests alongside your regular unit tests. In addition, many of the most popular tools are Python first, despite [JavaScript being ranked as the most popular language by Stack Overflow 11 years in a row](https://survey.stackoverflow.co/2023/#most-popular-technologies-language-prof) and being popular amongst full-stack engineers.
 
 There are also good SaaS solutions. However, these often have unnecessary UI components (e.g. you have to define your tests in a UI) which are awkward for the typical software engineering workflow. Many of these solutions only support LLM-based evaluation provided through a model vendor like ChatGPT or Claude. This means you can only unit test your app as much as your budget allows, an odd concept for an engineer.
 
