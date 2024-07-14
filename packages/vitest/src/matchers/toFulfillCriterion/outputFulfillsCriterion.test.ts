@@ -36,7 +36,7 @@ describe("outputFulfillsCriterion", () => {
     const results = trueExamples.map(async ([output, criterion]) => {
       return (await outputFulfillsCriterion(output, criterion)).result;
     });
-    const allAreTrue = (await Promise.all(results)).every(result => result)
+    const allAreTrue = (await Promise.all(results)).every(result => result);
 
     expect(allAreTrue).toBe(true);
   }, 10000)
@@ -45,7 +45,7 @@ describe("outputFulfillsCriterion", () => {
     const results = falseExamples.map(async ([output, criterion]) => {
       return (await outputFulfillsCriterion(output, criterion)).result;
     });
-    const allAreFalse = (await Promise.all(results)).every(result => !result)
+    const allAreFalse = (await Promise.all(results)).every(result => !result);
 
     expect(allAreFalse).toBe(true);
   }, 10000)
@@ -54,7 +54,7 @@ describe("outputFulfillsCriterion", () => {
     const results = trueExamples.concat(falseExamples).map(async ([output, criterion]) => {
       return (await outputFulfillsCriterion(output, criterion)).result;
     });
-    const someAreFalse = (await Promise.all(results)).every(result => result)
+    const someAreFalse = (await Promise.all(results)).every(result => result);
 
     expect(someAreFalse).toBe(false);
   }, 10000)
@@ -63,7 +63,7 @@ describe("outputFulfillsCriterion", () => {
     const results = trueExamples.concat(falseExamples).map(async ([output, criterion]) => {
       return (await outputFulfillsCriterion(output, criterion)).result;
     });
-    const someAreTrue = (await Promise.all(results)).some(result => result)
+    const someAreTrue = (await Promise.all(results)).some(result => result);
 
     expect(someAreTrue).toBe(true);
   }, 10000)
