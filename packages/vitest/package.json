@@ -22,7 +22,7 @@
       "types": "./dist/config.d.ts",
       "default": "./dist/config.js"
     },
-    "./functions": {
+    "./fn": {
       "types": "./dist/functions.d.ts",
       "default": "./dist/functions.js"
     }
