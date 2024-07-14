@@ -1,5 +1,11 @@
 # @poyro/docs
 
+## 0.5.1
+
+### Patch Changes
+
+- 38bd5ab: Updated docs to display h4 headings correctly in the Table of Contents.
+
 ## 0.5.0
 
 ### Minor Changes
