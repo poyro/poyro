@@ -22,6 +22,12 @@ type H3Node = HeadingNode & {
   };
 };
 
+type H4Node = HeadingNode & {
+  attributes: {
+    level: 4;
+  };
+};
+
 function isHeadingNode(node: Node): node is HeadingNode {
   return (
     node.type === "heading" &&
@@ -39,6 +45,10 @@ function isH3Node(node: Node): node is H3Node {
   return isHeadingNode(node) && node.attributes.level === 3;
 }
 
+function isH4Node(node: Node): node is H4Node {
+  return isHeadingNode(node) && node.attributes.level === 4;
+}
+
 function getNodeText(node: Node) {
   let text = "";
   for (const child of node.children ?? []) {
@@ -50,10 +60,16 @@ function getNodeText(node: Node) {
   return text;
 }
 
-export type Subsection = H3Node["attributes"] & {
+export type Subsubsection = H4Node["attributes"] & {
   id: string;
   title: string;
   children?: undefined;
+};
+
+export type Subsection = H3Node["attributes"] & {
+  id: string;
+  title: string;
+  children?: Subsubsection[];
 };
 
 export type Section = H2Node["attributes"] & {
@@ -66,14 +82,14 @@ export function collectSections(nodes: Node[], slugify = slugifyWithCounter()) {
   const sections: Section[] = [];
 
   for (const node of nodes) {
-    if (isH2Node(node) || isH3Node(node)) {
+    if (isH2Node(node) || isH3Node(node) || isH4Node(node)) {
       const title = getNodeText(node);
       if (title) {
         const id = slugify(title);
         if (isH3Node(node)) {
           if (!sections[sections.length - 1]) {
             throw new Error(
-              "Cannot add `h3` to table of contents without a preceding `h2`",
+              "Cannot add `h3` to table of contents without a preceding `h2`"
             );
           }
           sections[sections.length - 1].children.push({
@@ -81,6 +97,27 @@ export function collectSections(nodes: Node[], slugify = slugifyWithCounter()) {
             id,
             title,
           });
+        } else if (isH4Node(node)) {
+          if (
+            !sections[sections.length - 1]?.children.some(
+              (value) => value.level === 3
+            )
+          ) {
+            throw new Error(
+              "Cannot add `h4` to table of contents without a preceding `h3`"
+            );
+          }
+
+          const subsection =
+            sections[sections.length - 1].children[
+              sections[sections.length - 1].children.length - 1
+            ];
+
+          if (subsection.children === undefined) {
+            subsection.children = [];
+          }
+
+          subsection.children.push({ ...node.attributes, id, title });
         } else {
           sections.push({ ...node.attributes, id, title, children: [] });
         }

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 
-import { type Section, type Subsection } from "@/lib/sections";
+import type { Subsubsection, Section, Subsection } from "@/lib/sections";
 import { GitHubIcon } from "@/components/icons/GithubIcon";
 
 export function TableOfContents({
@@ -19,7 +19,13 @@ export function TableOfContents({
 
   const getHeadings = useCallback((tableOfContents: Section[]) => {
     return tableOfContents
-      .flatMap((node) => [node.id, ...node.children.map((child) => child.id)])
+      .flatMap((node) => [
+        node.id,
+        ...node.children.map((child) => child.id),
+        ...node.children.flatMap(
+          (child) => child.children?.map((subChild) => subChild.id) ?? []
+        ),
+      ])
       .map((id) => {
         const el = document.getElementById(id);
         if (!el) return null;
@@ -30,7 +36,8 @@ export function TableOfContents({
         const top = window.scrollY + el.getBoundingClientRect().top - scrollMt;
         return { id, top };
       })
-      .filter((x): x is { id: string; top: number } => x !== null);
+      .filter((x): x is { id: string; top: number } => x !== null)
+      .sort((a, b) => a.top - b.top);
   }, []);
 
   useEffect(() => {
@@ -55,7 +62,7 @@ export function TableOfContents({
     };
   }, [getHeadings, tableOfContents]);
 
-  const isActive = (section: Section | Subsection): boolean => {
+  const isActive = (section: Section | Subsection | Subsubsection): boolean => {
     if (section.id === currentSection) {
       return true;
     }
@@ -116,6 +123,24 @@ export function TableOfContents({
                           >
                             {subSection.title}
                           </Link>
+                          {subSection.children?.length ? (
+                            <ol className="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
+                              {subSection.children.map((subSubSection) => (
+                                <li key={subSubSection.id}>
+                                  <Link
+                                    className={
+                                      isActive(subSubSection)
+                                        ? "text-sky-500"
+                                        : "hover:text-slate-600 dark:hover:text-slate-300"
+                                    }
+                                    href={`#${subSubSection.id}`}
+                                  >
+                                    {subSubSection.title}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ol>
+                          ) : null}
                         </li>
                       ))}
                     </ol>
