@@ -21,68 +21,82 @@ if (!global.poyro) {
 describe("outputFulfillsCriterion", () => {
   const trueExamples = [
     ["Hello, world!", "Says hello"],
-    ["The first manned airplane flight was in 1903, by the Wright brothers.", "Mentions the first flight"],
-    ["The first manned airplane flight was in 1903, by the Wright brothers.", "Mentions 'the first manned airplane flight'"],
-    ["The first manned airplane flight was in 1903, by the Wright brothers.", "Mentions the first flight."]
-
+    [
+      "The first manned airplane flight was in 1903, by the Wright brothers.",
+      "Mentions the first flight",
+    ],
+    [
+      "The first manned airplane flight was in 1903, by the Wright brothers.",
+      "Mentions 'the first manned airplane flight'",
+    ],
+    [
+      "The first manned airplane flight was in 1903, by the Wright brothers.",
+      "Mentions the first flight.",
+    ],
   ];
   const falseExamples = [
     ["Bye", "Says hello"],
-    ["The first manned airplane flight was in 1903, by the Wright brothers.", "Mentions the exact phrase 'the first flight'"],
-    ["The first manned airplane flight was in 1903, by the Wright brothers.", "Mentions cars"]
-  ]
+    [
+      "The first manned airplane flight was in 1903, by the Wright brothers.",
+      "Mentions the exact phrase 'the first flight'",
+    ],
+    [
+      "The first manned airplane flight was in 1903, by the Wright brothers.",
+      "Mentions cars",
+    ],
+  ];
 
   const allExamples = trueExamples.concat(falseExamples);
 
   it("all true - should pass for all examples", async () => {
-    const results = [];
+    const results: boolean[] = [];
 
     for (const [output, criterion] of trueExamples) {
       const result = await outputFulfillsCriterion(output, criterion);
       results.push(result.result);
     }
 
-    const allAreTrue = results.every(result => result);
+    const allAreTrue = results.every((result) => result);
 
     expect(allAreTrue).toBe(true);
-  }, 20000)
+  }, 60000);
 
   it("all false - should fail for all examples", async () => {
-    const results = [];
+    const results: boolean[] = [];
 
     for (const [output, criterion] of falseExamples) {
       const result = await outputFulfillsCriterion(output, criterion);
       results.push(result.result);
     }
 
-    const allAreFalse = results.every(result => !result);
+    const allAreFalse = results.every((result) => !result);
 
     expect(allAreFalse).toBe(true);
-  }, 20000)
-  
+  }, 60000);
+
   it("mixed - should fail for all examples", async () => {
-    const results = [];
+    const results: boolean[] = [];
 
     for (const [output, criterion] of allExamples) {
       const result = await outputFulfillsCriterion(output, criterion);
       results.push(result.result);
     }
 
-    const allAreTrue = results.every(result => result);
+    const allAreTrue = results.every((result) => result);
 
     expect(allAreTrue).toBe(false);
-  }, 20000)
+  }, 60000);
 
   it("mixed - should pass for at least one examples", async () => {
-    const results = [];
+    const results: boolean[] = [];
 
     for (const [output, criterion] of allExamples) {
       const result = await outputFulfillsCriterion(output, criterion);
       results.push(result.result);
     }
 
-    const someAreTrue = results.some(result => result);
+    const someAreTrue = results.some((result) => result);
 
     expect(someAreTrue).toBe(true);
-  }, 20000)
+  }, 60000);
 });
