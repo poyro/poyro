@@ -46,6 +46,10 @@ export const navigation = [
         title: "toFulfillCriterion",
         href: "/sdk-reference/to-fulfill-criterion",
       },
+      {
+        title: "outputFulfillsCriterion",
+        href: "/sdk-reference/output-fulfills-criterion",
+      },
     ],
   },
   // {
