@@ -1,5 +1,24 @@
 # @poyro/vitest
 
+## 0.5.0
+
+### Minor Changes
+
+- Minor release
+
+  Top level
+
+  - Update README with links to essays
+
+  @poyro/vitest
+
+  - Factor out functional logic from toFulfillCriterion matcher into its own function so it can be used to calculate other metrics like precision and recall.
+
+  docs
+
+  - Update docs with SDK changes
+  - Add new essay to the docs
+
 ## 0.4.0
 
 ### Minor Changes
