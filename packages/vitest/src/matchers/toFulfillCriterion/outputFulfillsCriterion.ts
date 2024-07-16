@@ -9,8 +9,9 @@ import { getGrammar } from "./grammar";
 const compiledTemplate = handlebars.compile(template);
 
 interface FeedbackObject {
-  [key: string]: boolean | string;
+  /** The feedback message */
   feedback: string;
+  /** The result of the comparison */
   result: boolean;
 }
 
@@ -34,6 +35,6 @@ export const outputFulfillsCriterion = async (
   });
 
   // parse the response
-  const feedbackObject: FeedbackObject =  grammar.parse(answer);
+  const feedbackObject: FeedbackObject = grammar.parse(answer);
   return feedbackObject;
-}
+};
