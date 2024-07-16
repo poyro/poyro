@@ -6,8 +6,8 @@ nextjs:
     description: Learn how to use the outputFulfillsCriterion function in Poyro.
 ---
 
-{% callout type="note" title="Async matcher" %}
-Please note that the `toFulfillCriterion` matcher is an async function. If you have a machine with no GPU or a GPU with small RAM use await to run async.
+{% callout type="note" title="Async function" %}
+Please note that `outputFulfillsCriterion` is an async function. To get the actual return you need to `await` this function. If not using a machine with large RAM or GPU it is recommended multiple calls to this function are ran synchronously.
 {% /callout %}
 
 The `outputFulfillsCriterion` function compares an output and a criterion to determine whether the criterion holds for the output. It is the functional version of the `toFulfillCriterion` matcher. It is useful when we want to use this method without chaining with expect. For example:
@@ -18,24 +18,6 @@ The `outputFulfillsCriterion` function compares an output and a criterion to det
 
 ```tsx
 (output: string, criterion: string, additionalContext?: string) => Promise<void>;
-```
-
-When resolved the promise returns an object with schema:
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "feedback": {
-      "type": "string",
-      "description": "A natural language description for the reasoning behind the conclusion."
-    },
-    "result": {
-      "type": "boolean",
-      "description": "Is the criterion met or not, given the output and context?"
-    },
-  },
-}
 ```
 
 ## Parameters
@@ -58,7 +40,9 @@ import { fn } from "@poyro/vitest/fn";
 
 describe("generateRecipeUsingAi", () => {
   it("should generate an italian recipe at least once", async () => {
-    var generatedItalianRecipe = false;
+    let generatedItalianRecipe = false;
+
+    // Run sequentially to be conservative with RAM utilization
     for(let i = 0; i < 3; i++) {
       const recipe = await generateRecipeUsingAi();
       const generatedItalianRecipe = outputFulfillsCriterion(recipe, "Is an italian recipe");
