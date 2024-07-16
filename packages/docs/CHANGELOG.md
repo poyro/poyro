@@ -1,5 +1,11 @@
 # @poyro/docs
 
+## 0.6.1
+
+### Patch Changes
+
+- Minor language and readability improvements for the new `How to Write Unit Tests for Your AI Web App` essay.
+
 ## 0.6.0
 
 ### Minor Changes
