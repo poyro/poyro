@@ -1,10 +1,10 @@
 ---
-title: AI Testing as part of Full-Stack Engineering
+title: AI Testing as Part of Full-Stack Engineering
 ---
+
 **By**: [Daniel Bulhosa Solorzano](https://x.com/danielbulhosa)
 
 The advent of ChatGPT and similar Model-as-a-Service solutions has changed the landscape of full-stack engineering. Just as cloud services brought infrastructural knowledge into the realm of full-stack engineering, now Large Language Models (LLMs) have brought AI into the fold. This means that effective full-stack engineers working on AI products need to learn the best practices for building AI systems.
-
 
 ## Evaluation = Unit Testing
 
@@ -21,7 +21,7 @@ Just as before, we need to write tests to make sure our system does what we want
 
 There are many ways in which we can use regular code to write unit tests for AI outputs. For example, if you ask ChatGPT to generate a JSON response for your application you can check it obeys the schema you desire.
 
-But what if the output is not "structured" in this way? What if we are generating an open ended response to a customer support query? Or, what if we are generating text for a new clause to add to a contract? 
+But what if the output is not "structured" in this way? What if we are generating an open ended response to a customer support query? Or, what if we are generating text for a new clause to add to a contract?
 
 Or what if the condition that we want to check is open ended? For example, what if we want to check that the output of our SEO-generation AI app "contains a call to action"? A call to action could look a lot of different ways.
 
@@ -36,7 +36,7 @@ There are also good SaaS solutions. However, these often have unnecessary UI com
 This is exactly the set of problems that [Poyro](/) set out to solve:
 
 - Poyro is written in JavaScript to be easily usable by JavaScript developers.
-- Poyro doesn't introduce new APIs or configurations. You can write LLM-based unit tests in the syntax of Jest right alongside all your other tests. 
+- Poyro doesn't introduce new APIs or configurations. You can write LLM-based unit tests in the syntax of Jest right alongside all your other tests.
 - Poyro does not include any unnecessary UI components. Your tests are written as code.
 - Poyro tests using a small LLM that [runs locally on your computer](/how-does-it-work), so no fees to model providers.
 

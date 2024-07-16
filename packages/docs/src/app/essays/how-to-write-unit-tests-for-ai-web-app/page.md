@@ -1,9 +1,10 @@
 ---
-title: How To Write Unit Tests for Your AI Web App
+title: How to Write Unit Tests for Your AI Web App
 ---
-**By**: [Daniel Bulhosa Solorzano](https://x.com/danielbulhosa)
 
-In this essay we discuss the common components of AI systems that typically need to be tested: retrieval and generation. We then discuss the major two categories of tests for AI apps: code-based and LLM-based. 
+**By**: [Daniel Bulhosa Solorzano](https://twitter.com/danielbulhosa)
+
+In this essay we discuss the common components of AI systems that typically need to be tested: retrieval and generation. We then discuss the major two categories of tests for AI apps: code-based and LLM-based.
 
 There are many types of code-based and LLM-based tests. We will present examples from real use-cases and provide code examples for each. We draw from a variety of use cases to demonstrate the generality of these concepts.
 
@@ -19,7 +20,7 @@ Let's get started!
 
 ### Retrieval and Generation
 
-The Poyro team has built its own AI applications and chatted with other full-stack engineering teams that have done the same. Most AI systems contain the following two components, which compose the pattern known as RAG:
+The Poyro team previously built its own AI applications and spoke with other full-stack engineering teams that have done the same. Most AI systems contain the following two components, which compose the pattern known as RAG:
 
 - **Retrieval**: Get some use case specific data that is passed to the LLM. This data could come from a database, a file, or elsewhere.
 - **Generation**: Given prompt with instructions and (typically) some context, generate a response to serve some user or system request. The response could be free-text and/or a structured respose (e.g. JSON).
@@ -62,24 +63,29 @@ These are regular, plain unit tests. They tend to be cheap and fast to run, and 
 Many AI applications output structured or semi-structured content, such as JSON or code. In this special case we can simply check whether the output conforms to the expected syntax or schema. For example, let's say that we have an AI app that generates Liquid templates for marketing messaging. We can check this syntax as follows in [Vitest](https://vitest.dev/guide/) (a modern testing framework with a Jest-like API):
 
 ```js
-import { vi, describe, it, expect } from 'vitest';
+import { vi, describe, it, expect } from "vitest";
 
-const mockPrompt = "Write a message to the user telling with a yummy message about McNuggets if they've ever purchased them, or a message about the releasing a new McFlurries flavor if not. To create the conditional logic, you should use the Liquid templating language."
+const mockPrompt =
+  "Write a message to the user telling with a yummy message about McNuggets if they've ever purchased them, or a message about the releasing a new McFlurries flavor if not. To create the conditional logic, you should use the Liquid templating language.";
+
 const mockResponse = `{{# if ordered_mcnuggets}}
 Hi {{first_name}}, We know you love McNuggets, so here's a $2 off coupon just for you!
 {{else}}
 Hi {{first_name}}, We just released a new McFlurries flavor, wanna check it out?
-{{/if}}`
-const mockOpenAICallFromPrompt = vi.fn((dummyPrompt) => mockResponse)
+{{/if}}`;
+
+const mockOpenAICallFromPrompt = vi.fn((dummyPrompt) => mockResponse);
 
 describe("test AI returns valid syntax", () => {
   it("should return a valid Liquid message", () => {
     const mockedOpenAIResponse = mockOpenAICallFromPrompt(mockPrompt);
+
     // liquidjs function checking syntax validity
     const responseIsValid = isValidLiquidTemplate(mockedOpenAIResponse);
+
     expect(responseIsValid).toBe(true);
-  })
-})
+  });
+});
 ```
 
 In this example if the test failed we may add more information about Liquid's syntax to the prompt, to improve generation. We could also provide Liquid examples, fine-tune the model to learn Liquid better, or change to a better model (maybe GPT-3.5 to 4o).
@@ -97,12 +103,13 @@ describe("AI generated marketing message contains target products", () => {
   const mockedOpenAIResponse = mockOpenAICallFromPrompt(mockPrompt);
 
   it("should contain the product 'McNuggets'", () => {
-    expect(mockedOpenAIResponse).toContain('McNuggets');
-  })
+    expect(mockedOpenAIResponse).toContain("McNuggets");
+  });
+
   it("should contain the product 'McFlurries'", () => {
-    expect(mockedOpenAIResponse).toContain('McFlurries');
-  })
-})
+    expect(mockedOpenAIResponse).toContain("McFlurries");
+  });
+});
 ```
 
 To improve this example we could change the prompt to tell the LLM that it is **required** to include the names of the products.
@@ -110,27 +117,28 @@ To improve this example we could change the prompt to tell the LLM that it is **
 Another example could be that you're building logic to classify products into food vs. retail based on the products' names:
 
 ```js
-function getFoodRetailLabelFromName(name) {
-  const prompt =`You are an expert at telling the difference between products that are food items vs. retail items based on their name. Retail items may include things like clothes. Food items are anything that is edible, including if it's prepackaged like candy or canned food.
+const getFoodRetailLabelFromName = (name) => {
+  const prompt = `You are an expert at telling the difference between products that are food items vs. retail items based on their name. Retail items may include things like clothes. Food items are anything that is edible, including if it's prepackaged like candy or canned food.
   
 You will classify the following item: '${name}'
 
-You will return one of these two labels: FOOD or RETAIL. Only return a single token with one of these labels. Do not return anything else.`
+You will return one of these two labels: FOOD or RETAIL. Only return a single token with one of these labels. Do not return anything else.`;
 
   return openAICallWithPrompt(prompt);
-}
+};
 
 describe("AI correctly classifies items as FOOD or RETAIL", () => {
-  const shouldBeFood = openAICallWithPrompt('Canned Tomato Soup, 12oz');
-  const shouldBeRetail = openAICallWithPrompt('Banana T-Shirt');
+  const shouldBeFood = openAICallWithPrompt("Canned Tomato Soup, 12oz");
+  const shouldBeRetail = openAICallWithPrompt("Banana T-Shirt");
 
   it("should classify as food", () => {
-    expect(shouldBeFood).toBe('FOOD');
-  })
+    expect(shouldBeFood).toBe("FOOD");
+  });
+
   it("should classify as retail", () => {
-    expect(shouldBeRetail).toBe('RETAIL');
-  })
-})
+    expect(shouldBeRetail).toBe("RETAIL");
+  });
+});
 ```
 
 To improve this prompt we could have included more examples of what contitutes a `RETAIL` item vs. a `FOOD` item.
@@ -143,7 +151,7 @@ Let's say we have an AI that provides support for Amazon merchants by reading th
 
 ![Amazon Article Table](/retrieval-amazon.png)
 
-We can use [classic information retrieval](https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)#Offline_metrics) (i.e. search) performance measures to test our system. The higher they both are the better, though it's often a trade-off:
+We can use [classic information retrieval](<https://en.wikipedia.org/wiki/Evaluation_measures_(information_retrieval)#Offline_metrics>) (i.e. search) performance measures to test our system. The higher they both are the better, though it's often a trade-off:
 
 - **Precision**: Of the articles returned (in the top 3) what % are relevant? Note that out of 3 articles returned, 2 were relevant so the precision in this example for this query is 2/3 = 66%.
 - **Recall**: Of all relevant articles in the database, what % did we return? Note that there are 4 relevant articles in the database, and we only returned 2 so the recall is 2/4 = 50%.
@@ -152,27 +160,38 @@ Here's what code to check this could look like:
 
 ```js
 // These are typically a design choice
-const minPrecision = 0.50;
-const minRecall = 0.50;
+const minPrecision = 0.5;
+const minRecall = 0.5;
 
 describe("query 1 meets precision / recall bar", () => {
   const testQuery1 = "How do I list an item for sale on Amazon?";
   const relevantArticlesForQuery1 = new Set([1, 2, 3, 4]);
   const numReturnedArticles = 3;
+
   // Function that queries vector DB, returns a list of article IDs
-  const retrievedArticles = queryArticleDatabase(testQuery1, numReturnedArticles); // [2, 5, 3]
-  const numRelevantArticles = retrievedArticles.filter(
-    id => relevantArticlesForQuery1.has(id)
+  const retrievedArticles = queryArticleDatabase(
+    testQuery1,
+    numReturnedArticles
+  ); // [2, 5, 3]
+
+  const numRelevantArticles = retrievedArticles.filter((id) =>
+    relevantArticlesForQuery1.has(id)
   ).length;
 
   it("has higher precision than threshold", () => {
-    expect(numRelevantArticles / numReturnedArticles).toBeGreaterThanOrEqual(minPrecision);
+    const precision = numRelevantArticles / numReturnedArticles;
+
+    expect(precision).toBeGreaterThanOrEqual(minPrecision);
   });
+
   it("has higher recall than threshold", () => {
-    expect(numRelevantArticles / relevantArticlesForQuery1).toBeGreaterThanOrEqual(minRecall);
+    const recall = numRelevantArticles / relevantArticlesForQuery1;
+
+    expect(recall).toBeGreaterThanOrEqual(minRecall);
   });
-})
+});
 ```
+
 In this case perhaps articles `4` and `1` fail because the indexer gets distracted by the terms `Advanced settings` and `photography`. Solutions could include using a better model that knows to ignore these terms given the query, or extracting keywords from the query, e.g. `item` and `sale` and using keyword-based search on top of the vector search.
 
 Note that this testing approach requires we label the relevant articles for each query.
@@ -196,12 +215,14 @@ Let's say we are building an educational app that answers questions about histor
 
 ```js
 // We write this as a test target, this does NOT come from an LLM call
-const idealLLMOutput = "Albert Einstein was a theoretical physicist. He was born on March 14th, 1879. Einstein is famous for developing the theory of relativity. He is also known for his contributions to the study of the photoelectric effect."
+const idealLLMOutput =
+  "Albert Einstein was a theoretical physicist. He was born on March 14th, 1879. Einstein is famous for developing the theory of relativity. He is also known for his contributions to the study of the photoelectric effect.";
 ```
 
-A naive way to break this into statements for illustration purposes might be: 
+A naive way to break this into statements for illustration purposes might be:
+
 ```js
-const idealOutputStatements = idealLLMOutput.split(".")
+const idealOutputStatements = idealLLMOutput.split(".");
 ```
 
 This will give us an array of the sentences in the ideal output. We can query our facts database to get actual context our app would fetch:
@@ -232,18 +253,18 @@ Poyro provides a function [outputFulfillsCriterion](/sdk-reference/output-fulfil
 import { outputFulfillsCriterion } from "@poyro/vitest/fn";
 
 const countAttributableStatements = async (
-  statementsToAttribute, 
+  statementsToAttribute,
   contextToAttributeTo,
-  criterion,
-  ) => {
+  criterion
+) => {
   let numStatementsAttributableToContext = 0;
 
-  for (statement of statementsToAttribute) {
-    for (context of contextToAttributeTo) {
+  for (const statement of statementsToAttribute) {
+    for (const context of contextToAttributeTo) {
       const isStatementAttributableToContext = await outputFulfillsCriterion(
         statement,
         criterion,
-        context,
+        context
       );
 
       if (isStatementAttributableToContext) {
@@ -254,22 +275,22 @@ const countAttributableStatements = async (
   }
 
   return numStatementsAttributableToContext;
-}
+};
 ```
 
 We can then use this function to calculate the context precision and context recall:
 
 ```js
-const minPrecision = 0.50;
-const minRecall = 0.50;
+const minPrecision = 0.5;
+const minRecall = 0.5;
 
 describe("meets precision and recall targets", () => {
   // Note that all statements in the context are present in the output.
   // Thus this variable will be equal to 3.
   const numStatementsAttributableToContext = countAttributableStatements(
-    idealOutputStatements, 
+    idealOutputStatements,
     actualContexts,
-    "output information can be attributed to information in additional context",
+    "output information can be attributed to information in additional context"
   );
 });
 ```
@@ -277,19 +298,22 @@ describe("meets precision and recall targets", () => {
 The context precision will be 100% since we have 3 statements in the ideal output we can attribute to the context, out of 3 statements in the context overall:
 
 ```js
-  it("meets precision target", () => {
-    contextPrecision = numStatementsAttributableToContext / actualContexts.length;
-    expect(contextPrecision).toBeGreaterThanOrEqual(minPrecision);
-  })
+it("meets precision target", () => {
+  contextPrecision = numStatementsAttributableToContext / actualContexts.length;
+
+  expect(contextPrecision).toBeGreaterThanOrEqual(minPrecision);
+});
 ```
 
 The context recall will be 75% since we have 3 statements in the ideal output we can attribute to the context, out of 4 statements in the ideal output. The unattributed sentence is `He is also known for his contributions to the study of the photoelectric effect.` which was not present in our context. An actual LLM output would thus have failed to capture this information, this is what the lower recall tells us.
 
 ```js
-  it("meets recall target", () => {
-    contextPrecision = numStatementsAttributableToContext / idealOutputStatements.length;
-    expect(contextPrecision).toBeGreaterThanOrEqual(minRecall);
-  })
+it("meets recall target", () => {
+  contextPrecision =
+    numStatementsAttributableToContext / idealOutputStatements.length;
+
+  expect(contextPrecision).toBeGreaterThanOrEqual(minRecall);
+});
 ```
 
 To keep precision high, we need to make sure we're always retrieving all of the statements in our ideal context. To increase recall, we need to make sure that our query retrieves from the DB all of the facts we want in our ideal output.
@@ -302,6 +326,7 @@ Here are our user query and the ideal retrieved context:
 
 ```js
 const query = "Tell me about Albert Einstein";
+
 const idealContext = [
   "Albert Einstein was a theoretical physicist",
   "Albert Einstein was born on March 14th, 1879",
@@ -310,11 +335,12 @@ const idealContext = [
 ```
 
 And here is a function to make our actual LLM return:
+
 ```js
 function provideSummaryOfHistoricalFigure(input, context) {
-  const contextList = context.map(item => `- ${item}`).join('\n');
+  const contextList = context.map((item) => `- ${item}`).join("\n");
 
-  const prompt =`You are an expert at providing summaries regarding historical figures. You will be provided a set of facts about a historical figure and assemble them into a paragraph summarizing them.
+  const prompt = `You are an expert at providing summaries regarding historical figures. You will be provided a set of facts about a historical figure and assemble them into a paragraph summarizing them.
 
   Here was the user query: "${input}"
 
@@ -322,7 +348,7 @@ function provideSummaryOfHistoricalFigure(input, context) {
   ${contextList}
 
   Return the facts in a single paragraph, each fact in a separate sentence.
-`
+`;
 
   return openAICallWithPrompt(prompt);
 }
@@ -347,46 +373,49 @@ With this data we can calculate the following RAGAS metrics that measure generat
 We can reuse the function `countAttributableStatements` we defined in the prior section to calculate the number of statements in the actual output relevant to the user query,
 
 ```js
-const minRelevancy = 0.50;
-const minFaithfulness = 0.50;
+const minRelevancy = 0.5;
+const minFaithfulness = 0.5;
 
-describe("meets relevancy and faithfulness targets", async () => {
-
+describe("meets relevancy and faithfulness targets", () => {
   const numStatementsRelevantToQuery = countAttributableStatements(
-    actualOutputStatements, 
+    actualOutputStatements,
     [query],
-    "output information can be attributed is relevant to user query passed in additional context",
-  )
+    "output information can be attributed is relevant to user query passed in additional context"
+  );
 });
 ```
 
 and the number of statements in the actual output attributable to the ideal context:
 
 ```js
-  const numStatementsAttributableToContext = countAttributableStatements(
-    actualOutputStatements, 
-    actualContexts,
-    "output information can be attributed to information in additional context",
-  );
+const numStatementsAttributableToContext = countAttributableStatements(
+  actualOutputStatements,
+  actualContexts,
+  "output information can be attributed to information in additional context"
+);
 ```
 
 We can use `numStatementsRelevantToQuery` variables to calculate the answer relevancy. Note since 3 out of the 4 sentences actually discuss Einstein, the answer relevancy will be 3 / 4 = 75%:
 
 ```js
-  it("meets relevancy target", () => {
-    answerRelevancy = numStatementsRelevantToQuery / actualOutputStatements.length;
-    expect(contextPrecision).toBeGreaterThanOrEqual(minPrecision);
-  })
+it("meets relevancy target", () => {
+  answerRelevancy =
+    numStatementsRelevantToQuery / actualOutputStatements.length;
+
+  expect(contextPrecision).toBeGreaterThanOrEqual(minPrecision);
+});
 ```
 
 We can calculate the faithfulness with `numStatementsAttributableToContext`. In this case since only 1 statement in the actual LLM output is a factual statement about Einstein that we can verify with the context, the faithfulness is 1 / 4 = 25%:
 
 ```js
-  it("meets faithfulness target", () => {
-    // (1 statements in output attributable to context) / (4 statements in output) = 25%
-    faithfulness = numStatementsAttributableToContext / actualOutputStatements.length;
-    expect(contextPrecision).toBeGreaterThanOrEqual(minRecall);
-  })
+it("meets faithfulness target", () => {
+  // (1 statements in output attributable to context) / (4 statements in output) = 25%
+  faithfulness =
+    numStatementsAttributableToContext / actualOutputStatements.length;
+
+  expect(contextPrecision).toBeGreaterThanOrEqual(minRecall);
+});
 ```
 
 To increase relevance we could emphasize in the prompt that the LLM response should only contain facts about the historical figure in the user query. To increase the faithfulness we may want to use a better model since the current model is doing pretty poorly here.
@@ -408,25 +437,24 @@ describe("AI legal assistance is understandable to young layperson", () => {
     await expect(prompt1Output).toFulfillCriterion(
       "should be understandable to 10th grader"
     ); // fails, too technical
-  })
+  });
 });
 ```
 
 Prompt two passes because it returns a simpler explanation:
 
 ```js
-  it("prompt 2: should be understandable to 10th grader", async () => {
-    const prompt2Output = callOpenAIWithPrompt2();
-    // Returns: "A Non-Disclosure Agreement (NDA) is a legal deal where one person promises not to share certain secret information they learn from another person. It's like agreeing to keep a friend's secret safe and not tell anyone else."
+it("prompt 2: should be understandable to 10th grader", async () => {
+  const prompt2Output = callOpenAIWithPrompt2();
+  // Returns: "A Non-Disclosure Agreement (NDA) is a legal deal where one person promises not to share certain secret information they learn from another person. It's like agreeing to keep a friend's secret safe and not tell anyone else."
 
-    await expect(prompt2Output).toFulfillCriterion(
-      "should be understandable to 10th grader"
-    ); // passes!
-  })
+  await expect(prompt2Output).toFulfillCriterion(
+    "should be understandable to 10th grader"
+  ); // passes!
+});
 ```
 
 Other times we may want to construct an assertion out of an aggregation of boolean conditions. As we saw in the prior sections, this is exactly where [outputFulfillsCriterion](/sdk-reference/output-fulfills-criterion) is the best fit. Let's say our app makes recommendations about best practices for writing NDAs. Let's say we have a file of best practices:
-
 
 ```js
 const bestPractices = loadPracticesFromFile();
@@ -442,7 +470,9 @@ const bestPractices = loadPracticesFromFile();
 We may want to check that the output of our AI legal agent,
 
 ```js
-const aiLegalAdvice = aiLegalAdvisor("Tell me a best practice regarding treatment of information in an NDA");
+const aiLegalAdvice = aiLegalAdvisor(
+  "Tell me a best practice regarding treatment of information in an NDA"
+);
 // Returns: `It is recommended that both parties clearly define what information should be labeled "Confidential".`
 ```
 
@@ -454,14 +484,13 @@ import { outputFulfillsCriterion } from "@poyro/vitest/fn";
 const isAttributableToAnyContext = async (
   recommendation,
   contextToAttributeTo,
-  criterion,
-  ) => {
-
-  for (context of contextToAttributeTo) {
+  criterion
+) => {
+  for (const context of contextToAttributeTo) {
     const isStatementAttributableToContext = await outputFulfillsCriterion(
       recommendation,
       criterion,
-      context,
+      context
     );
 
     if (isStatementAttributableToContext) {
@@ -470,7 +499,7 @@ const isAttributableToAnyContext = async (
   }
 
   return false;
-}
+};
 ```
 
 This is similar to the `countAttributableStatements` in the prior section, except this time we don't count the number that we can attribute, we only care that we can attribute at least 1.
@@ -480,12 +509,12 @@ it("can attribute legal recommendation to some best practice in file", () => {
   const isAttributable = isAttributableToAnyContext(
     aiLegalAdvice,
     bestPractices,
-    "legal advice from AI agent can be attributed to the best practice in the additional context",
+    "legal advice from AI agent can be attributed to the best practice in the additional context"
   );
 
   // Pass since output is attributable to first best practice in file
   expect(isAttributable).toBe(true);
-})
+});
 ```
 
 ---
