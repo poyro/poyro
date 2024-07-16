@@ -46,6 +46,10 @@ export const navigation = [
         title: "toFulfillCriterion",
         href: "/sdk-reference/to-fulfill-criterion",
       },
+      {
+        title: "outputFulfillsCriterion",
+        href: "/sdk-reference/output-fulfills-criterion",
+      },
     ],
   },
   // {
@@ -62,6 +66,10 @@ export const navigation = [
       {
         title: "AI Testing as part of Full-Stack Engineering",
         href: "/essays/ai-testing-as-part-of-fullstack-engineering",
+      },
+      {
+        title: "How To Write Unit Tests for Your AI Web App",
+        href: "/essays/how-to-write-unit-tests-for-ai-web-app",
       },
     ],
   },
