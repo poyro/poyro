@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { downloadModel } from "../../downloadModel";
 import { makeModel } from "../../makeModel";
+import { checkIfRemote } from "../../utils";
 
 import { outputFulfillsCriterion } from "./outputFulfillsCriterion";
 
@@ -10,12 +11,16 @@ declare global {
   var poyro: Awaited<ReturnType<typeof makeModel>> | undefined;
 }
 
-await downloadModel();
+const runOnRemote = await checkIfRemote();
 
-const poyro = await makeModel();
+if (!runOnRemote) {
+  await downloadModel();
 
-if (!global.poyro) {
-  global.poyro = poyro;
+  const poyro = await makeModel();
+
+  if (!global.poyro) {
+    global.poyro = poyro;
+  }
 }
 
 describe("outputFulfillsCriterion", () => {
