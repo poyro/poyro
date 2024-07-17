@@ -1,3 +1,4 @@
+export * from "./checkIfRemote";
 export * from "./getConfig";
 export * from "./log";
 export * from "./makeLogMessage";

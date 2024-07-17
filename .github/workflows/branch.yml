@@ -32,5 +32,10 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Test
+        run: pnpm test:ci
+        env:
+          POYRO_API_KEY: ${{ secrets.POYRO_API_KEY }}
+
       - name: Build
         run: pnpm build

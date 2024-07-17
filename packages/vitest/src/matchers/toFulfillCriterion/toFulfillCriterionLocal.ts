@@ -2,7 +2,7 @@ import { outputFulfillsCriterion } from "../../functions";
 
 import type { ToFulfillCriterion } from "./types";
 
-export const toFulfillCriterion: ToFulfillCriterion = async (
+export const toFulfillCriterionLocal: ToFulfillCriterion = async (
   llmOutput,
   criterion,
   additionalContext

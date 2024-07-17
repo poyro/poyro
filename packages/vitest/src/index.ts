@@ -10,6 +10,15 @@ declare global {
 }
 
 export interface VitestPoyroMatchers<R = unknown> {
+  /**
+   * This matcher checks if the output fulfills a given criterion.
+   *
+   * @param criterion - The criterion to fulfill
+   * @param additionalContext - Additional context to provide to the model
+   *
+   * @example
+   * await expect("output").toFulfillCriterion("criterion");
+   */
   toFulfillCriterion: (
     criterion: string,
     additionalContext?: string

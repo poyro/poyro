@@ -42,7 +42,7 @@ The `outputFulfillsCriterion` function compares an output and a criterion to det
 
 ### Basic usage
 
-The following is a simple example of how to use the `toFulfillCriterion` matcher:
+The following is a simple example of how to use the `outputFulfillsCriterion` function:
 
 ```js
 import { describe, it, expect } from "vitest";

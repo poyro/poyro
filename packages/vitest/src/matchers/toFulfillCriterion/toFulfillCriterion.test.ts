@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { downloadModel } from "../../downloadModel";
 import { makeModel } from "../../makeModel";
+import { checkIfRemote } from "../../utils";
 
 import { toFulfillCriterion } from "./toFulfillCriterion";
 
@@ -12,12 +13,16 @@ declare global {
   var poyro: Awaited<ReturnType<typeof makeModel>> | undefined;
 }
 
-await downloadModel();
+const runOnRemote = await checkIfRemote();
 
-const poyro = await makeModel();
+if (!runOnRemote) {
+  await downloadModel();
 
-if (!global.poyro) {
-  global.poyro = poyro;
+  const poyro = await makeModel();
+
+  if (!global.poyro) {
+    global.poyro = poyro;
+  }
 }
 
 describe("toFulfillCriterion", () => {
@@ -28,7 +33,7 @@ describe("toFulfillCriterion", () => {
       pass: true,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 15000);
 
   it("should behave correctly with mismatched result and criterion", async () => {
     const result = await toFulfillCriterion("Bye", "Says hello");
@@ -37,7 +42,7 @@ describe("toFulfillCriterion", () => {
       pass: false,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 15000);
 
   it("should pass with plaintext", async () => {
     const result = await toFulfillCriterion(
@@ -49,7 +54,7 @@ describe("toFulfillCriterion", () => {
       pass: true,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 15000);
 
   it("should pass on exact matches with quotes", async () => {
     const result = await toFulfillCriterion(
@@ -61,7 +66,7 @@ describe("toFulfillCriterion", () => {
       pass: true,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 15000);
 
   it("should fail on inexact matches with quotes", async () => {
     const result = await toFulfillCriterion(
@@ -73,7 +78,7 @@ describe("toFulfillCriterion", () => {
       pass: false,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 15000);
 
   it("should pass with punctuation", async () => {
     const result = await toFulfillCriterion(
@@ -85,7 +90,7 @@ describe("toFulfillCriterion", () => {
       pass: true,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 15000);
 
   it("should not pass when the criterion is not fulfilled", async () => {
     const result = await toFulfillCriterion(
@@ -97,5 +102,5 @@ describe("toFulfillCriterion", () => {
       pass: false,
       message: expect.any(Function) as MessageFn,
     });
-  }, 10000);
+  }, 15000);
 });
