@@ -23,8 +23,8 @@
       "default": "./dist/config.js"
     },
     "./fn": {
-      "types": "./dist/functions.d.ts",
-      "default": "./dist/functions.js"
+      "types": "./dist/functions/index.d.ts",
+      "default": "./dist/functions/index.js"
     }
   },
   "engines": {
@@ -36,7 +36,8 @@
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
-    "test": "vitest --pool forks --no-file-parallelism --reporter verbose"
+    "test": "vitest --pool forks --no-file-parallelism --reporter verbose",
+    "test:ci": "vitest"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

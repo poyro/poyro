@@ -1,6 +1,6 @@
 {
   "model": {
-    "org": "QuantFactory",
+    "org": "mradermacher",
     "repo": "Meta-Llama-3-8B-Instruct-GGUF",
     "filename": "Meta-Llama-3-8B-Instruct.Q4_K_M.gguf"
   }

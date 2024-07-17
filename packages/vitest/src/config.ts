@@ -13,9 +13,16 @@ export interface LlamaCppConfig {
   contextOptions?: Partial<LlamaContextOptions>;
 }
 
+export interface RemoteConfig {
+  /** Indicates whether the remote is enabled */
+  enabled: boolean;
+}
+
 export interface PoyroVitestConfig {
   /** Configuration for Llama.cpp */
   llamaCpp?: Partial<LlamaCppConfig>;
+  /** Configuration for the remote */
+  remote?: Partial<RemoteConfig>;
 }
 
 export const defaultConfig: PoyroVitestConfig = {
