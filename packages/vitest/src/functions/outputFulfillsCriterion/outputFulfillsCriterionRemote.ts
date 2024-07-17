@@ -18,8 +18,7 @@ export const outputFulfillsCriterionRemote = async (
   const prompt = compiledTemplate({ criterion, llmOutput, additionalContext });
 
   // Make a request to the remote server
-  // const response = await fetch("https://api.poyro.dev/v1/fulfill-criterion", {
-  const response = await fetch("http://localhost:3000/v1/fulfill-criterion", {
+  const response = await fetch("https://api.poyro.dev/v1/fulfill-criterion", {
     method: "POST",
     body: JSON.stringify({
       prompt,
