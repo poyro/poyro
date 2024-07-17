@@ -10,6 +10,11 @@
       "outputs": ["coverage/**"],
       "dependsOn": []
     },
+    "test:ci": {
+      "outputs": ["coverage/**"],
+      "dependsOn": [],
+      "env": ["POYRO_API_KEY"]
+    },
     "lint": {
       "dependsOn": []
     },

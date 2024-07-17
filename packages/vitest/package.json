@@ -37,7 +37,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
     "test": "vitest --pool forks --no-file-parallelism --reporter verbose",
-    "test:ci": "vitest"
+    "test:ci": "CI=true vitest"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
