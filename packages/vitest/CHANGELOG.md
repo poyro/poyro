@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.6.1
+
+### Patch Changes
+
+- c694285: This release deletes two redundant files in the `@poyro/vitest` package.
+
 ## 0.6.0
 
 ### Minor Changes
