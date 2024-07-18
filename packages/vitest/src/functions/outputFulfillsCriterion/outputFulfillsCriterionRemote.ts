@@ -1,7 +1,7 @@
 import handlebars from "handlebars";
 import fetch from "node-fetch";
 
-import { fulfillCriterionSchema } from "../../schemas/fulfillCriterionSchema";
+// import { fulfillCriterionSchema } from "../../schemas/fulfillCriterionSchema";
 import template from "../../templates/fulfillCriterion/template.md";
 import systemPrompt from "../../templates/fulfillCriterion/system.md";
 
@@ -23,7 +23,7 @@ export const outputFulfillsCriterionRemote = async (
     body: JSON.stringify({
       prompt,
       system_prompt: systemPrompt as string,
-      json_schema: fulfillCriterionSchema,
+      // json_schema: fulfillCriterionSchema,
     }),
     headers: {
       "Content-Type": "application/json",
@@ -70,11 +70,8 @@ export const outputFulfillsCriterionRemote = async (
   // parse the choice content
   const parsed = JSON.parse(choice.message.content) as FeedbackObject;
 
-  // check if the feedback is true
-  const result = parsed.feedback.toLowerCase().includes("true");
-
   return {
-    result,
+    result: parsed.result,
     feedback: parsed.feedback,
   };
 };

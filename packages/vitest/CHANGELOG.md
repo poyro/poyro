@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.6.3
+
+### Patch Changes
+
+- Update the way the output is parsed to do so correctly.
+
 ## 0.6.2
 
 ### Patch Changes
