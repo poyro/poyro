@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.6.2
+
+### Patch Changes
+
+- Ensure that "required" array is defined for stable responses.
+
 ## 0.6.1
 
 ### Patch Changes

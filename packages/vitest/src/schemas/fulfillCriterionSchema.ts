@@ -8,4 +8,5 @@ export const fulfillCriterionSchema = {
       type: "boolean",
     },
   },
+  required: ["feedback", "result"],
 } as const;
