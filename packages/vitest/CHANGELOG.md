@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.6.4
+
+### Patch Changes
+
+- Remove unused commented out parameter.
+
 ## 0.6.3
 
 ### Patch Changes

@@ -23,7 +23,6 @@ export const outputFulfillsCriterionRemote = async (
     body: JSON.stringify({
       prompt,
       system_prompt: systemPrompt as string,
-      // json_schema: fulfillCriterionSchema,
     }),
     headers: {
       "Content-Type": "application/json",
