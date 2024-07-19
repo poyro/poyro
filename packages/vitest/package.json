@@ -10,6 +10,15 @@
     "dist/**",
     "constants.json"
   ],
+  "homepage": "https://github.com/poyro/poyro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poyro/poyro.git",
+    "directory": "packages/vitest"
+  },
+  "bugs": {
+    "url": "https://github.com/poyro/poyro/issues"
+  },
   "exports": {
     ".": {
       "import": {
