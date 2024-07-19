@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.5.1
+
+### Patch Changes
+
+- bdbbcdb: This release includes missing links to GitHub from NPM for both the `@poyro/cli` and `@poyro/vitest` packages.
+
 ## 0.5.0
 
 ### Minor Changes

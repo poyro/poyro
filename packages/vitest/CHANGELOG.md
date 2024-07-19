@@ -1,5 +1,12 @@
 # @poyro/vitest
 
+## 0.6.5
+
+### Patch Changes
+
+- d7f4c6a: Allow remote base URL to be configurable, via `remote.baseUrl` configuration inside the Poyro config.
+- bdbbcdb: This release includes missing links to GitHub from NPM for both the `@poyro/cli` and `@poyro/vitest` packages.
+
 ## 0.6.4
 
 ### Patch Changes
