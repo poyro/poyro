@@ -14,6 +14,8 @@ export interface LlamaCppConfig {
 }
 
 export interface RemoteConfig {
+  /** The base URL for the remote */
+  baseUrl: string;
   /** Indicates whether the remote is enabled */
   enabled: boolean;
 }
@@ -38,6 +40,9 @@ export const defaultConfig: PoyroVitestConfig = {
       contextSize: 512,
       seed: 9,
     },
+  },
+  remote: {
+    baseUrl: "https://api.poyro.dev",
   },
 };
 

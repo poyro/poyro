@@ -1,9 +1,9 @@
 import handlebars from "handlebars";
 import fetch from "node-fetch";
 
-// import { fulfillCriterionSchema } from "../../schemas/fulfillCriterionSchema";
 import template from "../../templates/fulfillCriterion/template.md";
 import systemPrompt from "../../templates/fulfillCriterion/system.md";
+import { getConfig } from "../../utils";
 
 import type { FeedbackObject, RunpodResponse } from "./types";
 
@@ -14,11 +14,23 @@ export const outputFulfillsCriterionRemote = async (
   criterion: string,
   additionalContext?: string
 ): Promise<FeedbackObject> => {
+  // Get the config
+  const { remote } = await getConfig();
+
   // generate the prompt
   const prompt = compiledTemplate({ criterion, llmOutput, additionalContext });
 
+  // If no remote server URL is set, return false
+  if (!remote?.baseUrl) {
+    return {
+      result: false,
+      feedback:
+        "Remote is enabled, but the remote server URL is not set in the environment.",
+    };
+  }
+
   // Make a request to the remote server
-  const response = await fetch("https://api.poyro.dev/v1/fulfill-criterion", {
+  const response = await fetch(`${remote.baseUrl}/v1/fulfill-criterion`, {
     method: "POST",
     body: JSON.stringify({
       prompt,
