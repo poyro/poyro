@@ -9,6 +9,15 @@
   "files": [
     "dist/**"
   ],
+  "homepage": "https://github.com/poyro/poyro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poyro/poyro.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/poyro/poyro/issues"
+  },
   "engines": {
     "node": ">=20.0.0"
   },
