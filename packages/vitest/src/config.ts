@@ -37,7 +37,7 @@ export const defaultConfig: PoyroVitestConfig = {
       gpuLayers: 33,
     },
     contextOptions: {
-      contextSize: 512,
+      contextSize: 1024,
       seed: 9,
     },
   },

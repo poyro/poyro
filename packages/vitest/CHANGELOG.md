@@ -1,5 +1,11 @@
 # @poyro/vitest
 
+## 0.6.6
+
+### Patch Changes
+
+- Increase the context size to 1024 tokens to process longer inputs more reliably.
+
 ## 0.6.5
 
 ### Patch Changes
