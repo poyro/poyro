@@ -20,16 +20,16 @@ And here is the explanation for the recommended change, through the lens of the 
 
 ![Outlit Suggestion Reasoning](/outlit-revision-closeup.png)
 
-The app detects and displays all such problematic clauses along with candidate replacements and explanations from Outlit's agents. If you look closely, you may already notice at least issue we may want to catch with tests — bonus points if you catch it before getting to the testing section!
+The app detects and displays all such problematic clauses along with candidate replacements and explanations from Outlit's agents. If you look closely, you may already notice some issues we should catch with tests — bonus points if you catch them before getting to the testing section!
 
 With this context, let's think about how we should approach testing.
 
 ## Brainstorming Tests
 
-This is a complex application; like any such software the starting point for writing good tests is:
+This is a complex application; like any such software, the starting point for writing good tests is:
 
-- Decompose the system into smaller components with well defined inputs and outputs.
-- Articulate the high level objective of the system and decompose this into measurable outputs.
+- Decomposing the system into smaller components with well defined inputs and outputs.
+- Articulating the high level objective of the system and decompose this into measurable outputs.
 
 ### System Decomposition
 
@@ -41,24 +41,22 @@ Next we notice that the negotiation risk agent ingests a contract, detects risky
 2. An explanation of the risk the agent detected in that clause.
 3. A proposed replacement clause, which considers the detected risk.
 
-For each contract many such triples of data may be returned by the app, one for each risky clause. Testing all of the changes proposed by the negotiation risk agent simultaneously would be challenging and ambiguous. However testing each change individually makes the problem tractable. Thus our test cases will be an input and the three outputs listed above.
+For each contract many such triples of data may be returned by the app, one for each risky clause. Testing all of the changes proposed by the negotiation risk agent simultaneously would be challenging and ambiguous. However testing each change individually makes the problem tractable. Thus, our test cases will be an input and the three outputs listed above.
 
 ### Measurable Objectives
 
-Having decomposed the unit to test down to clauses, the next question to answer is: What makes a good clause detection and replacement?
+Having decomposed the unit to test down to clauses, the next question to answer is: What determines whether the legal agent's risky clause detection and replacement is acceptable?
 
-1. We want the agent to **detect the right substring** for the clause to have replaced.
-2. Since the goal of the app is to help non-legal staff make sales contracts we want explanations to be **understandable to non-legal staff**.
-3. This is the more nuanced question, because to answer this we need to define what makes a replacement clause "good".
+1. When the agent **detects the right substring** to replace.
+2. When the provided explanations are **accessible to non-legal staff**, since the goal of the app is to help non-legal staff make sales contracts.
+3. When the replacement clause is "acceptable", which is not immediately obvious.
 
-Let's explore 3. further. Leveraging a consultation with a domain expert (a lawyer), researching relevant literature, and brainstorming using knowledge tools like ChatGPT we can come up with requirements based on legal best practices. A replacement clause is acceptable if:
+Let's explore #3 further. Leveraging a consultation with a domain expert (a lawyer), researching relevant literature, and brainstorming using knowledge tools like ChatGPT, we can come up with requirements based on legal best practices. A replacement clause is acceptable if:
 
-- 3.a) It is **consistent** with the other clauses in the contract: If the AI suggests a contradictory clause and the user accepts it could render parts of the contract invalid.
-- 3.b) It is grounded on **best practices**: With a critical application like a legal AI assistant, we should not rely on the model's knowledge to come up with best practices. We should rely on a curated set of them and make sure the AI sticks to them.
+- 3.a) It is **consistent** with the other clauses in the contract: If the AI suggests a contradictory clause and the user accepts it, this could render parts of the contract invalid.
+- 3.b) It is grounded on **best practices**: With a critical application like a legal AI assistant, we should not rely on the model's knowledge to come up with best practices. We should rely on a curated set of best practices and make sure the AI sticks to them.
 
-This only represents a couple of the requirements we can track, other ideas we could track include whether any recommended clauses are enforceable, whether they are at least neutral if not favorable to the seller (our client), etc.
-
----
+This only represents a couple of the requirements we can track, other ideas could include whether any recommended clauses are enforceable, whether they are at least neutral if not favorable to the seller (our client), etc.
 
 Equipped with a system decomposition and set of objectives, we're ready to write some tests!
 
@@ -67,7 +65,7 @@ Equipped with a system decomposition and set of objectives, we're ready to write
 As discussed on Poyro's [guide for writing unit tests for AI apps](/essays/how-to-write-unit-tests-for-ai-web-app), there are a couple of different types of tests we'll need to write to measure our objectives:
 
 - [Code-Based Tests](/essays/how-to-write-unit-tests-for-ai-web-app#testing-generation-expected-values): For condition 1., given a test contract we can determine ahead of time the problematic substrings we want to detect with the help of a lawyer. We can then check our AI app detects the same substrings.
-- [LLM-Based Tests](/essays/how-to-write-unit-tests-for-ai-web-app#llm-based-tests): The conditions defined by objective 2., 3.a., and 3.b. require analyzing free text and evaluating open ended criteria. However, it's hard to write a code-based test that checks that a clause is understandable to a non-legal. This is exactly the situation in which LLM-Based Tests are useful.
+- [LLM-Based Tests](/essays/how-to-write-unit-tests-for-ai-web-app#llm-based-tests): The conditions defined by objective 2., 3.a., and 3.b. require analyzing free text and evaluating open ended criteria. However, it's hard to write a code-based test that checks that a clause is accessible to a non-legal. This is exactly the situation in which LLM-Based Tests are useful.
 
 We will be working from the example from the use case section. Here we can see the input and outputs 1. the substring to replace, and 3. the replacement clause:
 
@@ -94,7 +92,7 @@ const sectionText = "Customization and integration services will be provided at 
 const actualSubtringIdx = [83, 347];
 ```
 
-Let's assume that our function for detecting bad spans (which includes an LLM call). The function ingests the text from a section and returns an array of arrays containing all problematic, non-overlapping subtring index pairs:
+Let's assume that we have a function for detecting bad substrings. The function ingests the text from a section and returns an array of arrays containing all problematic, non-overlapping subtring index pairs:
 
 ```js
 const predictedSubstringIdx = extractProblematicClauses(sectionText);
@@ -103,10 +101,10 @@ const predictedSubstringIdx = extractProblematicClauses(sectionText);
 
 Now, what we want to determine is how much the predicted substring and actual substring overlap. What would be some good qualities for a function that determined this?
 
-- Returns a number from 0.0 to 1.0, with 0.0 meaning no overlap and 1.0 meaning perfect overlap.
-- If the predicted substring entirely contains the actual subtring but is not exactly equal to it, we want this function to return a number less than 1.0. Same the other way around.
+- Returns a number from `0.0` to `1.0`, with `0.0` meaning no overlap and `1.0` meaning perfect overlap.
+- If the predicted substring entirely contains the actual subtring but is not exactly equal to it, we want this function to return a number less than `1.0`. Same the other way around.
 
-The latter point guarantees that 1.0 always means perfect overlap rather than one substring containing the other. Here is a function meeting these characteristics (in NLP this is called the Intersection over Union):
+The latter point guarantees that `1.0` always means perfect overlap rather than one substring containing the other. Here is a function meeting these characteristics (in NLP this is called the [Jaccard Similarity](https://medium.com/@igniobydigitate/similarity-coefficients-a-beginners-guide-to-measuring-string-similarity-d84da77e8c5a)):
 
 ```js
 const calculateOverlapPercentage = (substringIdx1, substringIdx2) => {
@@ -158,15 +156,15 @@ it("detects the right risky clause substring", () => {
 
 Voilà, we have a test that will measure the ability of AI lawyer to accurately determine problematic clauses. Note the same logic would work if we were indexing words, tokens, or sentences instead of characters.
 
-### 2. Understandable by Non-Legal
+### 2. Accessible to Non-Legal
 
-Next we want to check whether the reasoning generated by the negotiation agent is understandable by a non-legal staff member. Recall that the reasoning was:
+Next we want to check whether the reasoning generated by the negotiation agent is accessible a non-legal staff member. Recall that the reasoning was:
 
 ```js
 const reasoning = "Non-binding estimates can lead to significant cost overruns, which may deter the Buyer from engaging in customization and integration services. Providing binding estimates will encourage the Buyer to proceed with these services, benefiting the Seller.";
 ```
 
-It is hard to capture the concept of being understandable in this way in terms of programmatic rules. This is exactly where [Poyro's](/) ability to test natural language conditions is valuable. We can define a natural language criterion as follows:
+It is hard to capture the concept of being accessible in this way in terms of programmatic rules. This is exactly where [Poyro's](/) ability to test natural language conditions is valuable. We can define a natural language criterion as follows:
 
 ```js
 const criterion = "The provided legal reasoning should be understandable to a person with a bachelor's degree, basic business understanding, but without a legal background.";
@@ -226,7 +224,7 @@ Then our test passes and Poyro returns the reasoning:
 
 ### 3.a) Consistency
 
-Next we want to check that updating the clause does not introduce contradictions into the section. To do this we want to compare the recommended clause with the rest of the section.
+Next we want to check that updating the clause does not introduce contradictions into the section defined by `sectionText`. To do this we want to compare the recommended clause with the rest of the section.
 
 We need to first extract the section without the removed clause:
 
@@ -283,7 +281,7 @@ If we wanted to more granularly detect which part of `sectionTextMinusBadClause`
 
 ### 3.b) Grounded on Best Practice
 
-Lastly, we want to make sure that the replacement clause we are generating is based on some set of best practices. In a typical system, these best practices may be present in a database or text file. We present them in a text file with each practice separated by a newline:
+Lastly, we want to make sure that the replacement clause we are generating is based on some predefined set of best practices. In a typical system, these best practices may be present in a database or text file. For the purposes of this essay, we can mock a handful of best practices and put them into a text file, separated by newlines:
 
 **best_practices.txt**
 ```txt
@@ -304,7 +302,9 @@ const bestPracticeString = fs.readFileSync("best_practices.txt");
 const bestPractices = bestPracticesString.split("\n");
 ```
 
-With the best practices as an array we can check each one against the returned replacement recommendation to check that we can attribute it to at least one. To do this, we can use Poyro's [outputFulfillsCriterion](/output-fulfills-criterion) function. This is the functional version of the matcher, which allows us to use the same logic without chaining with an `expect`:
+We can check each element of the best practices array against our replacement clause recommendation. Then, we just need to check we were able to attribute the recommendation to **at least one** best practice. 
+
+To do this, we can use Poyro's [outputFulfillsCriterion](/output-fulfills-criterion) function. This is the functional version of the matcher, which allows us to compute multiple boolean criteria before calling `expect`:
 
 ```js
 import { outputFulfillsCriterion } from "@poyro/vitest/fn";
