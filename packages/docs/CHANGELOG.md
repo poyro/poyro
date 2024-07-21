@@ -1,5 +1,11 @@
 # @poyro/docs
 
+## 0.7.1
+
+### Patch Changes
+
+- Comment out unnecessary images from the docs hero to improve Lighthouse scores.
+
 ## 0.7.0
 
 ### Minor Changes

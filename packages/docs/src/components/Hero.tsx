@@ -32,7 +32,7 @@ export function Hero() {
       <div className="py-16 sm:px-2 lg:relative lg:px-0 lg:py-20">
         <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 lg:max-w-8xl lg:grid-cols-2 lg:px-8 xl:gap-x-16 xl:px-12">
           <div className="relative z-10 md:text-center lg:text-left">
-            <Image
+            {/* <Image
               alt=""
               className="absolute bottom-full right-full -mb-56 -mr-72 opacity-50"
               height={530}
@@ -40,7 +40,7 @@ export function Hero() {
               src={blurCyanImage}
               unoptimized
               width={530}
-            />
+            /> */}
             <div className="relative">
               <p className="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
                 Ship AI-driven apps confidently
@@ -65,7 +65,7 @@ export function Hero() {
               <HeroBackground className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 lg:translate-x-0 lg:translate-y-[-60%]" />
             </div>
             <div className="relative">
-              <Image
+              {/* <Image
                 alt=""
                 className="absolute -right-64 -top-64"
                 height={530}
@@ -82,7 +82,7 @@ export function Hero() {
                 src={blurIndigoImage}
                 unoptimized
                 width={567}
-              />
+              /> */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10 blur-lg" />
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10" />
               <div className="relative rounded-2xl bg-[#0A101F]/80 ring-1 ring-white/10 backdrop-blur">
