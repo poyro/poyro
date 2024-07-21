@@ -1,5 +1,11 @@
 # @poyro/docs
 
+## 0.7.0
+
+### Minor Changes
+
+- Add case study for legal AI app
+
 ## 0.6.2
 
 ### Patch Changes

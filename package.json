@@ -21,7 +21,7 @@
     "ts-node": "^10.9.2",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.5.0",
   "engines": {
     "node": ">=18"
   },
