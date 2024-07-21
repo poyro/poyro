@@ -12,6 +12,7 @@ For more context on why to use Poyro and examples on how to use it along with Vi
 
 - [AI Testing as part of Full-Stack Engineering](https://docs.poyro.dev/essays/ai-testing-as-part-of-fullstack-engineering)
 - [How To Write Unit Tests for Your AI Web App](https://docs.poyro.dev/essays/how-to-write-unit-tests-for-ai-web-app)
+- [Case Study - Unit Testing a Legal AI App](https://docs.poyro.dev/essays/unit-testing-a-legal-ai-app)
 
 ## Prerequisites
 
