@@ -71,6 +71,10 @@ export const navigation = [
         title: "How To Write Unit Tests for Your AI Web App",
         href: "/essays/how-to-write-unit-tests-for-ai-web-app",
       },
+      {
+        title: "Case Study - Unit Testing a Legal AI App",
+        href: "/essays/unit-testing-a-legal-ai-app",
+      },
     ],
   },
 ];
