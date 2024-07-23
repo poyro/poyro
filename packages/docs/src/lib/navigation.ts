@@ -1,4 +1,15 @@
-export const navigation = [
+export interface NavigationPage {
+  title: string;
+  href: string;
+  priority?: number;
+}
+
+export interface NavigationSection {
+  title: string;
+  links: NavigationPage[];
+}
+
+export const navigation: NavigationSection[] = [
   {
     title: "Introduction",
     links: [
