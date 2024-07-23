@@ -1,5 +1,11 @@
 # @poyro/docs
 
+## 0.7.2
+
+### Patch Changes
+
+- Update docs site to include sitemap.xml for better SEO performance.
+
 ## 0.7.1
 
 ### Patch Changes
