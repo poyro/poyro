@@ -10,9 +10,9 @@ Welcome to the architecture guide for Poyro! This guide will walk you through th
 
 ## How is it free?
 
-Poyro uses a quantized version of [Phi 3.1 Mini 4k Instruct](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct), an open source LLM developed at Microsoft. The quantized version is a smaller, more efficient version of the original LLM that is optimized for use locally.
+Poyro uses a quantized version of [Llama 3 Instruct](https://huggingface.co/mradermacher/Meta-Llama-3-8B-Instruct-GGUF), an open source LLM developed at Meta. The quantized version is a smaller, more efficient version of the original LLM that is optimized for use locally.
 
-The specific type of the quantized Phi 3.1 Mini 4k Instruct model we currently use is the [`Q4_K_M`](https://huggingface.co/bartowski/Phi-3.1-mini-4k-instruct-GGUF), which aims to provide a balance between performance and size. At just under 2.4GB, it is small enough to be used on most consumer-grade hardware while still providing high-quality results. We recommend a device with at least 8GB of VRAM and a CUDA-compatible GPU (Nvidia) or Metal-compatible GPU (Apple Silicon) for best performance.
+The specific type of the quantized Llama 3 Instruct model we currently use is the [`Q4_K_M`](https://huggingface.co/mradermacher/Meta-Llama-3-8B-Instruct-GGUF/tree/main), which aims to provide a balance between performance and size. At just under 2.4GB, it is small enough to be used on most consumer-grade hardware while still providing high-quality results. We recommend a device with at least 8GB of VRAM and a CUDA-compatible GPU (Nvidia) or Metal-compatible GPU (Apple Silicon) for best performance.
 
 ## How does it work?
 
