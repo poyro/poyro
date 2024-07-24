@@ -4,7 +4,7 @@ title: Case Study - Unit Testing a Legal AI App
 **By**: [Daniel Bulhosa Solorzano](https://x.com/danielbulhosa), [Leo Paz](https://x.com/LeosReal)
 
 
-The power of unit testing AI comes into view when focused through the lens of a concrete use case. The Poyro team is collaborating with [Outlit AI](https://outlit.ai/) to figure out the best way to test their legal assistant. This case study presents end to end how we brainstormed test ideas based on legal and AI best practices, and how the Outlit team translated them into tests using Poyro.
+The power of unit testing AI comes into view when focused through the lens of a concrete use case. The Poyro team is collaborating with [Outlit AI](https://outlit.ai/) to figure out the best way to test their legal assistant. This case study presents end to end how we brainstormed test ideas based on legal and AI best practices, and how the Outlit team translated them into tests using Poyro. Runnable version of the code presented here can be found in [this repo](https://github.com/poyro/unit-test-legal-ai-demo). 
 
 ## What is the Use Case?
 
@@ -147,7 +147,7 @@ it("detects the right risky clause substring", () => {
   // Returns ~0.50
   const percentageOverlap = calculateOverlapPercentage(
     actualSubtringIdx,
-    predictedSubstringIdx,
+    predictedSubstringIdx[0],
   );
   // Will fail with given threshold
   expect(percentageOverlap).toBeGreaterThanOrEqual(minOverlap);

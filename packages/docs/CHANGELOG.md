@@ -1,5 +1,11 @@
 # @poyro/docs
 
+## 0.7.3
+
+### Patch Changes
+
+- Update some outdated links, add new ones
+
 ## 0.7.2
 
 ### Patch Changes
