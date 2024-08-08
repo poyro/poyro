@@ -29,7 +29,7 @@ importers:
         version: 10.9.2(@types/node@22.0.2)(typescript@5.5.4)
       turbo:
         specifier: latest
-        version: 2.0.11
+        version: 2.0.12
 
   libs/eslint-config:
     devDependencies:
@@ -203,14 +203,14 @@ importers:
         specifier: ^3.3.2
         version: 3.3.2
       node-llama-cpp:
-        specifier: 3.0.0-beta.38
-        version: 3.0.0-beta.38(typescript@5.5.4)
+        specifier: 3.0.0-beta.42
+        version: 3.0.0-beta.42(typescript@5.5.4)
       radash:
         specifier: ^12.1.0
         version: 12.1.0
       vitest:
         specifier: '>= 1.6.0'
-        version: 2.0.3(@types/node@20.14.11)
+        version: 2.0.3(@types/node@20.14.13)
       yup:
         specifier: ^1.4.0
         version: 1.4.0
@@ -1222,14 +1222,14 @@ packages:
   '@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1':
     resolution: {integrity: sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg==}
 
-  '@node-llama-cpp/linux-x64-cuda@3.0.0-beta.38':
-    resolution: {integrity: sha512-CddPJUoqzxtPISaj984HQ1lZv8wa9vBwK+TGH+izSVtiX/3Gr4nGd4cu5Y6zxKOHgt9fvep21uOUS2NtX3SCBA==}
+  '@node-llama-cpp/linux-x64-cuda@3.0.0-beta.42':
+    resolution: {integrity: sha512-6NohtA93q2NNhLNjyemxD8jzq6aHY4bMWqBHlYChhgRd770cIhTZOa9U0FZXuQlZaUCpMKQ1OTbsGvCMcCf1Hg==}
     engines: {node: '>=18.0.0'}
     cpu: [x64]
     os: [linux]
 
-  '@node-llama-cpp/win-x64-cuda@3.0.0-beta.38':
-    resolution: {integrity: sha512-dxUfhpOdou28Ecs5WrpQGLpH4bMx/4audrZ6X+fojxXC9JKSV2xPKetYlKokbm6VSV9TLrubEqffXZebX8JQig==}
+  '@node-llama-cpp/win-x64-cuda@3.0.0-beta.42':
+    resolution: {integrity: sha512-ic+gTJDxMqfGrNGyHqJIHa2Zg9WxCQJhSoqtdEldEKw+a80bVKtwxZjLMkFmgFBAlx4/CWlqK8u1y/Z1ox0bYw==}
     engines: {node: '>=18.0.0'}
     cpu: [x64]
     os: [win32]
@@ -1642,10 +1642,6 @@ packages:
   '@storybook/csf@0.0.1':
     resolution: {integrity: sha512-USTLkZze5gkel8MYCujSRBVIrUQ3YPBrLOx7GNk/0wttvVtlzWXAq9eLbQ4p/NicGxP+3T7KPEMVV//g+yubpw==}
 
-  '@supercharge/promise-pool@3.2.0':
-    resolution: {integrity: sha512-pj0cAALblTZBPtMltWOlZTQSLT07jIaFNeM8TWoJD1cQMgDB9mcMlVMoetiB35OzNJpqQ2b+QEtwiR9f20mADg==}
-    engines: {node: '>=8'}
-
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
 
@@ -1741,9 +1737,6 @@ packages:
 
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
-
-  '@types/node@20.14.11':
-    resolution: {integrity: sha512-kprQpL8MMeszbz6ojB5/tU8PLN4kesnN8Gjzw349rDlNgsSzg90lAVj3llK99Dh7JON+t9AuscPPFW6mPbTnSA==}
 
   '@types/node@20.14.13':
     resolution: {integrity: sha512-+bHoGiZb8UiQ0+WEtmph2IWQCjIqg8MDZMAV+ppRRhUZnquF5mQkP/9vpSwJClEiSM/C7fZZExPzfU0vJTyp8w==}
@@ -3227,8 +3220,8 @@ packages:
     resolution: {integrity: sha512-NGnrKwXzSms2qUUih/ILZ5JBqNTSa1+ZmP6flaIp6KmSElgE9qdndzS3cqjrDovwFdmwsGsLdeFgB6suw+1e9g==}
     engines: {node: '>= 0.4'}
 
-  ipull@3.5.0:
-    resolution: {integrity: sha512-FEDW0gXkmAqDvTWcnQYd/Hhaup5YZUVRuA9Cx5J8MVT8qUalOY26pxcAQAEaBlTUKHJgMvhqidMurRV0PoLwkA==}
+  ipull@3.6.1:
+    resolution: {integrity: sha512-YxPo9FOIT6J48QtrzuD/zAG54DxQXI6TrGVM+Ih4xYPCG3rRCsLrLvD2mIFOKH/cdbQqetm35bpnSuHsUwvHtw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -3927,8 +3920,8 @@ packages:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  node-llama-cpp@3.0.0-beta.38:
-    resolution: {integrity: sha512-CUQkPzUcgaKn3ByPhwSr3V/0KyYexPogPBe+qmw/2MJw2U6WjWhXAGLuGi6t1fcQnL5zOzH3ixZspRjk+OKZQQ==}
+  node-llama-cpp@3.0.0-beta.42:
+    resolution: {integrity: sha512-3kmb0z9GIj+sxrVwnBrLD1G+6WY0QAlkVr2il42SfWAMXEfHAu1Hgp3hJI7jWybf+gSwJOeZ0YMlbRi6uGKpXw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -5003,38 +4996,38 @@ packages:
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
 
-  turbo-darwin-64@2.0.11:
-    resolution: {integrity: sha512-YlHEEhcm+jI1BSZoLugGHUWDfRXaNaQIv7tGQBfadYjo9kixBnqoTOU6s1ubOrQMID+lizZZQs79GXwqM6vohg==}
+  turbo-darwin-64@2.0.12:
+    resolution: {integrity: sha512-NAgfgbXxX/JScWQmmQnGbPuFZq7LIswHfcMk5JwyBXQM/xmklNOxxac7MnGGIOf19Z2f6S3qHy17VIj0SeGfnA==}
     cpu: [x64]
     os: [darwin]
 
-  turbo-darwin-arm64@2.0.11:
-    resolution: {integrity: sha512-K/YW+hWzRQ/wGmtffxllH4M1tgy8OlwgXODrIiAGzkSpZl9+pIsem/F86UULlhsIeavBYK/LS5+dzV3DPMjJ9w==}
+  turbo-darwin-arm64@2.0.12:
+    resolution: {integrity: sha512-cP02uer5KSJ+fXL+OfRRk5hnVjV0c60hxDgNcJxrZpfhun7HHoKDDR7w2xhQntiA45aC6ZZEXRqMKpj6GAmKbg==}
     cpu: [arm64]
     os: [darwin]
 
-  turbo-linux-64@2.0.11:
-    resolution: {integrity: sha512-mv8CwGP06UPweMh1Vlp6PI6OWnkuibxfIJ4Vlof7xqjohAaZU5FLqeOeHkjQflH/6YrCVuS9wrK0TFOu+meTtA==}
+  turbo-linux-64@2.0.12:
+    resolution: {integrity: sha512-+mQgGfg1eq5qF+wenK/FKJaNMNAo5DQLC4htQy+8osW+fx6U+8+6UlPQPaycAWDEqwOI7NwuqkeHfkEQLQUTyQ==}
     cpu: [x64]
     os: [linux]
 
-  turbo-linux-arm64@2.0.11:
-    resolution: {integrity: sha512-wLE5tl4oriTmHbuayc0ki0csaCplmVLj+uCWtecM/mfBuZgNS9ICNM9c4sB+Cfl5tlBBFeepqRNgvRvn8WeVZg==}
+  turbo-linux-arm64@2.0.12:
+    resolution: {integrity: sha512-KFyEZDXfPU1DK4zimxdCcqAcK7IIttX4mfsgB7NsSEOmH0dhHOih/YFYiyEDC1lTRx0C2RlzQ0Kjjdz48AN5Eg==}
     cpu: [arm64]
     os: [linux]
 
-  turbo-windows-64@2.0.11:
-    resolution: {integrity: sha512-tja3zvVCSWu3HizOoeQv0qDJ+GeWGWRFOOM6a8i3BYnXLgGKAaDZFcjwzgC50tWiAw4aowIVR4OouwIyRhLBaQ==}
+  turbo-windows-64@2.0.12:
+    resolution: {integrity: sha512-kJj4KCkZTkDTDCqsSw1m1dbO4WeoQq1mYUm/thXOH0OkeqYbSMt0EyoTcJOgKUDsrMnzZD2gPfYrlYHtV69lVA==}
     cpu: [x64]
     os: [win32]
 
-  turbo-windows-arm64@2.0.11:
-    resolution: {integrity: sha512-sYjXP6k94Bqh99R+y3M1Ks6LRIEZybMz+7enA8GKl6JJ2ZFaXxTnS6q+/2+ii1+rRwxohj5OBb4gxODcF8Jd4w==}
+  turbo-windows-arm64@2.0.12:
+    resolution: {integrity: sha512-TY3ROxguDilN2olCwcZMaePdW01Xhma0pZU7bNhsQEqca9RGAmsZBuzfGnTMcWPmv4tpnb/PlX1hrt1Hod/44Q==}
     cpu: [arm64]
     os: [win32]
 
-  turbo@2.0.11:
-    resolution: {integrity: sha512-imDlFFAvitbCm1JtDFJ6eG882qwxHUmVT2noPb3p2jq5o5DuXOchMbkVS9kUeC3/4WpY5N0GBZ3RvqNyjHZw1Q==}
+  turbo@2.0.12:
+    resolution: {integrity: sha512-8s2KwqjwQj7z8Z53SUZSKVkQOZ2/Sl4D2F440oaBY/k2lGju60dW6srEpnn8/RIDeICZmQn3pQHF79Jfnc5Skw==}
     hasBin: true
 
   type-check@0.4.0:
@@ -5838,7 +5831,7 @@ snapshots:
       '@babel/helper-split-export-declaration': 7.24.7
       '@babel/parser': 7.24.8
       '@babel/types': 7.24.9
-      debug: 4.3.5
+      debug: 4.3.6
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -6431,7 +6424,7 @@ snapshots:
 
   '@kwsites/file-exists@1.1.1':
     dependencies:
-      debug: 4.3.5
+      debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
 
@@ -6512,10 +6505,10 @@ snapshots:
     dependencies:
       eslint-scope: 5.1.1
 
-  '@node-llama-cpp/linux-x64-cuda@3.0.0-beta.38':
+  '@node-llama-cpp/linux-x64-cuda@3.0.0-beta.42':
     optional: true
 
-  '@node-llama-cpp/win-x64-cuda@3.0.0-beta.38':
+  '@node-llama-cpp/win-x64-cuda@3.0.0-beta.42':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -6920,8 +6913,6 @@ snapshots:
     dependencies:
       lodash: 4.17.21
 
-  '@supercharge/promise-pool@3.2.0': {}
-
   '@swc/counter@0.1.3': {}
 
   '@swc/helpers@0.5.12':
@@ -7018,11 +7009,6 @@ snapshots:
   '@types/node@12.20.55': {}
 
   '@types/node@17.0.45': {}
-
-  '@types/node@20.14.11':
-    dependencies:
-      undici-types: 5.26.5
-    optional: true
 
   '@types/node@20.14.13':
     dependencies:
@@ -7166,7 +7152,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 7.16.1
       '@typescript-eslint/visitor-keys': 7.16.1
-      debug: 4.3.5
+      debug: 4.3.6
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.5
@@ -7181,7 +7167,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 7.2.0
       '@typescript-eslint/visitor-keys': 7.2.0
-      debug: 4.3.5
+      debug: 4.3.6
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.3
@@ -7533,9 +7519,9 @@ snapshots:
 
   axe-core@4.9.1: {}
 
-  axios@1.7.2(debug@4.3.5):
+  axios@1.7.2(debug@4.3.6):
     dependencies:
-      follow-redirects: 1.15.6(debug@4.3.5)
+      follow-redirects: 1.15.6(debug@4.3.6)
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -7703,8 +7689,8 @@ snapshots:
 
   cmake-js@7.3.0:
     dependencies:
-      axios: 1.7.2(debug@4.3.5)
-      debug: 4.3.5
+      axios: 1.7.2(debug@4.3.6)
+      debug: 4.3.6
       fs-extra: 11.2.0
       lodash.isplainobject: 4.0.6
       memory-stream: 1.0.0
@@ -8644,9 +8630,9 @@ snapshots:
 
   flow-parser@0.241.0: {}
 
-  follow-redirects@1.15.6(debug@4.3.5):
+  follow-redirects@1.15.6(debug@4.3.6):
     optionalDependencies:
-      debug: 4.3.5
+      debug: 4.3.6
 
   for-each@0.3.3:
     dependencies:
@@ -8905,9 +8891,8 @@ snapshots:
       hasown: 2.0.2
       side-channel: 1.0.6
 
-  ipull@3.5.0:
+  ipull@3.6.1:
     dependencies:
-      '@supercharge/promise-pool': 3.2.0
       '@tinyhttp/content-disposition': 2.2.1
       async-retry: 1.3.3
       chalk: 5.3.0
@@ -9765,7 +9750,7 @@ snapshots:
       fetch-blob: 3.2.0
       formdata-polyfill: 4.0.10
 
-  node-llama-cpp@3.0.0-beta.38(typescript@5.5.4):
+  node-llama-cpp@3.0.0-beta.42(typescript@5.5.4):
     dependencies:
       '@huggingface/jinja': 0.2.2
       async-retry: 1.3.3
@@ -9779,7 +9764,7 @@ snapshots:
       filenamify: 6.0.0
       fs-extra: 11.2.0
       ignore: 5.3.1
-      ipull: 3.5.0
+      ipull: 3.6.1
       is-unicode-supported: 2.0.0
       lifecycle-utils: 1.4.1
       log-symbols: 6.0.0
@@ -9798,8 +9783,8 @@ snapshots:
       which: 4.0.0
       yargs: 17.7.2
     optionalDependencies:
-      '@node-llama-cpp/linux-x64-cuda': 3.0.0-beta.38
-      '@node-llama-cpp/win-x64-cuda': 3.0.0-beta.38
+      '@node-llama-cpp/linux-x64-cuda': 3.0.0-beta.42
+      '@node-llama-cpp/win-x64-cuda': 3.0.0-beta.42
       typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
@@ -10551,7 +10536,7 @@ snapshots:
     dependencies:
       '@kwsites/file-exists': 1.1.1
       '@kwsites/promise-deferred': 1.1.1
-      debug: 4.3.5
+      debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
 
@@ -10953,32 +10938,32 @@ snapshots:
       tslib: 1.14.1
       typescript: 5.5.4
 
-  turbo-darwin-64@2.0.11:
+  turbo-darwin-64@2.0.12:
     optional: true
 
-  turbo-darwin-arm64@2.0.11:
+  turbo-darwin-arm64@2.0.12:
     optional: true
 
-  turbo-linux-64@2.0.11:
+  turbo-linux-64@2.0.12:
     optional: true
 
-  turbo-linux-arm64@2.0.11:
+  turbo-linux-arm64@2.0.12:
     optional: true
 
-  turbo-windows-64@2.0.11:
+  turbo-windows-64@2.0.12:
     optional: true
 
-  turbo-windows-arm64@2.0.11:
+  turbo-windows-arm64@2.0.12:
     optional: true
 
-  turbo@2.0.11:
+  turbo@2.0.12:
     optionalDependencies:
-      turbo-darwin-64: 2.0.11
-      turbo-darwin-arm64: 2.0.11
-      turbo-linux-64: 2.0.11
-      turbo-linux-arm64: 2.0.11
-      turbo-windows-64: 2.0.11
-      turbo-windows-arm64: 2.0.11
+      turbo-darwin-64: 2.0.12
+      turbo-darwin-arm64: 2.0.12
+      turbo-linux-64: 2.0.12
+      turbo-linux-arm64: 2.0.12
+      turbo-windows-64: 2.0.12
+      turbo-windows-arm64: 2.0.12
 
   type-check@0.4.0:
     dependencies:
@@ -11189,13 +11174,13 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite-node@2.0.3(@types/node@20.14.11):
+  vite-node@2.0.3(@types/node@20.14.13):
     dependencies:
       cac: 6.7.14
       debug: 4.3.5
       pathe: 1.1.2
       tinyrainbow: 1.2.0
-      vite: 5.3.4(@types/node@20.14.11)
+      vite: 5.3.4(@types/node@20.14.13)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -11241,13 +11226,13 @@ snapshots:
       - terser
     optional: true
 
-  vite@5.3.4(@types/node@20.14.11):
+  vite@5.3.4(@types/node@20.14.13):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.40
       rollup: 4.18.1
     optionalDependencies:
-      '@types/node': 20.14.11
+      '@types/node': 20.14.13
       fsevents: 2.3.3
 
   vite@5.3.5(@types/node@20.14.13):
@@ -11269,7 +11254,7 @@ snapshots:
       fsevents: 2.3.3
     optional: true
 
-  vitest@2.0.3(@types/node@20.14.11):
+  vitest@2.0.3(@types/node@20.14.13):
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@vitest/expect': 2.0.3
@@ -11287,11 +11272,11 @@ snapshots:
       tinybench: 2.8.0
       tinypool: 1.0.0
       tinyrainbow: 1.2.0
-      vite: 5.3.4(@types/node@20.14.11)
-      vite-node: 2.0.3(@types/node@20.14.11)
+      vite: 5.3.4(@types/node@20.14.13)
+      vite-node: 2.0.3(@types/node@20.14.13)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 20.14.11
+      '@types/node': 20.14.13
     transitivePeerDependencies:
       - less
       - lightningcss
